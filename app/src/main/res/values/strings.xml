@@ -6,7 +6,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="collector_name_placeholder">Nombre del coleccionista</string>
@@ -20,4 +19,13 @@
     <string name="title_albums">Albums</string>
     <string name="title_collectors">Coleccionistas</string>
     <string name="title_comments">Comentarios del álbum</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_usuario">Menu Usuario</string>
+    <string name="menu_coleccionista">Menu Coleccionista</string>
+    <string name="indique_su_tipo_de_usuario">Indique su tipo de Usuario</string>
+    <string name="bienvenid">Bienvenid@</string>
+    <string name="HolaUser">Hola Usuario</string>
+    <string name="CatCollection">Catálogo de  coleccionistas</string>
+    <string name="CatArtist">Catálogo de artistas</string>
+    <string name="CatAlbum">Catálogo de álbumes</string>
 </resources>

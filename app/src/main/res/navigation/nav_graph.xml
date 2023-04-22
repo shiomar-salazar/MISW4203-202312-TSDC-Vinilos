@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/collectorFragment">
+    app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/collectorFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.CollectorFragment"
-        android:label="collector_fragment"
+        android:label="@string/app_name"
         tools:layout="@layout/collector_fragment" >
         <action
             android:id="@+id/action_collectorFragment_to_albumFragment"
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumFragment"
-        android:label="album_fragment"
+        android:label="@string/app_name"
         tools:layout="@layout/album_fragment" >
         <action
             android:id="@+id/action_albumFragment_to_commentFragment"
@@ -25,10 +25,28 @@
     <fragment
         android:id="@+id/commentFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.CommentFragment"
-        android:label="comment_fragment"
+        android:label="@string/app_name"
         tools:layout="@layout/comment_fragment" >
         <argument
             android:name="albumId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.tsdc_vinilos_equipo6.ui.UserFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_collectorFragment"
+            app:destination="@id/collectorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.tsdc_vinilos_equipo6.ui.MainFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
 </navigation>
