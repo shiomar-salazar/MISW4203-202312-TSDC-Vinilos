@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.MainFragment">
+
+    <TextView
+        android:id="@+id/Welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/UserTypeText"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:layout_marginBottom="35dip"
+        android:text="@string/bienvenid" android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/UserTypeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/MenuUserButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dip"
+        android:textSize="20sp"
+        android:text="@string/indique_su_tipo_de_usuario" />
+
+    <Button
+        android:id="@+id/MenuUserButton"
+        android:layout_width="250dip"
+        android:layout_height="100dip"
+        android:text="@string/menu_usuario"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="18dip"
+        android:backgroundTint="@color/ButtonBlue"
+        android:textAllCaps="false"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/CollectorManuButton"
+        android:layout_width="250dip"
+        android:layout_height="100dip"
+        android:text="@string/menu_coleccionista"
+        android:layout_below="@id/MenuUserButton"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/ButtonBlue"
+        android:textAllCaps="false"
+        android:textSize="20sp"  />
+</RelativeLayout >
