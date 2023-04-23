@@ -28,4 +28,5 @@
     <string name="CatCollection">Catálogo de  coleccionistas</string>
     <string name="CatArtist">Catálogo de artistas</string>
     <string name="CatAlbum">Catálogo de álbumes</string>
+    <string name="listado_de_artistas">Listado de Artistas</string>
 </resources>
