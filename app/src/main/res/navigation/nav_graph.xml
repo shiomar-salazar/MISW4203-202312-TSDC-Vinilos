@@ -56,5 +56,5 @@
         android:id="@+id/artistFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.ArtistFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_artist_list" />
+        tools:layout="@layout/artist_item" />
 </navigation>

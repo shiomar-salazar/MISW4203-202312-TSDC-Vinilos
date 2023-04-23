@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
-import com.example.tsdc_vinilos_equipo6.databinding.FragmentArtistBinding
-import com.example.tsdc_vinilos_equipo6.databinding.FragmentArtistListBinding
+import com.example.tsdc_vinilos_equipo6.databinding.ArtistFragmentBinding
+import com.example.tsdc_vinilos_equipo6.databinding.ArtistItemBinding
 import com.example.tsdc_vinilos_equipo6.ui.adapters.ArtistsAdapter
 import com.example.tsdc_vinilos_equipo6.viewmodels.ArtistViewModel
 
@@ -19,7 +19,7 @@ import com.example.tsdc_vinilos_equipo6.viewmodels.ArtistViewModel
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class ArtistFragment : Fragment() {
-    private var _binding: FragmentArtistBinding? = null
+    private var _binding: ArtistFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: ArtistViewModel
@@ -29,7 +29,7 @@ class ArtistFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentArtistBinding.inflate(inflater, container, false)
+        _binding = ArtistFragmentBinding.inflate(inflater, container, false)
         val view = binding.root
         viewModelAdapter = ArtistsAdapter()
         return view

@@ -3,16 +3,12 @@ package com.example.tsdc_vinilos_equipo6.ui.adapters
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import com.example.tsdc_vinilos_equipo6.R
 
-import com.example.tsdc_vinilos_equipo6.placeholder.PlaceholderContent.PlaceholderItem
-import com.example.tsdc_vinilos_equipo6.databinding.FragmentArtistListBinding
+import com.example.tsdc_vinilos_equipo6.databinding.ArtistItemBinding
 import com.example.tsdc_vinilos_equipo6.models.Artist
-import com.example.tsdc_vinilos_equipo6.ui.CollectorFragmentDirections
 
 class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
 
@@ -23,7 +19,7 @@ class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistsAdapter.ArtistViewHolder {
-        val withDataBinding: FragmentArtistListBinding = DataBindingUtil.inflate(
+        val withDataBinding: ArtistItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             ArtistsAdapter.ArtistViewHolder.LAYOUT,
             parent,
@@ -45,11 +41,11 @@ class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
     override fun getItemCount(): Int {
         return artists.size
     }
-    class ArtistViewHolder(val viewDataBinding: FragmentArtistListBinding) :
+    class ArtistViewHolder(val viewDataBinding: ArtistItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
             @LayoutRes
-            val LAYOUT = R.layout.fragment_artist_list
+            val LAYOUT = R.layout.artist_item
         }
     }
 

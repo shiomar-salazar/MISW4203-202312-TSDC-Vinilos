@@ -8,9 +8,10 @@
 
     <TextView
         android:id="@+id/ArtistTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="25dp"
+        android:layout_centerHorizontal="true"
         android:text="@string/listado_de_artistas"
         android:textSize="20sp" />
 
@@ -19,5 +20,5 @@
         android:id="@+id/fragments_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/fragment_artist_list" />
+        tools:listitem="@layout/artist_item" />
 </RelativeLayout>
