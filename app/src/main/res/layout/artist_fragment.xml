@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.ArtistFragment">
+
+    <TextView
+        android:id="@+id/ArtistTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="25dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/listado_de_artistas"
+        android:textSize="20sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/ArtistTitle"
+        android:id="@+id/fragments_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/artist_item" />
+</RelativeLayout>
