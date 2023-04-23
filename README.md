@@ -1,5 +1,5 @@
 # MISW4203-202312-TSDC-Vinilos
-Espacio de trabajo para el equipo # de la Materia de MISW4203
+Espacio de trabajo para el equipo #6 de la Materia de MISW4203
 
 ## Estructura del Proyecto
 ```bash
