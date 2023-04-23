@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_userFragment_to_collectorFragment"
             app:destination="@id/collectorFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_artistFragment"
+            app:destination="@id/artistFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -49,4 +52,9 @@
             android:id="@+id/action_mainFragment_to_userFragment"
             app:destination="@id/userFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/artistFragment"
+        android:name="com.example.tsdc_vinilos_equipo6.ui.ArtistFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/artist_item" />
 </navigation>

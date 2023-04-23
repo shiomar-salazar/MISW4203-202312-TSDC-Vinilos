@@ -27,30 +27,22 @@ class UserFragment : Fragment() {
         )
 
         val button = view.findViewById<View>(R.id.ColecctionUserButton) as Button
-        button.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val action = UserFragmentDirections.actionUserFragmentToCollectorFragment()
-                v?.findNavController()?.navigate(action)
-            }
-        })
+        button.setOnClickListener { v ->
+            val action = UserFragmentDirections.actionUserFragmentToCollectorFragment()
+            v?.findNavController()?.navigate(action)
+        }
 
         val button2 = view.findViewById<View>(R.id.ArtistUserButton) as Button
-        button2.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                //val action = MainFragmentDirections.actionMainFragmentToUserFragment()
-                //v?.findNavController()?.navigate(action)
-                Toast.makeText(activity, "Not Implemented Yet", Toast.LENGTH_LONG).show()
-            }
-        })
+        button2.setOnClickListener { v ->
+            val action = UserFragmentDirections.actionUserFragmentToArtistFragment()
+            v?.findNavController()?.navigate(action)
+        }
 
         val button3 = view.findViewById<View>(R.id.AlbumUserButton) as Button
-        button3.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                //val action = MainFragmentDirections.actionMainFragmentToUserFragment()
-                //v?.findNavController()?.navigate(action)
-                Toast.makeText(activity, "Not Implemented Yet", Toast.LENGTH_LONG).show()
-            }
-        })
+        button3.setOnClickListener { //val action = MainFragmentDirections.actionMainFragmentToUserFragment()
+            //v?.findNavController()?.navigate(action)
+            Toast.makeText(activity, "Not Implemented Yet", Toast.LENGTH_LONG).show()
+        }
         return view
     }
 

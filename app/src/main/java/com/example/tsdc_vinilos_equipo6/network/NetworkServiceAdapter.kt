@@ -10,6 +10,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.tsdc_vinilos_equipo6.models.Album
+import com.example.tsdc_vinilos_equipo6.models.Artist
 import com.example.tsdc_vinilos_equipo6.models.Collector
 import com.example.tsdc_vinilos_equipo6.models.Comment
 import org.json.JSONArray
@@ -97,5 +98,23 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
     private fun putRequest(path: String, body: JSONObject,  responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener ):JsonObjectRequest{
         return  JsonObjectRequest(Request.Method.PUT, BASE_URL +path, body, responseListener, errorListener)
+    }
+
+    fun getArtists(onComplete:(resp:List<Artist>)->Unit, onError: (error:VolleyError)->Unit) {
+        requestQueue.add(getRequest("collectors",
+            { response ->
+                Log.d("tagb", response)
+                val resp = JSONArray(response)
+                val list = mutableListOf<Artist>()
+                for (i in 0 until resp.length()) {
+                    val item = resp.getJSONObject(i)
+                    list.add(i, Artist(artistId = item.getInt("id"),name = item.getString("name"), birthDate = item.getString("telephone"), image = item.getString("telephone"),description = item.getString("telephone") ))
+                }
+                onComplete(list)
+            },
+            {
+                onError(it)
+                Log.d("", it.message.toString())
+            }))
     }
 }
