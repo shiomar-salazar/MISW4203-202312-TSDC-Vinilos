@@ -14,7 +14,7 @@
         android:layout_above="@id/ArtistUserButton"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/ButtonGrey"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_marginBottom="18dip"
         android:textAllCaps="false"
         android:textSize="20sp"  />
@@ -23,13 +23,12 @@
         android:id="@+id/ArtistUserButton"
         android:layout_width="250dip"
         android:layout_height="100dip"
-        android:text="@string/CatArtist"
-        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="18dip"
         android:backgroundTint="@color/ButtonGrey"
+        android:text="@string/CatArtist"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <Button
@@ -37,7 +36,7 @@
         android:layout_width="250dip"
         android:layout_height="100dip"
         android:text="@string/CatCollection"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_below="@id/ArtistUserButton"
         android:textAllCaps="false"
         android:layout_centerHorizontal="true"

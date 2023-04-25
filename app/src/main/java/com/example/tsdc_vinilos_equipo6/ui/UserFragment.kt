@@ -39,9 +39,9 @@ class UserFragment : Fragment() {
         }
 
         val button3 = view.findViewById<View>(R.id.AlbumUserButton) as Button
-        button3.setOnClickListener { //val action = MainFragmentDirections.actionMainFragmentToUserFragment()
-            //v?.findNavController()?.navigate(action)
-            Toast.makeText(activity, "Not Implemented Yet", Toast.LENGTH_LONG).show()
+        button3.setOnClickListener { v ->
+            val action = UserFragmentDirections.actionUserFragmentToAlbumFragment()
+            v?.findNavController()?.navigate(action)
         }
         return view
     }
