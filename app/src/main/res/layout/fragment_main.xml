@@ -30,11 +30,10 @@
         android:id="@+id/MenuUserButton"
         android:layout_width="250dip"
         android:layout_height="100dip"
-        android:text="@string/menu_usuario"
-        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="18dip"
-        android:backgroundTint="@color/ButtonBlue"
+        android:backgroundTint="@color/ButtonGrey"
+        android:text="@string/menu_usuario"
         android:textAllCaps="false"
         android:textSize="20sp" />
 
@@ -45,7 +44,7 @@
         android:text="@string/menu_coleccionista"
         android:layout_below="@id/MenuUserButton"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/ButtonBlue"
+        android:backgroundTint="@color/ButtonGrey"
         android:textAllCaps="false"
         android:textSize="20sp"  />
 </RelativeLayout >
