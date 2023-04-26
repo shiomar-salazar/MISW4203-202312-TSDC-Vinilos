@@ -18,7 +18,7 @@ import org.json.JSONObject
 
 class NetworkServiceAdapter constructor(context: Context) {
     companion object {
-        const val BASE_URL = "https://vynils-back-heroku.herokuapp.com/"
+        const val BASE_URL = "http://54.172.124.166/"
         private var instance: NetworkServiceAdapter? = null
         fun getInstance(context: Context) =
             instance ?: synchronized(this) {
@@ -186,24 +186,44 @@ class NetworkServiceAdapter constructor(context: Context) {
         onError: (error: VolleyError) -> Unit
     ) {
         requestQueue.add(
-            getRequest("collectors",
+            getRequest("musicians",
                 { response ->
-                    Log.d("tagb", response)
+                    Log.d("ResponseGelAllArtists", response)
                     val resp = JSONArray(response)
                     val list = mutableListOf<Artist>()
+                    val listAlbums = mutableListOf<Album>()
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
+                        val respAlbums = item.getJSONArray("albums")
+                        for (j in 0 until respAlbums.length()) {
+                            val itemAlbum = respAlbums.getJSONObject(j)
+                            listAlbums.add(
+                                j, Album(
+                                    albumId = itemAlbum.getInt("id"),
+                                    name = itemAlbum.getString("name"),
+                                    cover = itemAlbum.getString("cover"),
+                                    releaseDate = itemAlbum.getString("releaseDate"),
+                                    description = itemAlbum.getString("description"),
+                                    genre = itemAlbum.getString("genre"),
+                                    recordLabel = itemAlbum.getString("recordLabel"),
+                                    performers = null
+                                )
+                            )
+                        }
+
                         list.add(
                             i,
                             Artist(
                                 artistId = item.getInt("id"),
                                 name = item.getString("name"),
-                                birthDate = item.getString("telephone"),
-                                image = item.getString("telephone"),
-                                description = item.getString("telephone")
+                                birthDate = item.getString("birthDate"),
+                                image = item.getString("image"),
+                                description = item.getString("description"),
+                                albums = listAlbums
                             )
                         )
                     }
+                    Log.d("ArtistsList", list.toString())
                     onComplete(list)
                 },
                 {
