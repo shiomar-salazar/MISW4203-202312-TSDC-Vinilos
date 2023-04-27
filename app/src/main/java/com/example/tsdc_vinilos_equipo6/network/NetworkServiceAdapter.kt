@@ -208,7 +208,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                                     description = itemAlbum.getString("description"),
                                     genre = itemAlbum.getString("genre"),
                                     recordLabel = itemAlbum.getString("recordLabel"),
-                                    performers = null
+                                    tracks = null,
+                                    performers = null,
+                                    comments = null
                                 )
                             )
                         }
