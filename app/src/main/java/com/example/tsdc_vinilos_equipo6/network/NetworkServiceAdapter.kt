@@ -51,7 +51,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 releaseDate = item.getString("releaseDate"),
                                 genre = item.getString("genre"),
                                 description = item.getString("description"),
-                                performers = null
+                                tracks = null,
+                                performers = null,
+                                comments = null
                             )
                         )
                     }
