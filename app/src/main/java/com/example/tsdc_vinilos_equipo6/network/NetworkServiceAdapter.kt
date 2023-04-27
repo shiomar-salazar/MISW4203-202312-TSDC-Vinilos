@@ -216,7 +216,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                             Artist(
                                 artistId = item.getInt("id"),
                                 name = item.getString("name"),
-                                birthDate = item.getString("birthDate"),
+                                birthDate = item.getString("birthDate").substring(0,10),
                                 image = item.getString("image"),
                                 description = item.getString("description"),
                                 albums = listAlbums

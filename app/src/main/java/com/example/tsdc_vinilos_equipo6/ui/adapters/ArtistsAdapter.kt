@@ -3,8 +3,11 @@ package com.example.tsdc_vinilos_equipo6.ui.adapters
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.tsdc_vinilos_equipo6.R
 
 import com.example.tsdc_vinilos_equipo6.databinding.ArtistItemBinding
@@ -31,6 +34,7 @@ class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
         holder.viewDataBinding.also {
             it.artist = artists[position]
         }
+        loadUrl(artists[position].image,holder.viewDataBinding.artistImage)
         holder.viewDataBinding.root.setOnClickListener {
             //val action = CollectorFragmentDirections.actionCollectorFragmentToAlbumFragment()
             // Navigate using that action
@@ -47,6 +51,15 @@ class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
             @LayoutRes
             val LAYOUT = R.layout.artist_item
         }
+    }
+
+    fun loadUrl(url: String, imgView : ImageView) {
+        try {
+            Glide.with(imgView).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.photo).into(imgView)
+        }catch (_: Exception){
+
+        }
+
     }
 
 }
