@@ -33,7 +33,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_rowSpan="2"
-                    android:contentDescription="@string/picture_of_the_artist"
+                    android:contentDescription="@string/picture_of_the_album"
                     android:scaleType="fitXY"
                     android:src="@{album.cover}" />
 
@@ -55,7 +55,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_marginStart="10dip"
-                    android:text="Performer Name"
+                    android:text="@{album.performers.toString()}"
                     android:textSize="15sp" />
 
             </GridLayout>

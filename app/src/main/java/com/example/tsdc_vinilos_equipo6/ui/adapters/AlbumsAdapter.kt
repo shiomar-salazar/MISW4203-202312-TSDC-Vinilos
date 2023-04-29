@@ -4,12 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
+import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.AlbumItemBinding
 import com.example.tsdc_vinilos_equipo6.models.Album
-import com.example.tsdc_vinilos_equipo6.ui.AlbumFragmentDirections
+import com.example.tsdc_vinilos_equipo6.models.Performer
 
 class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
 
@@ -32,6 +35,10 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         holder.viewDataBinding.also {
             it.album = albums[position]
         }
+
+        loadUrl(albums[position].cover, holder.viewDataBinding.AlbumCover)
+        displayList(albums[position].performers, holder.viewDataBinding.AlbumDescription)
+
         holder.viewDataBinding.root.setOnClickListener {
             /*
             val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
@@ -52,6 +59,38 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
             @LayoutRes
             val LAYOUT = R.layout.album_item
         }
+    }
+
+    fun loadUrl(url: String, imgView : ImageView) {
+        try {
+            Glide.with(imgView).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.photo).into(imgView)
+        }catch (_: Exception){
+
+        }
+
+    }
+
+    fun listToText(performerslist:List<Performer>?): String? {
+        var texto: String? = null
+        if (performerslist.isNullOrEmpty())
+            texto = "No hay perfomers disponibles"
+        else {
+            for (p in performerslist) {
+                if (texto == null)
+                    texto = p.name
+                else
+                    texto = texto + ", " + p.name
+            }
+        }
+        return texto
+    }
+
+    fun displayList(listaPerformers: List<Performer>?, textView: TextView) {
+        val lista = listToText(listaPerformers)
+
+
+
+
     }
 
 
