@@ -35,6 +35,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         holder.viewDataBinding.also {
             it.album = albums[position]
         }
+        displayPerformers(albums[position].performers, holder.viewDataBinding.AlbumDescription)
         loadUrl(albums[position].cover, holder.viewDataBinding.AlbumCover)
         holder.viewDataBinding.root.setOnClickListener {
             /*
@@ -67,6 +68,27 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
 
     }
 
+    fun listPerformersToText(performerslist:List<Performer>?): String? {
+        var texto: String? = null
+        if (performerslist.isNullOrEmpty())
+            texto = "No hay perfomers disponibles"
+        else {
+            for (p in performerslist) {
+                if (texto == null)
+                    texto = p.name
+                else
+                    texto = texto + ", " + p.name
+            }
+        }
+        return texto
+    }
 
+    fun displayPerformers(performerslist:List<Performer>?, textView: TextView) {
+        try {
+            textView.text = listPerformersToText(performerslist)
+        }catch (_: Exception){
+
+        }
+    }
 
 }

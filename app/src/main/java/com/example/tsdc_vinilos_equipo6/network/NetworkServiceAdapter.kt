@@ -67,7 +67,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 description = item.getString("description"),
                                 tracks = null,
                                 performers = listPerformers,
-                                performersNames = listToText(listPerformers),
                                 comments = null
                             )
                         )
@@ -225,7 +224,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                                     recordLabel = itemAlbum.getString("recordLabel"),
                                     tracks = null,
                                     performers = null,
-                                    performersNames = null,
                                     comments = null
                                 )
                             )
@@ -253,18 +251,5 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
-    fun listToText(performerslist:List<Performer>?): String? {
-        var texto: String? = null
-        if (performerslist.isNullOrEmpty())
-            texto = "No hay perfomers disponibles"
-        else {
-            for (p in performerslist) {
-                if (texto == null)
-                    texto = p.name
-                else
-                    texto = texto + ", " + p.name
-            }
-        }
-        return texto
-    }
+
 }
