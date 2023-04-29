@@ -35,10 +35,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         holder.viewDataBinding.also {
             it.album = albums[position]
         }
-
         loadUrl(albums[position].cover, holder.viewDataBinding.AlbumCover)
-        displayList(albums[position].performers, holder.viewDataBinding.AlbumDescription)
-
         holder.viewDataBinding.root.setOnClickListener {
             /*
             val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
@@ -70,28 +67,6 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
 
     }
 
-    fun listToText(performerslist:List<Performer>?): String? {
-        var texto: String? = null
-        if (performerslist.isNullOrEmpty())
-            texto = "No hay perfomers disponibles"
-        else {
-            for (p in performerslist) {
-                if (texto == null)
-                    texto = p.name
-                else
-                    texto = texto + ", " + p.name
-            }
-        }
-        return texto
-    }
-
-    fun displayList(listaPerformers: List<Performer>?, textView: TextView) {
-        val lista = listToText(listaPerformers)
-
-
-
-
-    }
 
 
 }

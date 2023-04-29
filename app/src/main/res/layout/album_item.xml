@@ -55,7 +55,7 @@
                     android:layout_row="1"
                     android:layout_column="1"
                     android:layout_marginStart="10dip"
-                    android:text="@{album.performers.toString()}"
+                    android:text="@{album.performersNames}"
                     android:textSize="15sp" />
 
             </GridLayout>

@@ -40,10 +40,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Album>()
-                    val listPerformers = mutableListOf<Performer>()
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
                         val respPerformer = item.getJSONArray("performers")
+                        val listPerformers = mutableListOf<Performer>()
                         for (j in 0  until respPerformer.length()) {
                             val itemPerformer = respPerformer.getJSONObject(j)
                             listPerformers.add(
@@ -67,6 +67,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 description = item.getString("description"),
                                 tracks = null,
                                 performers = listPerformers,
+                                performersNames = listToText(listPerformers),
                                 comments = null
                             )
                         )
@@ -224,6 +225,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                                     recordLabel = itemAlbum.getString("recordLabel"),
                                     tracks = null,
                                     performers = null,
+                                    performersNames = null,
                                     comments = null
                                 )
                             )
@@ -249,5 +251,20 @@ class NetworkServiceAdapter constructor(context: Context) {
                     Log.d("", it.message.toString())
                 })
         )
+    }
+
+    fun listToText(performerslist:List<Performer>?): String? {
+        var texto: String? = null
+        if (performerslist.isNullOrEmpty())
+            texto = "No hay perfomers disponibles"
+        else {
+            for (p in performerslist) {
+                if (texto == null)
+                    texto = p.name
+                else
+                    texto = texto + ", " + p.name
+            }
+        }
+        return texto
     }
 }
