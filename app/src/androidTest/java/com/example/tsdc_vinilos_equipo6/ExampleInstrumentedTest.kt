@@ -12,6 +12,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import org.hamcrest.Matchers.anything
+import org.hamcrest.core.AllOf.allOf
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -66,8 +68,17 @@ class ExampleInstrumentedTest {
 
         onView(withId(R.id.ArtistTitle)).check(matches(withText("Listado de Artistas")))
 
-        onView(withId(R.id.ArtistName)).check(matches(isDisplayed()))
-        onView(withId(R.id.ArtisDate)).check(matches(isDisplayed()))
+        onData(anything())
+            .atPosition(0)
+            .onChildView(allOf(withId(R.id.ArtistName)))
+            .check(matches(isDisplayed()));
+        onData(anything())
+            .atPosition(0)
+            .onChildView(allOf(withId(R.id.ArtisDate)))
+            .check(matches(isDisplayed()));
+
+        //onView(withId(R.id.ArtistName)).check(matches(isDisplayed()))
+        //onView(withId(R.id.ArtisDate)).check(matches(isDisplayed()))
 
 
     }
