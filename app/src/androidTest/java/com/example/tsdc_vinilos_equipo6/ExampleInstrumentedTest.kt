@@ -2,7 +2,9 @@ package com.example.tsdc_vinilos_equipo6
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -20,9 +22,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     @Rule
-    var mActivityTestRule = ActivityScenarioRule(
-        MainActivity::class.java
-    )
+    @JvmField var activityRule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -33,7 +33,8 @@ class ExampleInstrumentedTest {
 
     fun btnMenuUsuarioClick(){
         // click en Menu Usuario
-        onView(withId(R.id.MenuUserButton)).perform(click())
+        onView(withId(R.id.MenuUserButton))
+            .perform(click())
     }
     fun btnArtistCatalog(){
         // click en Menu Usuario
@@ -54,6 +55,8 @@ class ExampleInstrumentedTest {
 
         //Click Catalogo de Artistas
         btnArtistCatalog()
+
+        onView(withId(R.id.ArtistTitle)).check(matches(withText("Listado de Artistas")))
     }
 
 
@@ -64,6 +67,8 @@ class ExampleInstrumentedTest {
 
         //Click Catalogo de Artistas
         btnAlbumCatalog()
+
+        onView(withId(R.id.AlbumTitle)).check(matches(withText("Listado de Albumes")))
     }
 
     @Test
@@ -73,5 +78,9 @@ class ExampleInstrumentedTest {
 
         //Click Catalogo de Artistas
         btnCollectorCatalog()
+
+        onView(withId(R.id.textView2)).check(matches(withText("Haiber H. Galindo")))
     }
+
+
 }
