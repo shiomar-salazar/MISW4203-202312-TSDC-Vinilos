@@ -65,8 +65,8 @@ class ExampleInstrumentedTest {
 
         onView(withId(R.id.ArtistTitle)).check(matches(withText("Listado de Artistas")))
 
-        onView(withText(FIRST_ITEM_ID)).check(doesNotExist());
-        onView(withText(FIRST_DATE_ID)).check(doesNotExist());
+        onView(withId(R.id.ArtistName)).check(doesNotExist());
+        onView(withId(R.id.ArtisDate)).check(doesNotExist());
 
 
     }
