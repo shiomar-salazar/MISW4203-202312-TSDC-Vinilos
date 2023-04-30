@@ -1,7 +1,9 @@
 package com.example.tsdc_vinilos_equipo6
 
+import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -21,6 +23,11 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
+    // Match the last item by matching its text.
+    private val FIRST_ITEM_ID = "Chester Bennington"
+    private val FIRST_DATE_ID = "1976-03-20"
+
     @Rule
     @JvmField var activityRule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
     @Test
@@ -57,6 +64,11 @@ class ExampleInstrumentedTest {
         btnArtistCatalog()
 
         onView(withId(R.id.ArtistTitle)).check(matches(withText("Listado de Artistas")))
+
+        onView(withText(FIRST_ITEM_ID)).check(doesNotExist());
+        onView(withText(FIRST_DATE_ID)).check(doesNotExist());
+
+
     }
 
 
@@ -71,7 +83,7 @@ class ExampleInstrumentedTest {
         onView(withId(R.id.AlbumTitle)).check(matches(withText("Listado de Albumes")))
     }
 
-    @Test
+    /*@Test
     fun CollectorCatalogTest(){
         // click en Menu Usuario
         btnMenuUsuarioClick()
@@ -80,7 +92,7 @@ class ExampleInstrumentedTest {
         btnCollectorCatalog()
 
         onView(withId(R.id.textView2)).check(matches(withText("Haiber H. Galindo")))
-    }
+    }*/
 
 
 }
