@@ -142,6 +142,16 @@ Espacio de trabajo para el equipo #6 de la Materia de MISW4203
 
 
 ## Pasos para Ejecutar Pruebas Automatizadas
-***
-TBA
-***
+1. Debemos ir al explorador de nuestro proyecto y seleccionar el archivo de pruebas a ejecutar.
+
+![image](https://user-images.githubusercontent.com/65821560/235393296-c5658305-d7df-4203-8655-f32c9106c1f7.png)
+
+2. Dar Click Derecho en sobre el caso de pruebas y seleccionar la opción run test.
+
+![image](https://user-images.githubusercontent.com/65821560/235393382-0f945724-3ec2-4c4d-a8b6-f3d456039670.png)
+
+3. A continuación se abrira un panel en nuestro entorno de desarrollo que nos mostrara el paso a paso del despliegue y si los casos de pruebas sosn exitosos o fallidos.
+
+![image](https://user-images.githubusercontent.com/65821560/235393512-4d9e1d14-bed8-40ae-92e4-a91f07979749.png)
+
+4. En nuestro disopsitivo virtual seleccionado podremos ver la ejecución del caso de prueba.
