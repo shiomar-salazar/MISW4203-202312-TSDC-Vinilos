@@ -19,9 +19,6 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ArtisListTest {
-    // Match the last item by matching its text.
-    private val FIRST_ITEM_ID = "Chester Bennington"
-    private val FIRST_DATE_ID = "1976-03-20"
 
     @Rule
     @JvmField
@@ -58,7 +55,7 @@ class ArtisListTest {
         onView(withId(R.id.ArtistTitle)).check(matches(withText("Listado de Artistas")))
         onView(allOf(withId(R.id.ArtistName), not(withText(""))))
         onView(allOf(withId(R.id.ArtisDate), not(withText(""))))
-    }
 
+    }
 
 }
