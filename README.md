@@ -108,20 +108,35 @@ Espacio de trabajo para el equipo #6 de la Materia de MISW4203
 ## Pasos para Ejecutar en Dispositivo Emulado de Pruebas
 ### Crear Dispositivo Virual
 1. Ir al menu Tool seleccionar la opción Device Manager.
+
 ![image](https://user-images.githubusercontent.com/65821560/235392026-e4e0b271-b9c3-4f3b-aad3-d4407338a730.png)
+
 2. Seleccionar la Opción Virtual y luego dar click en el botón "Create Device"
+
 ![image](https://user-images.githubusercontent.com/65821560/235392155-7a760fac-4b16-47bb-8e19-6d8d11a92b8b.png)
+
 3. Seleccionar el Tipo de dispositivo, Modelo y tamaño de pantalla, luego dar click en Next.
+
 ![image](https://user-images.githubusercontent.com/65821560/235392213-c3112663-1683-46b4-b6db-1314b7914d79.png)
+
 4. Seleccionar la imagen del sistema Operativo a usar en el dispositivo virtual y dar click en Next.
+
 ![image](https://user-images.githubusercontent.com/65821560/235392267-cba3741e-4be2-4c08-bf9a-b8f4c7fcc6a2.png)
+
 5. Seleccionar la oritentación del dispositivo y dar click en Finish.
+
 ![image](https://user-images.githubusercontent.com/65821560/235392388-b7753b2e-d719-4139-83e9-8a44b89c6823.png)
+
 6. En la panrtalla se mostraran los dispositivos virtuales creados.
+
 ![image](https://user-images.githubusercontent.com/65821560/235392477-c5ac132c-c548-42c7-aaef-53bf3c63b576.png)
+
 7. En la Barra de herramientas se debe seleccionar el proyecto, seleccionar el dispositivo a usar y dar click en el boton compilar.
+
 ![image](https://user-images.githubusercontent.com/65821560/235392561-111310d5-5c08-4462-86f2-d85fbdda010a.png)
+
 8. Iniciara el despliegue de la aplicación en el dispositivo seleccionado y estara listo para la prueba.
+
 ![image](https://user-images.githubusercontent.com/65821560/235392625-71b12950-d05a-454d-b659-05c9a4ff3960.png)
 
 
