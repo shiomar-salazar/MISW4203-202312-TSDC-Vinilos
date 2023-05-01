@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AlbumFragment"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp">
+    android:orientation="vertical"
+    tools:context=".ui.ArtistFragment">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+    <TextView
+        android:id="@+id/AlbumTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="@string/listado_de_albumes"
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/albumsRv"
+        android:id="@+id/fragments_album"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/album_item"/>
+        android:layout_below="@id/AlbumTitle"
+        tools:listitem="@layout/album_item" />
 
-</FrameLayout>
+</RelativeLayout>

@@ -25,9 +25,11 @@
     <string name="indique_su_tipo_de_usuario">Indique su tipo de Usuario</string>
     <string name="bienvenid">Bienvenid@</string>
     <string name="HolaUser">Hola Usuario</string>
-    <string name="CatCollection">Catálogo de  coleccionistas</string>
+    <string name="CatCollection">Catálogo de coleccionistas</string>
     <string name="CatArtist">Catálogo de artistas</string>
     <string name="CatAlbum">Catálogo de álbumes</string>
     <string name="listado_de_artistas">Listado de Artistas</string>
     <string name="picture_of_the_artist">Picture of the Artist</string>
+    <string name="listado_de_albumes">Listado de Albumes</string>
+    <string name="picture_of_the_album">Picture of the Album</string>
 </resources>
