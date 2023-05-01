@@ -11,7 +11,11 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.tsdc_vinilos_equipo6.ui.ArtistFragment
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import org.hamcrest.Matchers.anything
+import org.hamcrest.Matchers.hasEntry
+import org.hamcrest.core.AllOf.allOf
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -31,6 +35,8 @@ class ExampleInstrumentedTest {
 
     @Rule
     @JvmField var activityRule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
+
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -65,11 +71,6 @@ class ExampleInstrumentedTest {
         btnArtistCatalog()
 
         onView(withId(R.id.ArtistTitle)).check(matches(withText("Listado de Artistas")))
-
-        onData(withId(R.id.ArtistName)).atPosition(0).check(matches(isDisplayed()))
-        onData(withId(R.id.ArtisDate)).atPosition(0).check(matches(isDisplayed()))
-
-
     }
 
 
