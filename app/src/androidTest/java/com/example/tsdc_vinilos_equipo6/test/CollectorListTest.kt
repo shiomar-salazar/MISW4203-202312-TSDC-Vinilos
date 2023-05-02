@@ -38,16 +38,17 @@ class CollectorListTest {
     }
 
     @Test
-    fun AlbumListTest() {
+    fun CollectorListTest() {
         // click en Menu Usuario
         btnMenuUsuarioClick()
 
-        //Click Catalogo de Artistas
+        //Click Catalogo de Coleccionistas
         btnCollectorCatalog()
 
-        onView(withId(R.id.AlbumTitle)).check(matches(withText("Listado de Coleccionistas")))
-        onView(allOf(withId(R.id.AlbumName), not(withText(""))))
-        onView(allOf(withId(R.id.AlbumDescription), not(withText(""))))
+        onView(withId(R.id.CollectorTitle)).check(matches(withText("Listado de Coleccionistas")))
+        onView(allOf(withId(R.id.CollectorName), not(withText(""))))
+        onView(allOf(withId(R.id.collectorEmail), not(withText(""))))
+        onView(allOf(withId(R.id.collectorPhone), not(withText(""))))
     }
 
 }
