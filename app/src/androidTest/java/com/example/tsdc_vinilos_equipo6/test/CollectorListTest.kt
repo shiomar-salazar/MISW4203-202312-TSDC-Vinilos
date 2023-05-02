@@ -18,7 +18,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class AlbumListTest {
+class CollectorListTest {
 
     @Rule
     @JvmField
@@ -32,9 +32,9 @@ class AlbumListTest {
             .perform(click())
     }
 
-    fun btnAlbumCatalog() {
+    fun btnCollectorCatalog(){
         // click en Menu Usuario
-        onView(withId(R.id.AlbumUserButton)).perform(click())
+        onView(withId(R.id.ColecctionUserButton)).perform(click())
     }
 
     @Test
@@ -43,9 +43,9 @@ class AlbumListTest {
         btnMenuUsuarioClick()
 
         //Click Catalogo de Artistas
-        btnAlbumCatalog()
+        btnCollectorCatalog()
 
-        onView(withId(R.id.AlbumTitle)).check(matches(withText("Listado de Albumes")))
+        onView(withId(R.id.AlbumTitle)).check(matches(withText("Listado de Coleccionistas")))
         onView(allOf(withId(R.id.AlbumName), not(withText(""))))
         onView(allOf(withId(R.id.AlbumDescription), not(withText(""))))
     }
