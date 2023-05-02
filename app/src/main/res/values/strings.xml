@@ -32,4 +32,6 @@
     <string name="picture_of_the_artist">Picture of the Artist</string>
     <string name="listado_de_albumes">Listado de Albumes</string>
     <string name="picture_of_the_album">Picture of the Album</string>
+    <string name="listado_de_collector">Listado de Coleccionistas</string>
+    <string name="picture_of_collector">Favorite Album</string>
 </resources>

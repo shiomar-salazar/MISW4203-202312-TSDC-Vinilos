@@ -32,6 +32,7 @@ class AlbumListTest {
     //Constante que define el tiempo de espera para que se carguen los datos retornados por el adapter
     val delayService = Integer.toUnsignedLong(5000)
 
+
     fun clickIntoButtonById(idView: Int) {
         //Damos click en el boton idView
         onView(withId(idView)).perform(click())
@@ -71,85 +72,83 @@ class AlbumListTest {
     }
 
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.tsdc_vinilos_equipo6", appContext.packageName)
-    }
+    fun UseAppContext() {
 
-    @Test
-    fun ConsultExistentAlbumTest() {
-        /*
-            Prueba que tiene como objetivo verificar la información de un álbum existente
+        fun ConsultExistentAlbumTest() {
+            /*
+            Prueba que tiene como objetivo verificar la informaci�n de un �lbum existente
         */
 
-        //Constantes que se pueden modificar con base a los criterios deseados
-        val titleToSearch = "Listado de Albumes"
-        val albumNameToSearch = "Meteora"
-        val albumPerformerToSearch = "Queen, Linkin Park"
 
-        //Navegamos al view de ListArtists
-        navegateToListArtists()
+            //Constantes que se pueden modificar con base a los criterios deseados
+            val titleToSearch = "Listado de Albumes"
+            val albumNameToSearch = "Meteora"
+            val albumPerformerToSearch = "Queen, Linkin Park"
 
-        //Agregamos un tiempo de espera de 5000
-        SystemClock.sleep(delayService)
 
-        //Validamos si el fragment_artist es mostrado
-        onView(withId(R.id.fragment_album)).check(matches(ViewMatchers.isDisplayed()))
+            //Navegamos al view de ListArtists
+            navegateToListArtists()
 
-        //Validamos el textView Title exista
-        validateTextView(R.id.AlbumTitle, titleToSearch)
+            //Agregamos un tiempo de espera de 5000
+            SystemClock.sleep(delayService)
 
-        //Validamos el textView ArtistName coincida con el album buscado
-        validateTextView(R.id.AlbumName, albumNameToSearch)
+            //Validamos si el fragment_artist es mostrado
+            onView(withId(R.id.fragment_album)).check(matches(ViewMatchers.isDisplayed()))
 
-        //Validamos el textView ArtistName coincida con el performer buscado
-        validateTextView(R.id.AlbumPerformer, albumPerformerToSearch)
+            //Validamos el textView Title exista
+            validateTextView(R.id.AlbumTitle, titleToSearch)
 
-        //Damos click en textView con el AlbumName = artistNameToSearch
-        clickIntoButtonByText(R.id.AlbumName, albumNameToSearch)
+            //Validamos el textView ArtistName coincida con el album buscado
+            validateTextView(R.id.AlbumName, albumNameToSearch)
 
-        //Damos click en back
-        Espresso.pressBack()
+            //Validamos el textView ArtistName coincida con el performer buscado
+            validateTextView(R.id.AlbumPerformer, albumPerformerToSearch)
 
-        //Validamos que al darle volver nos lleve nuevamente a la ventana de Usuario
-        onView(withId(R.id.fragment_user)).check(matches(ViewMatchers.isDisplayed()))
-    }
+            //Damos click en textView con el AlbumName = artistNameToSearch
+            clickIntoButtonByText(R.id.AlbumName, albumNameToSearch)
 
-    @Test
-    fun ConsultNonExistentAlbumTest() {
-        /*
-            Prueba que tiene como objetivo verificar que no existe la información de un album especifico en el listado de albumes
+            //Damos click en back
+            Espresso.pressBack()
+
+            //Validamos que al darle volver nos lleve nuevamente a la ventana de Usuario
+            onView(withId(R.id.fragment_user)).check(matches(ViewMatchers.isDisplayed()))
+        }
+
+        @Test
+        fun ConsultNonExistentAlbumTest() {
+            /*
+            Prueba que tiene como objetivo verificar que no existe la informaci�n de un album especifico en el listado de albumes
         */
 
-        //Constantes que se pueden modificar con base a los criterios deseados
-        val titleToSearch = "Listado de Albumes"
-        val albumNameToSearch = "Prueba"
-        val albumPerformerToSearch = "Paquita la del barrio"
+            //Constantes que se pueden modificar con base a los criterios deseados
+            val titleToSearch = "Listado de Albumes"
+            val albumNameToSearch = "Prueba"
+            val albumPerformerToSearch = "Paquita la del barrio"
 
-        //Navegamos al view de ListArtists
-        navegateToListArtists()
+            //Navegamos al view de ListArtists
+            navegateToListArtists()
 
-        //Agregamos un tiempo de espera de 5000
-        SystemClock.sleep(delayService)
+            //Agregamos un tiempo de espera de 5000
+            SystemClock.sleep(delayService)
 
-        //Validamos si el fragment_artist es mostrado
-        onView(withId(R.id.fragment_album)).check(matches(ViewMatchers.isDisplayed()))
+            //Validamos si el fragment_artist es mostrado
+            onView(withId(R.id.fragment_album)).check(matches(ViewMatchers.isDisplayed()))
 
-        //Validamos el textView Title exista
-        validateTextView(R.id.AlbumTitle, titleToSearch)
+            //Validamos el textView Title exista
+            validateTextView(R.id.AlbumTitle, titleToSearch)
 
-        //Validamos el textView ArtistName coincida con el album buscado
-        validateTextViewNoExistent(R.id.AlbumName, albumNameToSearch)
+            //Validamos el textView ArtistName coincida con el album buscado
+            validateTextViewNoExistent(R.id.AlbumName, albumNameToSearch)
 
-        //Validamos el textView ArtistName coincida con el performer buscado
-        validateTextViewNoExistent(R.id.AlbumPerformer, albumPerformerToSearch)
+            //Validamos el textView ArtistName coincida con el performer buscado
+            validateTextViewNoExistent(R.id.AlbumPerformer, albumPerformerToSearch)
 
-        //Damos click en back
-        Espresso.pressBack()
+            //Damos click en back
+            Espresso.pressBack()
 
-        //Validamos que al darle volver nos lleve nuevamente a la ventana de Usuario
-        onView(withId(R.id.fragment_user)).check(matches(ViewMatchers.isDisplayed()))
+            //Validamos que al darle volver nos lleve nuevamente a la ventana de Usuario
+            onView(withId(R.id.fragment_user)).check(matches(ViewMatchers.isDisplayed()))
+        }
+
     }
-
 }

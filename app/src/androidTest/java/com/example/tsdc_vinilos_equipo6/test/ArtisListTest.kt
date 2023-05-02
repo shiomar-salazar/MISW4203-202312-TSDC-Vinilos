@@ -82,9 +82,8 @@ class ArtisListTest {
     @Test
     fun ConsultExistentArtistTest() {
         /*
-            Prueba que tiene como objetivo verificar la información de un artista existente
+            Prueba que tiene como objetivo verificar la informaci�n de un artista existente
          */
-
         //Constantes que se pueden modificar con base a los criterios deseados
         val titleToSearch = "Listado de Artistas"
         val artistNameToSearch = "Chester Bennington"
@@ -121,7 +120,7 @@ class ArtisListTest {
     @Test
     fun ConsultNonExistentArtistTest() {
         /*
-            Prueba que tiene como objetivo verificar que no existe la información de un artista especifico en el listado de artistas
+            Prueba que tiene como objetivo verificar que no existe la informaci�n de un artista especifico en el listado de artistas
          */
 
         //Constantes que se pueden modificar con base a los criterios deseados
