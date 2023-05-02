@@ -35,7 +35,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>(){
         holder.viewDataBinding.also {
             it.album = albums[position]
         }
-        displayPerformers(albums[position].performers, holder.viewDataBinding.AlbumDescription)
+        displayPerformers(albums[position].performers, holder.viewDataBinding.AlbumPerformer)
         loadUrl(albums[position].cover, holder.viewDataBinding.AlbumCover)
         holder.viewDataBinding.root.setOnClickListener {
             /*
