@@ -65,7 +65,7 @@ class AlbumListTest {
         return onView(allOf(withId(idView), withText(valueToSearch)))
     }
 
-    fun navegateToListArtists() {
+    fun navegateToListAlbums() {
         //Click en Menu Usuario
         clickIntoButtonById(R.id.MenuUserButton)
         //Click Catalogo de Albumes
@@ -91,25 +91,25 @@ class AlbumListTest {
         val albumPerformerToSearch = "Queen, Linkin Park"
 
 
-        //Navegamos al view de ListArtists
-        navegateToListArtists()
+        //Navegamos al view de ListAlbums
+        navegateToListAlbums()
 
         //Agregamos un tiempo de espera de 5000
         SystemClock.sleep(delayService)
 
-        //Validamos si el fragment_artist es mostrado
+        //Validamos si el fragment_album es mostrado
         onView(withId(R.id.fragment_album)).check(matches(ViewMatchers.isDisplayed()))
 
         //Validamos el textView Title exista
         validateTextView(R.id.AlbumTitle, titleToSearch)
 
-        //Validamos el textView ArtistName coincida con el album buscado
+        //Validamos el textView AlbumName coincida con el album buscado
         validateTextView(R.id.AlbumName, albumNameToSearch)
 
-        //Validamos el textView ArtistName coincida con el performer buscado
+        //Validamos el textView AlbumPerformer coincida con el performer buscado
         validateTextView(R.id.AlbumPerformer, albumPerformerToSearch)
 
-        //Damos click en textView con el AlbumName = artistNameToSearch
+        //Damos click en textView con el AlbumName = albumNameToSearch
         clickIntoButtonByText(R.id.AlbumName, albumNameToSearch)
 
         //Damos click en back
@@ -130,22 +130,22 @@ class AlbumListTest {
         val albumNameToSearch = "Prueba"
         val albumPerformerToSearch = "Paquita la del barrio"
 
-        //Navegamos al view de ListArtists
-        navegateToListArtists()
+        //Navegamos al view de ListAlbums
+        navegateToListAlbums()
 
         //Agregamos un tiempo de espera de 5000
         SystemClock.sleep(delayService)
 
-        //Validamos si el fragment_artist es mostrado
+        //Validamos si el fragment_album es mostrado
         onView(withId(R.id.fragment_album)).check(matches(ViewMatchers.isDisplayed()))
 
         //Validamos el textView Title exista
         validateTextView(R.id.AlbumTitle, titleToSearch)
 
-        //Validamos el textView ArtistName coincida con el album buscado
+        //Validamos el textView AlbumName no tenga coincidencias
         validateTextViewNoExistent(R.id.AlbumName, albumNameToSearch)
 
-        //Validamos el textView ArtistName coincida con el performer buscado
+        //Validamos el textView AlbumPerformer no tenga coincidencias
         validateTextViewNoExistent(R.id.AlbumPerformer, albumPerformerToSearch)
 
         //Damos click en back
