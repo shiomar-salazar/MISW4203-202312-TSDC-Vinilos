@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CollectorFragment"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp">
+    android:orientation="vertical"
+    tools:context=".ui.CollectorFragment">
+
+    <TextView
+        android:id="@+id/CollectorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="@string/listado_de_collector"
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragments_rv"
+        android:id="@+id/fragments_collector"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/CollectorTitle"
         tools:listitem="@layout/collector_item" />
-</FrameLayout>
+</RelativeLayout>
