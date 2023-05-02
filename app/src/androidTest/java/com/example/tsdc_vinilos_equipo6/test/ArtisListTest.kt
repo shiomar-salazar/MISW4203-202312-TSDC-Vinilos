@@ -38,13 +38,6 @@ class ArtisListTest {
     }
 
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.tsdc_vinilos_equipo6", appContext.packageName)
-    }
-
-    @Test
     fun ArtistListTest() {
         // click en Menu Usuario
         btnMenuUsuarioClick()
