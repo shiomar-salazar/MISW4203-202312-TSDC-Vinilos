@@ -7,7 +7,7 @@
     tools:context=".ui.CollectorFragment">
 
     <TextView
-        android:id="@+id/CollectorTitle"
+        android:id="@+id/collectorTitle"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_centerHorizontal="true"
@@ -16,9 +16,9 @@
         android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragments_collector"
+        android:id="@+id/fragment_collector"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/CollectorTitle"
+        android:layout_below="@id/collectorTitle"
         tools:listitem="@layout/collector_item" />
 </RelativeLayout>

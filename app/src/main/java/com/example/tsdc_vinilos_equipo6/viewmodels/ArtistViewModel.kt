@@ -3,7 +3,6 @@ package com.example.tsdc_vinilos_equipo6.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.tsdc_vinilos_equipo6.models.Artist
-import com.example.tsdc_vinilos_equipo6.network.NetworkServiceAdapter
 import com.example.tsdc_vinilos_equipo6.repositories.ArtistsRepository
 
 class ArtistViewModel(application: Application) : AndroidViewModel(application) {
