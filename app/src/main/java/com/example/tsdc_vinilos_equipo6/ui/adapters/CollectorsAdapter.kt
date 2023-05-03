@@ -4,16 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.CollectorItemBinding
 import com.example.tsdc_vinilos_equipo6.models.Collector
-import com.example.tsdc_vinilos_equipo6.ui.CollectorFragmentDirections
 
-class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>(){
+class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
 
-    var collectors :List<Collector> = emptyList()
+    var collectors: List<Collector> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -24,7 +22,8 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
             LayoutInflater.from(parent.context),
             CollectorViewHolder.LAYOUT,
             parent,
-            false)
+            false
+        )
         return CollectorViewHolder(withDataBinding)
     }
 
@@ -33,9 +32,12 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
             it.collector = collectors[position]
         }
         holder.viewDataBinding.root.setOnClickListener {
+            /*
             val action = CollectorFragmentDirections.actionCollectorFragmentToAlbumFragment()
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
+             */
+
         }
     }
 

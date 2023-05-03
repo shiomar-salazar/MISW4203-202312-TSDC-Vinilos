@@ -36,7 +36,7 @@
                 android:contentDescription="@string/picture_of_collector" />
 
             <TextView
-                android:id="@+id/CollectorName"
+                android:id="@+id/collectorName"
                 android:maxLines="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
