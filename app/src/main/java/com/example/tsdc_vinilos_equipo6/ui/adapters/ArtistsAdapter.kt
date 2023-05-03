@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.example.tsdc_vinilos_equipo6.R
 
 import com.example.tsdc_vinilos_equipo6.databinding.ArtistItemBinding
+import com.example.tsdc_vinilos_equipo6.models.Album
 import com.example.tsdc_vinilos_equipo6.models.Artist
 
 class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
@@ -34,7 +37,7 @@ class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
         holder.viewDataBinding.also {
             it.artist = artists[position]
         }
-        loadUrl(artists[position].image,holder.viewDataBinding.artistImage)
+        holder.bind(artists[position])
         holder.viewDataBinding.root.setOnClickListener {
             //val action = CollectorFragmentDirections.actionCollectorFragmentToAlbumFragment()
             // Navigate using that action
@@ -51,15 +54,15 @@ class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
             @LayoutRes
             val LAYOUT = R.layout.artist_item
         }
-    }
-
-    fun loadUrl(url: String, imgView : ImageView) {
-        try {
-            Glide.with(imgView).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.photo).into(imgView)
-        }catch (_: Exception){
-
+        fun bind(artist: Artist) {
+            Glide.with(itemView)
+                .load(artist.image.toUri().buildUpon().scheme("https").build())
+                .apply(
+                    RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(R.drawable.photo))
+                .into(viewDataBinding.artistImage)
         }
-
     }
-
 }
