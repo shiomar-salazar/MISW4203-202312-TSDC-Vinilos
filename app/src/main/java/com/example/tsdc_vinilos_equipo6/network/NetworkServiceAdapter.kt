@@ -115,7 +115,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Comment>()
-                    var item: JSONObject? = null
+                    var item: JSONObject?
                     for (i in 0 until resp.length()) {
                         item = resp.getJSONObject(i)
                         Log.d("Response", item.toString())
