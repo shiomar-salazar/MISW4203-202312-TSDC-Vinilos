@@ -244,5 +244,47 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
+    suspend fun getArtist(musicianId: Int) = suspendCoroutine<Artist> { cont ->
+        requestQueue.add(
+            getRequest("musicians/$musicianId",
+                { response ->
+                    Log.d("ResponseGetMusician", response)
+                    val resp = JSONObject(response)
+                    val listAlbums = mutableListOf<Album>()
+                        val respAlbums = resp.getJSONArray("albums")
+                        for (j in 0 until respAlbums.length()) {
+                            val itemAlbum = respAlbums.getJSONObject(j)
+                            listAlbums.add(
+                                j, Album(
+                                    albumId = itemAlbum.getInt("id"),
+                                    name = itemAlbum.getString("name"),
+                                    cover = itemAlbum.getString("cover"),
+                                    releaseDate = itemAlbum.getString("releaseDate"),
+                                    description = itemAlbum.getString("description"),
+                                    genre = itemAlbum.getString("genre"),
+                                    recordLabel = itemAlbum.getString("recordLabel"),
+                                    tracks = null,
+                                    performers = null,
+                                    comments = null
+                                )
+                            )
+                        }
+                        val respArtist =   Artist(
+                                artistId = resp.getInt("id"),
+                                name = resp.getString("name"),
+                                birthDate = resp.getString("birthDate").substring(0, 10),
+                                image = resp.getString("image"),
+                                description = resp.getString("description"),
+                                albums = listAlbums
+                            )
+                    Log.d("Artists", respArtist.toString())
+                    cont.resume(respArtist)
+                },
+                {
+                    cont.resumeWithException(it)
+                    Log.d("", it.message.toString())
+                })
+        )
+    }
 
 }
