@@ -87,7 +87,7 @@ class NetworkServiceAdapter constructor(context: Context) {
     suspend fun getCollectors() = suspendCoroutine<List<Collector>> { cont ->
         requestQueue.add(
             getRequest("collectors",
-                { response ->
+                 { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Collector>()
                     for (i in 0 until resp.length()) {
@@ -102,7 +102,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     }
                     cont.resume(list)
                 },
-                {
+                 {
                     cont.resumeWithException(it)
                     Log.d("", it.message.toString())
                 })
