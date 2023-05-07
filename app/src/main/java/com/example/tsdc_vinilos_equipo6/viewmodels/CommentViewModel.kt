@@ -3,11 +3,15 @@ package com.example.tsdc_vinilos_equipo6.viewmodels
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.tsdc_vinilos_equipo6.models.Comment
-import com.example.tsdc_vinilos_equipo6.network.NetworkServiceAdapter
+import com.example.tsdc_vinilos_equipo6.repositories.CommentsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CommentViewModel(application: Application, albumId: Int) :  AndroidViewModel(application) {
 
     private val _comments = MutableLiveData<List<Comment>>()
+    private val commentsRepository = CommentsRepository(application)
 
     val comments: LiveData<List<Comment>>
         get() = _comments
@@ -29,13 +33,19 @@ class CommentViewModel(application: Application, albumId: Int) :  AndroidViewMod
     }
 
     private fun refreshDataFromNetwork() {
-        NetworkServiceAdapter.getInstance(getApplication()).getComments(id, {
-            _comments.postValue(it)
-            _eventNetworkError.value = false
-            _isNetworkErrorShown.value = false
-        },{
+        try {
+            viewModelScope.launch (Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    var data = commentsRepository.refreshData(id)
+                    _comments.postValue(data)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+        }
+        catch (e:Exception){
             _eventNetworkError.value = true
-        })
+        }
     }
 
     fun onNetworkErrorShown() {

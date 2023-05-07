@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.ArtistFragmentBinding
-import com.example.tsdc_vinilos_equipo6.databinding.ArtistItemBinding
 import com.example.tsdc_vinilos_equipo6.ui.adapters.ArtistsAdapter
 import com.example.tsdc_vinilos_equipo6.viewmodels.ArtistViewModel
 
@@ -36,7 +35,7 @@ class ArtistFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.fragmentsRv
+        recyclerView = binding.fragmentArtist
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
     }
