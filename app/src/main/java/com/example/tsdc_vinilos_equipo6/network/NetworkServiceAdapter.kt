@@ -244,12 +244,13 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
-    suspend fun getArtist(musicianId: Int) = suspendCoroutine<Artist> { cont ->
+    suspend fun getArtist(musicianId: Int) = suspendCoroutine<List<Artist>> { cont ->
         requestQueue.add(
             getRequest("musicians/$musicianId",
                 { response ->
                     Log.d("ResponseGetMusician", response)
                     val resp = JSONObject(response)
+                    val list = mutableListOf<Artist>()
                     val listAlbums = mutableListOf<Album>()
                         val respAlbums = resp.getJSONArray("albums")
                         for (j in 0 until respAlbums.length()) {
@@ -269,7 +270,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 )
                             )
                         }
-                        val respArtist =   Artist(
+                    list.add(0,
+                        Artist(
                                 artistId = resp.getInt("id"),
                                 name = resp.getString("name"),
                                 birthDate = resp.getString("birthDate").substring(0, 10),
@@ -277,8 +279,9 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 description = resp.getString("description"),
                                 albums = listAlbums
                             )
-                    Log.d("Artists", respArtist.toString())
-                    cont.resume(respArtist)
+                    )
+                    Log.d("Artist", list.toString())
+                    cont.resume(list)
                 },
                 {
                     cont.resumeWithException(it)
@@ -288,3 +291,4 @@ class NetworkServiceAdapter constructor(context: Context) {
     }
 
 }
+
