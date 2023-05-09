@@ -20,4 +20,17 @@ class ArtistsRepository(val application: Application) {
             potentialResp
         }
     }
+
+    suspend fun refreshDataGetArtist(musicianId: Int): Any {
+        val potentialResp = CacheManager.getInstance(application.applicationContext).getArtist()
+        return if(potentialResp.isEmpty()){
+            Log.d("Cache decision", "get from network")
+            val artist = NetworkServiceAdapter.getInstance(application).getArtist(musicianId)
+            CacheManager.getInstance(application.applicationContext).addArtist(artist)
+            artist
+        } else {
+            Log.d("Cache decision", "return ${potentialResp.size} element from cache")
+            potentialResp
+        }
+    }
 }
