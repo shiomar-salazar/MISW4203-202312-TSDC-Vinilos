@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.ArtistFragment">
+
+    <ImageView
+        android:id="@+id/artistImage"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="@string/picture_of_the_artist"
+        android:scaleType="fitXY"
+        android:src="@drawable/photo" />
+
+    <TextView
+        android:id="@+id/ArtistName"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="170dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/nombre_de_artista"
+        android:textSize="35sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="225dp"
+        android:layout_marginStart="5dp"
+        android:text="Biografia"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/ArtistBiography"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginStart="5dp"
+        android:text="@string/biografia_de_artista"
+        android:maxLines="10"
+        android:width="405dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginStart="5dp"
+        android:text="Albumes Principales"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragments_album"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="530dp"
+        android:maxHeight="5dp"
+        tools:itemCount="3"
+        tools:listitem="@layout/artist_detail_album_item" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="790dp"
+        android:layout_marginStart="5dp"
+        android:text="Premios"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragments_premios_album"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="840dp"
+        android:maxHeight="5dp"
+        tools:itemCount="3"
+        tools:listitem="@layout/artist_detail_premios_item" />
+
+</RelativeLayout>
