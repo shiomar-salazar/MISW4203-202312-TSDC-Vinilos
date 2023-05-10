@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/collectorFragment"
-        android:name="com.example.tsdc_vinilos_equipo6.ui.CollectorFragment"
+        android:name="com.example.tsdc_vinilos_equipo6.ui.CollectorsFragment"
         android:label="@string/app_name"
         tools:layout="@layout/collector_fragment" >
         <action
@@ -15,12 +15,15 @@
     </fragment>
     <fragment
         android:id="@+id/albumFragment"
-        android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumFragment"
+        android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumsFragment"
         android:label="@string/app_name"
         tools:layout="@layout/album_fragment" >
         <action
             android:id="@+id/action_albumFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_albumFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -57,7 +60,16 @@
     </fragment>
     <fragment
         android:id="@+id/artistFragment"
-        android:name="com.example.tsdc_vinilos_equipo6.ui.ArtistFragment"
+        android:name="com.example.tsdc_vinilos_equipo6.ui.ArtistsFragment"
         android:label="@string/app_name"
         tools:layout="@layout/artist_item" />
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumDetailFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_album_detail" >
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

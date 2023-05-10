@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.ArtistFragmentBinding
 import com.example.tsdc_vinilos_equipo6.ui.adapters.ArtistsAdapter
-import com.example.tsdc_vinilos_equipo6.viewmodels.ArtistViewModel
+import com.example.tsdc_vinilos_equipo6.viewmodels.ArtistsViewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class ArtistFragment : Fragment() {
+class ArtistsFragment : Fragment() {
     private var _binding: ArtistFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: ArtistViewModel
+    private lateinit var viewModel: ArtistsViewModel
     private var viewModelAdapter: ArtistsAdapter? = null
 
     override fun onCreateView(
@@ -46,7 +46,7 @@ class ArtistFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_collectors)
-        viewModel = ViewModelProvider(this, ArtistViewModel.Factory(activity.application))[ArtistViewModel::class.java]
+        viewModel = ViewModelProvider(this, ArtistsViewModel.Factory(activity.application))[ArtistsViewModel::class.java]
         viewModel.artists.observe(viewLifecycleOwner) {
             it.apply {
                 viewModelAdapter!!.artists = this

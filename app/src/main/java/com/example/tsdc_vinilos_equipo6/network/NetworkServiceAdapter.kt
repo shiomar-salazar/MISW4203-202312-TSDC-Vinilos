@@ -14,6 +14,7 @@ import com.example.tsdc_vinilos_equipo6.models.Artist
 import com.example.tsdc_vinilos_equipo6.models.Collector
 import com.example.tsdc_vinilos_equipo6.models.Comment
 import com.example.tsdc_vinilos_equipo6.models.Performer
+import com.example.tsdc_vinilos_equipo6.models.Track
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -52,10 +53,11 @@ class NetworkServiceAdapter constructor(context: Context) {
                             listPerformers.add(
                                 j, Performer(
                                     performerId = itemPerformer.getInt("id"),
-                                    name = itemPerformer.getString("name"),
-                                    image = itemPerformer.getString("image"),
-                                    description = itemPerformer.getString("description"),
-                                    creationDate = itemPerformer.getString("creationDate")
+                                    name = itemPerformer.optString("name"),
+                                    image = itemPerformer.optString("image"),
+                                    description = itemPerformer.optString("description"),
+                                    creationDate = itemPerformer.optString("creationDate")
+
                                 )
                             )
                         }
@@ -63,12 +65,12 @@ class NetworkServiceAdapter constructor(context: Context) {
                             i,
                             Album(
                                 albumId = item.getInt("id"),
-                                name = item.getString("name"),
-                                cover = item.getString("cover"),
-                                recordLabel = item.getString("recordLabel"),
-                                releaseDate = item.getString("releaseDate"),
-                                genre = item.getString("genre"),
-                                description = item.getString("description"),
+                                name = item.optString("name"),
+                                cover = item.optString("cover"),
+                                recordLabel = item.optString("recordLabel"),
+                                releaseDate = item.optString("releaseDate"),
+                                genre = item.optString("genre"),
+                                description = item.optString("description"),
                                 tracks = null,
                                 performers = listPerformers,
                                 comments = null
@@ -84,25 +86,100 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
+    suspend fun getAlbum(albumId: Int) = suspendCoroutine { cont ->
+        var album: Album?
+        requestQueue.add(
+            getRequest("albums/$albumId",
+                { response ->
+                    Log.d("tagb", response)
+                    val resp = JSONObject(response)
+
+                    val commentsList: JSONArray = resp.getJSONArray("comments")
+                    val comments = mutableListOf<Comment>()
+                    var comment: JSONObject?
+
+                    for (i in 0 until commentsList.length()) {
+                        comment = commentsList.getJSONObject(i)
+                        comments.add(
+                            Comment(
+                                comment.optString("description"),
+                                comment.getInt("rating").toString(), albumId
+                            )
+                        )
+                    }
+
+                    val performers = mutableListOf<Performer>()
+                    if (resp.has("performers")) {
+                        val performersJsonArray = resp.getJSONArray("performers")
+                        for (index in 0 until performersJsonArray.length()) {
+                            val perfItem = performersJsonArray.getJSONObject(index)
+                            performers.add(
+                                Performer(
+                                    performerId = perfItem.getInt("id"),
+                                    name = perfItem.optString("name"),
+                                    image = perfItem.optString("image"),
+                                    description = perfItem.optString("description"),
+                                    creationDate = perfItem.optString("creationDate")
+                                )
+                            )
+                        }
+                    }
+
+                    val tracksList: JSONArray = resp.getJSONArray("tracks")
+                    val tracks = mutableListOf<Track>()
+                    var track: JSONObject?
+
+                    for (i in 0 until tracksList.length()) {
+                        track = tracksList.getJSONObject(i)
+                        tracks.add(
+                            Track(
+                                track.getInt("id"),
+                                track.optString("name"),
+                                track.optString("duration")
+                            )
+                        )
+                    }
+
+                    album = Album(
+                        albumId = resp.getInt("id"),
+                        name = resp.optString("name"),
+                        cover = resp.optString("cover"),
+                        recordLabel = resp.optString("recordLabel"),
+                        releaseDate = resp.optString("releaseDate"),
+                        genre = resp.optString("genre"),
+                        description = resp.optString("description"),
+                        comments = comments,
+                        performers = performers,
+                        tracks = tracks
+                    )
+
+                    cont.resume(album!!)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+
     suspend fun getCollectors() = suspendCoroutine<List<Collector>> { cont ->
         requestQueue.add(
             getRequest("collectors",
-                 { response ->
+                { response ->
                     val resp = JSONArray(response)
                     val list = mutableListOf<Collector>()
                     for (i in 0 until resp.length()) {
                         val item = resp.getJSONObject(i)
                         val collector = Collector(
                             collectorId = item.getInt("id"),
-                            name = item.getString("name"),
-                            telephone = item.getString("telephone"),
-                            email = item.getString("email")
+                            name = item.optString("name"),
+                            telephone = item.optString("telephone"),
+                            email = item.optString("email")
                         )
                         list.add(i, collector)
                     }
                     cont.resume(list)
                 },
-                 {
+                {
                     cont.resumeWithException(it)
                     Log.d("", it.message.toString())
                 })
@@ -124,7 +201,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                             Comment(
                                 albumId = albumId,
                                 rating = item.getInt("rating").toString(),
-                                description = item.getString("description")
+                                description = item.optString("description")
                             )
                         )
                     }
@@ -209,12 +286,12 @@ class NetworkServiceAdapter constructor(context: Context) {
                             listAlbums.add(
                                 j, Album(
                                     albumId = itemAlbum.getInt("id"),
-                                    name = itemAlbum.getString("name"),
-                                    cover = itemAlbum.getString("cover"),
-                                    releaseDate = itemAlbum.getString("releaseDate"),
-                                    description = itemAlbum.getString("description"),
-                                    genre = itemAlbum.getString("genre"),
-                                    recordLabel = itemAlbum.getString("recordLabel"),
+                                    name = itemAlbum.optString("name"),
+                                    cover = itemAlbum.optString("cover"),
+                                    releaseDate = itemAlbum.optString("releaseDate"),
+                                    description = itemAlbum.optString("description"),
+                                    genre = itemAlbum.optString("genre"),
+                                    recordLabel = itemAlbum.optString("recordLabel"),
                                     tracks = null,
                                     performers = null,
                                     comments = null
@@ -226,10 +303,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                             i,
                             Artist(
                                 artistId = item.getInt("id"),
-                                name = item.getString("name"),
-                                birthDate = item.getString("birthDate").substring(0, 10),
-                                image = item.getString("image"),
-                                description = item.getString("description"),
+                                name = item.optString("name"),
+                                birthDate = item.optString("birthDate").substring(0, 10),
+                                image = item.optString("image"),
+                                description = item.optString("description"),
                                 albums = listAlbums
                             )
                         )
@@ -252,33 +329,34 @@ class NetworkServiceAdapter constructor(context: Context) {
                     val resp = JSONObject(response)
                     val list = mutableListOf<Artist>()
                     val listAlbums = mutableListOf<Album>()
-                        val respAlbums = resp.getJSONArray("albums")
-                        for (j in 0 until respAlbums.length()) {
-                            val itemAlbum = respAlbums.getJSONObject(j)
-                            listAlbums.add(
-                                j, Album(
-                                    albumId = itemAlbum.getInt("id"),
-                                    name = itemAlbum.getString("name"),
-                                    cover = itemAlbum.getString("cover"),
-                                    releaseDate = itemAlbum.getString("releaseDate"),
-                                    description = itemAlbum.getString("description"),
-                                    genre = itemAlbum.getString("genre"),
-                                    recordLabel = itemAlbum.getString("recordLabel"),
-                                    tracks = null,
-                                    performers = null,
-                                    comments = null
-                                )
+                    val respAlbums = resp.getJSONArray("albums")
+                    for (j in 0 until respAlbums.length()) {
+                        val itemAlbum = respAlbums.getJSONObject(j)
+                        listAlbums.add(
+                            j, Album(
+                                albumId = itemAlbum.getInt("id"),
+                                name = itemAlbum.optString("name"),
+                                cover = itemAlbum.optString("cover"),
+                                releaseDate = itemAlbum.optString("releaseDate"),
+                                description = itemAlbum.optString("description"),
+                                genre = itemAlbum.optString("genre"),
+                                recordLabel = itemAlbum.optString("recordLabel"),
+                                tracks = null,
+                                performers = null,
+                                comments = null
                             )
-                        }
-                    list.add(0,
+                        )
+                    }
+                    list.add(
+                        0,
                         Artist(
-                                artistId = resp.getInt("id"),
-                                name = resp.getString("name"),
-                                birthDate = resp.getString("birthDate").substring(0, 10),
-                                image = resp.getString("image"),
-                                description = resp.getString("description"),
-                                albums = listAlbums
-                            )
+                            artistId = resp.getInt("id"),
+                            name = resp.optString("name"),
+                            birthDate = resp.optString("birthDate").substring(0, 10),
+                            image = resp.optString("image"),
+                            description = resp.optString("description"),
+                            albums = listAlbums
+                        )
                     )
                     Log.d("Artist", list.toString())
                     cont.resume(list)

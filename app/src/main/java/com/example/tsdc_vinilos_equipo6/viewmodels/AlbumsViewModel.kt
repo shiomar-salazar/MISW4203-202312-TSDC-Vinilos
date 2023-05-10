@@ -1,22 +1,20 @@
 package com.example.tsdc_vinilos_equipo6.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.tsdc_vinilos_equipo6.models.Collector
-import com.example.tsdc_vinilos_equipo6.repositories.ArtistsRepository
-import com.example.tsdc_vinilos_equipo6.repositories.CollectorsRepository
+import com.example.tsdc_vinilos_equipo6.models.Album
+import com.example.tsdc_vinilos_equipo6.repositories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CollectorViewModel(application: Application) :  AndroidViewModel(application) {
+class AlbumsViewModel(application: Application) :  AndroidViewModel(application) {
 
-    private val _collectors = MutableLiveData<List<Collector>>()
-    private val collectorsRepository = CollectorsRepository(application)
+    private val _albums = MutableLiveData<List<Album>>()
+    private val AlbumRepository = AlbumRepository(application)
 
-    val collectors: LiveData<List<Collector>>
-        get() = _collectors
+    val albums: LiveData<List<Album>>
+        get() = _albums
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -34,10 +32,10 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
 
     private fun refreshDataFromNetwork() {
         try {
-            viewModelScope.launch(Dispatchers.Default){
+            viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = collectorsRepository.refreshData()
-                    _collectors.postValue(data)
+                    var data = AlbumRepository.refreshAlbumsData()
+                    _albums.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -54,9 +52,9 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(CollectorViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(AlbumsViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CollectorViewModel(app) as T
+                return AlbumsViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

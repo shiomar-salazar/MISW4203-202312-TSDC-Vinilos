@@ -2,19 +2,19 @@ package com.example.tsdc_vinilos_equipo6.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.tsdc_vinilos_equipo6.models.Artist
-import com.example.tsdc_vinilos_equipo6.repositories.ArtistsRepository
+import com.example.tsdc_vinilos_equipo6.models.Collector
+import com.example.tsdc_vinilos_equipo6.repositories.CollectorsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ArtistViewModel(application: Application) : AndroidViewModel(application) {
+class CollectorViewModel(application: Application) :  AndroidViewModel(application) {
 
-    private val _artists = MutableLiveData<List<Artist>>()
-    private val artistsRepository = ArtistsRepository(application)
+    private val _collectors = MutableLiveData<List<Collector>>()
+    private val collectorsRepository = CollectorsRepository(application)
 
-    val artists: LiveData<List<Artist>>
-        get() = _artists
+    val collectors: LiveData<List<Collector>>
+        get() = _collectors
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -34,8 +34,8 @@ class ArtistViewModel(application: Application) : AndroidViewModel(application) 
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = artistsRepository.refreshData()
-                    _artists.postValue(data)
+                    var data = collectorsRepository.refreshData()
+                    _collectors.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -52,9 +52,9 @@ class ArtistViewModel(application: Application) : AndroidViewModel(application) 
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(ArtistViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(CollectorViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return ArtistViewModel(app) as T
+                return CollectorViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

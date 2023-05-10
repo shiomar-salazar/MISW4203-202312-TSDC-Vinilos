@@ -2,20 +2,19 @@ package com.example.tsdc_vinilos_equipo6.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.tsdc_vinilos_equipo6.models.Album
-import com.example.tsdc_vinilos_equipo6.repositories.AlbumRepository
+import com.example.tsdc_vinilos_equipo6.models.Artist
+import com.example.tsdc_vinilos_equipo6.repositories.ArtistsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel(application) {
+class ArtistsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _album = MutableLiveData<Album>()
-    private val AlbumRepository = AlbumRepository(application)
-    private val _albumId = albumId
+    private val _artists = MutableLiveData<List<Artist>>()
+    private val artistsRepository = ArtistsRepository(application)
 
-    val album: LiveData<Album>
-        get() = _album
+    val artists: LiveData<List<Artist>>
+        get() = _artists
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -33,10 +32,10 @@ class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel
 
     private fun refreshDataFromNetwork() {
         try {
-            viewModelScope.launch (Dispatchers.Default){
+            viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = AlbumRepository.refreshAlbumData(_albumId)
-                    _album.postValue(data)
+                    var data = artistsRepository.refreshData()
+                    _artists.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -51,11 +50,11 @@ class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application, val albumId:Int) : ViewModelProvider.Factory {
+    class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(ArtistsViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumViewModel(app, albumId) as T
+                return ArtistsViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
