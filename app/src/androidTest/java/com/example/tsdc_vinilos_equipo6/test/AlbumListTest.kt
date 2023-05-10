@@ -88,7 +88,7 @@ class AlbumListTest {
         //Constantes que se pueden modificar con base a los criterios deseados
         val titleToSearch = "Listado de Albumes"
         val albumNameToSearch = "Meteora"
-        val albumPerformerToSearch = "Queen, Linkin Park"
+        val albumPerformerToSearch = "Chester Bennington"
 
 
         //Navegamos al view de ListAlbums
@@ -111,6 +111,12 @@ class AlbumListTest {
 
         //Damos click en textView con el AlbumName = albumNameToSearch
         clickIntoButtonByText(R.id.AlbumName, albumNameToSearch)
+
+        //Damos click en back
+        Espresso.pressBack()
+
+        //Validamos que al darle volver nos lleve nuevamente al listado de Album
+        onView(withId(R.id.fragment_album)).check(matches(ViewMatchers.isDisplayed()))
 
         //Damos click en back
         Espresso.pressBack()
