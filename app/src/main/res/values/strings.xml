@@ -36,4 +36,15 @@
     <string name="picture_of_collector">Favorite Album</string>
     <string name="nombre_de_artista">Nombre de Artista</string>
     <string name="biografia_de_artista">Biografia de Artista</string>
+    <string name="picture_of_the_album">Picture of the Album</string>
+    <string name="release_date_album">Fecha de Lanzamiento</string>
+    <string name="album_release_date">Fecha de Lanzamiento del Album</string>
+    <string name="album_description_tittle">Descripción</string>
+    <string name="album_description">Descripción</string>
+    <string name="album_genre_tittle">Género</string>
+    <string name="album_genre">género</string>
+    <string name="album_artist_tittle">Artista</string>
+    <string name="album_artist">artista</string>
+
+
 </resources>
