@@ -14,6 +14,7 @@ import com.example.tsdc_vinilos_equipo6.models.Artist
 import com.example.tsdc_vinilos_equipo6.models.Collector
 import com.example.tsdc_vinilos_equipo6.models.Comment
 import com.example.tsdc_vinilos_equipo6.models.Performer
+import com.example.tsdc_vinilos_equipo6.models.Track
 import org.json.JSONArray
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -82,6 +83,77 @@ class NetworkServiceAdapter constructor(context: Context) {
                     Log.d("", it.message.toString())
                 })
         )
+    }
+
+    suspend fun getAlbum(albumId: Int) = suspendCoroutine { cont ->
+        var album: Album?
+        requestQueue.add(getRequest("albums/$albumId",
+            { response ->
+                Log.d("tagb", response)
+                val resp = JSONObject(response)
+
+                val commentsList: JSONArray = resp.getJSONArray("comments")
+                val comments = mutableListOf<Comment>()
+                var comment: JSONObject?
+
+                for (i in 0 until commentsList.length()) {
+                    comment = commentsList.getJSONObject(i)
+                    comments.add(
+                        Comment(comment.getString("description"),
+                            comment.getInt("rating").toString(), albumId)
+                    )
+                }
+
+                val performers = mutableListOf<Performer>()
+                if (resp.has("performers")){
+                    val performersJsonArray = resp.getJSONArray("performers")
+                    for(index in 0 until performersJsonArray.length()){
+                        val perfItem = performersJsonArray.getJSONObject(index)
+                        performers.add(
+                            Performer(
+                                performerId = perfItem.getInt("id"),
+                                name = perfItem.getString("name"),
+                                image = perfItem.getString("image"),
+                                description = perfItem.getString("description"),
+                                creationDate = perfItem.getString("creationDate"
+                            )
+                        ))
+                    }
+                }
+
+                val tracksList: JSONArray = resp.getJSONArray("tracks")
+                val tracks = mutableListOf<Track>()
+                var track: JSONObject?
+
+                for (i in 0 until tracksList.length()) {
+                    track = tracksList.getJSONObject(i)
+                    tracks.add(
+                        Track(
+                            track.getInt("id"),
+                            track.getString("name"),
+                            track.getString("duration")
+                        )
+                    )
+                }
+
+                album = Album(
+                    albumId = resp.getInt("id"),
+                    name = resp.getString("name"),
+                    cover = resp.getString("cover"),
+                    recordLabel = resp.getString("recordLabel"),
+                    releaseDate = resp.getString("releaseDate"),
+                    genre = resp.getString("genre"),
+                    description = resp.getString("description"),
+                    comments = comments,
+                    performers = performers,
+                    tracks = tracks
+                )
+
+                cont.resume(album!!)
+            },
+            {
+                cont.resumeWithException(it)
+            }))
     }
 
     suspend fun getCollectors() = suspendCoroutine<List<Collector>> { cont ->

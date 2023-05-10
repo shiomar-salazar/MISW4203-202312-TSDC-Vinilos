@@ -1,5 +1,7 @@
 package com.example.tsdc_vinilos_equipo6.models
 
-class Track {
-
-}
+data class Track (
+    val trackId:Int,
+    val name:String,
+    val duration:String,
+)
