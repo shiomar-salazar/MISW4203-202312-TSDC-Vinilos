@@ -14,6 +14,7 @@ import com.example.tsdc_vinilos_equipo6.models.Artist
 import com.example.tsdc_vinilos_equipo6.models.Collector
 import com.example.tsdc_vinilos_equipo6.models.Comment
 import com.example.tsdc_vinilos_equipo6.models.Performer
+import com.example.tsdc_vinilos_equipo6.models.Prize
 import com.example.tsdc_vinilos_equipo6.models.Track
 import org.json.JSONArray
 import org.json.JSONObject
@@ -307,7 +308,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 birthDate = item.optString("birthDate").substring(0, 10),
                                 image = item.optString("image"),
                                 description = item.optString("description"),
-                                albums = listAlbums
+                                albums = listAlbums,
+                                prizes = null
                             )
                         )
                     }
@@ -321,14 +323,15 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
-    suspend fun getArtist(musicianId: Int) = suspendCoroutine<List<Artist>> { cont ->
+    suspend fun getArtist(musicianId: Int) = suspendCoroutine { cont ->
+        var artist: Artist?
         requestQueue.add(
             getRequest("musicians/$musicianId",
                 { response ->
                     Log.d("ResponseGetMusician", response)
                     val resp = JSONObject(response)
-                    val list = mutableListOf<Artist>()
                     val listAlbums = mutableListOf<Album>()
+
                     val respAlbums = resp.getJSONArray("albums")
                     for (j in 0 until respAlbums.length()) {
                         val itemAlbum = respAlbums.getJSONObject(j)
@@ -347,26 +350,36 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    list.add(
-                        0,
-                        Artist(
-                            artistId = resp.getInt("id"),
-                            name = resp.optString("name"),
-                            birthDate = resp.optString("birthDate").substring(0, 10),
-                            image = resp.optString("image"),
-                            description = resp.optString("description"),
-                            albums = listAlbums
+                    val listPrizes = mutableListOf<Prize>()
+                    val respPrizes = resp.getJSONArray("performerPrizes")
+                    for (k in 0 until respPrizes.length()) {
+                        val itemPrize = respPrizes.getJSONObject(k)
+                        val prize = itemPrize.getJSONObject("prize")
+                        listPrizes.add(
+                            k, Prize(
+                                prizeId = itemPrize.getInt("id"),
+                                name = prize.optString("name"),
+                                description = prize.optString("description"),
+                                organization = prize.optString("organization"),
+                                premiationDate = itemPrize.optString("premiationDate")
+                            )
                         )
+                    }
+                    artist = Artist(
+                        artistId = resp.getInt("id"),
+                        name = resp.optString("name"),
+                        birthDate = resp.optString("birthDate").substring(0, 10),
+                        image = resp.optString("image"),
+                        description = resp.optString("description"),
+                        albums = listAlbums,
+                        prizes = listPrizes
                     )
-                    Log.d("Artist", list.toString())
-                    cont.resume(list)
+                    cont.resume(artist!!)
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
                 })
         )
     }
-
 }
 
