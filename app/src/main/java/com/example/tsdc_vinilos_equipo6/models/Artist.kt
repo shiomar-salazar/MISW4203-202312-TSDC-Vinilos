@@ -6,5 +6,6 @@ data class Artist (
     val image:String,
     val description:String,
     val birthDate:String,
-    val albums: List<Album>?
+    val albums: List<Album>?,
+    val prizes: List<Prize>?
 )
