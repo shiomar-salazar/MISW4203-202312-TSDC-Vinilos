@@ -84,62 +84,22 @@
         android:text="@string/album_artist"
         android:textSize="30sp" />
 
-    <data>
-        <variable
-            name="albums"
-            type="com.example.tsdc_vinilos_equipo6.models.Album" />
-    </data>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="790dp"
+        android:layout_marginStart="5dp"
+        android:text="Trakcs"
+        android:textSize="30sp" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragments_premios_album"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="250dp"
+        android:layout_marginTop="840dp"
+        android:maxHeight="5dp"
+        tools:itemCount="3"
+        tools:listitem="@layout/album_detail_tracks_item" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginBottom="5dip"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/ButtonBlue"
-            app:strokeWidth="1dp">
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/AlbumCover"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_rowSpan="2"
-                    android:contentDescription="@string/picture_of_the_album"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/photo" />
-
-                <TextView
-                    android:id="@+id/AlbumName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="1"
-                    android:layout_marginBottom="5dip"
-                    android:layout_marginStart="5dip"
-                    android:text="@{albums.name}"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/AlbumPerformer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_column="1"
-                    android:layout_marginStart="10dip"
-                    android:textSize="15sp" />
-
-            </GridLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
