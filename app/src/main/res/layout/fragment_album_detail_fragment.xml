@@ -87,7 +87,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="790dp"
+        android:layout_marginTop="610dp"
         android:layout_marginStart="5dp"
         android:text="Trakcs"
         android:textSize="30sp" />
@@ -96,7 +96,7 @@
         android:id="@+id/fragments_premios_album"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="840dp"
+        android:layout_marginTop="650dp"
         android:maxHeight="5dp"
         tools:itemCount="3"
         tools:listitem="@layout/album_detail_tracks_item" />
