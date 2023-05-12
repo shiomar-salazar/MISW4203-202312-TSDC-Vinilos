@@ -42,12 +42,14 @@
     <string name="album_description_tittle">Descripción</string>
     <string name="album_description">Descripción</string>
     <string name="album_genre_tittle">Género</string>
+    <string name="album_record_label_tittle">Disquera</string>
     <string name="album_genre">género</string>
     <string name="album_artist_tittle">Artista</string>
     <string name="album_artist">artista</string>
     <string name="artist_detail_biography">Biografia</string>
     <string name="artist_detail_albumes_title">Albumes Principales</string>
     <string name="artist_detail_premios_title">Premios</string>
+    <string name="album_detail_tracks_title">Tracks</string>
 
 
 </resources>

@@ -15,6 +15,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import com.example.tsdc_vinilos_equipo6.utils.CustomAssertions
 import org.hamcrest.Matchers.not
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Assert.*
@@ -78,6 +79,64 @@ class ArtistDetailTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.tsdc_vinilos_equipo6", appContext.packageName)
+    }
+
+    @Test
+    fun CheckAlbumsListTest() {
+        /*
+            Prueba que tiene como objetivo verificar que exista un numero minimo de albumes de asociados a un artista
+         */
+        //Constantes que se pueden modificar con base a los criterios deseados
+        val artistNameToSearch = "Chester Bennington"
+        val albumsMinimum = 2
+
+        //Navegamos al view de ListArtists
+        navegateToListArtists()
+
+        //Agregamos un tiempo de espera de 5000
+        SystemClock.sleep(delayService)
+
+        //Damos click en textView con el ArtistName = artistNameToSearch
+        clickIntoButtonByText(R.id.ArtistName, artistNameToSearch)
+
+        //Agregamos un tiempo de espera de 5000
+        SystemClock.sleep(delayService)
+
+        //Validamos que el listado tenga un minimo de albumes
+        onView(withId(R.id.artist_albums_rv)).check(
+            CustomAssertions.greaterItem(
+                albumsMinimum
+            )
+        )
+    }
+
+    @Test
+    fun CheckPrizesListTest() {
+        /*
+            Prueba que tiene como objetivo verificar que exista un numero minimo de premios de asociados a un artista
+         */
+        //Constantes que se pueden modificar con base a los criterios deseados
+        val artistNameToSearch = "Chester Bennington"
+        val prizesMinimum = 2
+
+        //Navegamos al view de ListArtists
+        navegateToListArtists()
+
+        //Agregamos un tiempo de espera de 5000
+        SystemClock.sleep(delayService)
+
+        //Damos click en textView con el ArtistName = artistNameToSearch
+        clickIntoButtonByText(R.id.ArtistName, artistNameToSearch)
+
+        //Agregamos un tiempo de espera de 5000
+        SystemClock.sleep(delayService)
+
+        //Validamos que el listado tenga un minimo de premios
+        onView(withId(R.id.artist_prizes_rv)).check(
+            CustomAssertions.greaterItem(
+                prizesMinimum
+            )
+        )
     }
 
     @Test

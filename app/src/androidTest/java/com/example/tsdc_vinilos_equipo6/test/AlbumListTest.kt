@@ -15,6 +15,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import com.example.tsdc_vinilos_equipo6.utils.CustomAssertions
 import org.hamcrest.Matchers.not
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Assert.*
@@ -77,6 +78,28 @@ class AlbumListTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.tsdc_vinilos_equipo6", appContext.packageName)
+    }
+
+    @Test
+    fun CheckAlbumsListTest() {
+        /*
+            Prueba que tiene como objetivo verificar que exista un numero minimo de albumes
+         */
+        //Constantes que se pueden modificar con base a los criterios deseados
+        val albumsMinimum = 2
+
+        //Navegamos al view de ListAlbums
+        navegateToListAlbums()
+
+        //Agregamos un tiempo de espera de 5000
+        SystemClock.sleep(delayService)
+
+        //Validamos que el listado tenga un minimo de albumes
+        onView(withId(R.id.fragment_album)).check(
+            CustomAssertions.greaterItem(
+                albumsMinimum
+            )
+        )
     }
 
     @Test
