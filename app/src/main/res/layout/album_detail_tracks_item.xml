@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-        <variable name="track" type="com.example.tsdc_vinilos_equipo6.models.Track"/>
-    </data>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
             android:layout_marginBottom="5dip"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,8 +30,8 @@
                     android:layout_height="wrap_content"
                     android:layout_row="0"
                     android:layout_column="0"
+                    android:layout_marginStart="10dip"
                     android:layout_marginBottom="5dip"
-                    android:layout_marginStart="25dip"
                     android:textSize="20sp" />
 
                 <TextView
@@ -42,8 +40,9 @@
                     android:layout_height="wrap_content"
                     android:layout_row="1"
                     android:layout_column="0"
-                    android:layout_marginStart="35dip"
-                    android:textSize="15sp" />
+                    android:layout_marginStart="10dip"
+                    android:layout_marginBottom="5dip"
+                    android:textSize="17sp" />
 
             </GridLayout>
         </com.google.android.material.card.MaterialCardView>

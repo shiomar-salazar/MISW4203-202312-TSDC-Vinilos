@@ -31,8 +31,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Trakcs"
-                android:textSize="25sp"
+                android:text="@string/album_detail_tracks_title"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/album_detail_rv"
                 tools:layout_editor_absoluteX="0dp"/>

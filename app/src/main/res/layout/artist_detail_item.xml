@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@{artist.name}"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/artistImage"
             tools:layout_editor_absoluteX="0dp" />
@@ -61,7 +61,7 @@
             android:layout_marginTop="10dp"
             android:justificationMode="inter_word"
             android:text="@{artist.description}"
-            android:textSize="15sp"
+            android:textSize="17sp"
             app:layout_constraintTop_toBottomOf="@+id/BiographyTitle"
             tools:layout_editor_absoluteX="0dp" />
 

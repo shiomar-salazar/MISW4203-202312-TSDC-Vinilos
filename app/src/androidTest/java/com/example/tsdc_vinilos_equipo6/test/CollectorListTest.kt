@@ -14,6 +14,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import com.example.tsdc_vinilos_equipo6.utils.CustomAssertions
 import org.hamcrest.Matchers.not
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Assert.*
@@ -76,6 +77,29 @@ class CollectorListTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.tsdc_vinilos_equipo6", appContext.packageName)
     }
+
+    @Test
+    fun CheckCollectorsListTest() {
+        /*
+            Prueba que tiene como objetivo verificar que exista un numero minimo de coleccionistas
+         */
+        //Constantes que se pueden modificar con base a los criterios deseados
+        val collectorsMinimum = 2
+
+        //Navegamos al view de ListCollectors
+        navegateToListCollectors()
+
+        //Agregamos un tiempo de espera de 5000
+        SystemClock.sleep(delayService)
+
+        //Validamos que el listado tenga un minimo de coleccionistas
+        onView(withId(R.id.fragment_collector)).check(
+            CustomAssertions.greaterItem(
+                collectorsMinimum
+            )
+        )
+    }
+
     @Test
     fun ConsultExistentCollectorTest() {
         /*
