@@ -71,22 +71,22 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
         }
     }
 
-    fun listPerformersToText(performerslist:List<Performer>?): String? {
+    private fun listPerformersToText(performerslist:List<Performer>?): String? {
         var texto: String? = null
         if (performerslist.isNullOrEmpty())
             texto = "No hay perfomers disponibles"
         else {
             for (p in performerslist) {
-                if (texto == null)
-                    texto = p.name
+                texto = if (texto == null)
+                    p.name
                 else
-                    texto = texto + ", " + p.name
+                    texto + ", " + p.name
             }
         }
         return texto
     }
 
-    fun displayPerformers(performerslist:List<Performer>?, textView: TextView) {
+    private fun displayPerformers(performerslist:List<Performer>?, textView: TextView) {
         try {
             textView.text = listPerformersToText(performerslist)
         }catch (_: Exception){
@@ -94,15 +94,15 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
         }
     }
 
-    fun cleanDate(dateStr: String?): String? {
-        try {
-            return dateStr?.substring(0,10)
+    private fun cleanDate(dateStr: String?): String? {
+        return try {
+            dateStr?.substring(0,10)
         }catch (_: Exception){
-            return dateStr
+            dateStr
         }
     }
 
-    fun displayDate(dateText: String?, textView: TextView) {
+    private fun displayDate(dateText: String?, textView: TextView) {
         try {
             textView.text = cleanDate(dateText)
         }catch (_: Exception){
