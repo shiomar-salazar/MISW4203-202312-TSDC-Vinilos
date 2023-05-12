@@ -12,14 +12,10 @@ import com.example.tsdc_vinilos_equipo6.R
 
 class UserFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: View = inflater.inflate(
             R.layout.fragment_user,
             container, false

@@ -69,22 +69,22 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
         }
     }
 
-    fun listPerformersToText(performerslist:List<Performer>?): String? {
+    private fun listPerformersToText(performerslist:List<Performer>?): String? {
         var texto: String? = null
         if (performerslist.isNullOrEmpty())
             texto = "No hay perfomers disponibles"
         else {
             for (p in performerslist) {
-                if (texto == null)
-                    texto = p.name
+                texto = if (texto == null)
+                    p.name
                 else
-                    texto = texto + ", " + p.name
+                    texto + ", " + p.name
             }
         }
         return texto
     }
 
-    fun displayPerformers(performerslist:List<Performer>?, textView: TextView) {
+    private fun displayPerformers(performerslist:List<Performer>?, textView: TextView) {
         try {
             textView.text = listPerformersToText(performerslist)
         }catch (_: Exception){

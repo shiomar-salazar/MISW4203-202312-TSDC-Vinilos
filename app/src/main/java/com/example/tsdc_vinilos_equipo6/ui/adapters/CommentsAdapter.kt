@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.CommentItemBinding
 import com.example.tsdc_vinilos_equipo6.models.Comment
-import androidx.navigation.findNavController
 
 class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.CommentViewHolder>(){
 
