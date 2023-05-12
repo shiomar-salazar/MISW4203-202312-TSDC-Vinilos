@@ -32,6 +32,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/artist_detail_albumes_title"
                 android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/artist_detail_rv"
                 tools:layout_editor_absoluteX="0dp" />
 
@@ -51,6 +52,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/artist_detail_premios_title"
                 android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/artist_albums_rv"
                 tools:layout_editor_absoluteX="0dp" />
 

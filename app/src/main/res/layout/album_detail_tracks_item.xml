@@ -34,8 +34,7 @@
                     android:layout_column="0"
                     android:layout_marginBottom="5dip"
                     android:layout_marginStart="25dip"
-                    android:text="track_name"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/TrackTime"
@@ -44,7 +43,6 @@
                     android:layout_row="1"
                     android:layout_column="0"
                     android:layout_marginStart="35dip"
-                    android:text="track_time"
                     android:textSize="15sp" />
 
             </GridLayout>
