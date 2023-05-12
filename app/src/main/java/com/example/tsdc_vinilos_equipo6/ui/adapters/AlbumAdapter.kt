@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.databinding.AlbumDetailItemBinding
 import com.example.tsdc_vinilos_equipo6.models.Album
 import android.view.LayoutInflater
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.tsdc_vinilos_equipo6.R
+import com.example.tsdc_vinilos_equipo6.models.Performer
 
 class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
@@ -34,6 +36,9 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
         holder.viewDataBinding.also {
             it.album = album
         }
+        displayPerformers(album?.performers, holder.viewDataBinding.albumArtist)
+        displayDate(album?.releaseDate, holder.viewDataBinding.albumReleasedDate)
+        holder.bind(album)
         holder.viewDataBinding.root.setOnClickListener {
             // val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
             // Navigate using that action
@@ -52,16 +57,58 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
             @LayoutRes
             val LAYOUT = R.layout.album_detail_item
         }
-        fun bind(album: Album) {
-            Glide.with(itemView)
-                .load(album.cover.toUri().buildUpon().scheme("https").build())
-                .apply(
-                    RequestOptions()
-                    .placeholder(R.drawable.loading_animation)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .error(R.drawable.photo))
-                .into(viewDataBinding.AlbumCover)
+        fun bind(album: Album?) {
+            if (album != null) {
+                Glide.with(itemView)
+                    .load(album.cover.toUri().buildUpon().scheme("https").build())
+                    .apply(
+                        RequestOptions()
+                            .placeholder(R.drawable.loading_animation)
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .error(R.drawable.photo))
+                    .into(viewDataBinding.albumImage)
+            }
         }
     }
+
+    fun listPerformersToText(performerslist:List<Performer>?): String? {
+        var texto: String? = null
+        if (performerslist.isNullOrEmpty())
+            texto = "No hay perfomers disponibles"
+        else {
+            for (p in performerslist) {
+                if (texto == null)
+                    texto = p.name
+                else
+                    texto = texto + ", " + p.name
+            }
+        }
+        return texto
+    }
+
+    fun displayPerformers(performerslist:List<Performer>?, textView: TextView) {
+        try {
+            textView.text = listPerformersToText(performerslist)
+        }catch (_: Exception){
+
+        }
+    }
+
+    fun cleanDate(dateStr: String?): String? {
+        try {
+            return dateStr?.substring(0,10)
+        }catch (_: Exception){
+            return dateStr
+        }
+    }
+
+    fun displayDate(dateText: String?, textView: TextView) {
+        try {
+            textView.text = cleanDate(dateText)
+        }catch (_: Exception){
+
+        }
+    }
+
 
 }

@@ -10,28 +10,131 @@
             type="com.example.tsdc_vinilos_equipo6.models.Album" />
     </data>
 
-    <GridLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/AlbumNameTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dip"
-            android:layout_marginBottom="5dip"
-            android:text="@{album.name}"
-            android:textSize="25sp" />
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/AlbumCover"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:id="@+id/albumImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
             android:contentDescription="@string/picture_of_the_album"
             android:scaleType="fitXY"
+            tools:layout_editor_absoluteX="0dp"
+            tools:ignore="MissingConstraints"
             android:src="@drawable/photo" />
 
-    </GridLayout>
+        <TextView
+            android:id="@+id/albumName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="@{album.name}"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/albumImage"
+            tools:layout_editor_absoluteX="0dp"/>
+
+
+        <TextView
+            android:id="@+id/albumTitleReleased"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/release_date_album"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/albumName"
+            tools:layout_editor_absoluteX="0dp"/>
+
+        <TextView
+            android:id="@+id/albumReleasedDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/albumTitleReleased"
+            tools:layout_editor_absoluteX="0dp"/>
+
+        <TextView
+            android:id="@+id/albumTitleDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/album_description_tittle"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/albumReleasedDate"
+            tools:layout_editor_absoluteX="0dp"/>
+
+        <TextView
+            android:id="@+id/albumDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="15sp"
+            android:text="@{album.description}"
+            android:justificationMode="inter_word"
+            app:layout_constraintTop_toBottomOf="@+id/albumTitleDescription"
+            tools:layout_editor_absoluteX="0dp"/>
+
+        <TextView
+            android:id="@+id/albumTitleGenre"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/album_genre_tittle"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/albumDescription"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/albumGenre"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:text="@{album.genre}"
+            app:layout_constraintTop_toBottomOf="@+id/albumTitleGenre"
+            tools:layout_editor_absoluteX="0dp"/>
+
+        <TextView
+            android:id="@+id/albumTitleArtist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/album_artist_tittle"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/albumGenre"
+            tools:layout_editor_absoluteX="0dp"/>
+
+        <TextView
+            android:id="@+id/albumArtist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/albumTitleArtist"
+            tools:layout_editor_absoluteX="-16dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

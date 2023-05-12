@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.FragmentAlbumDetailBinding
+import com.example.tsdc_vinilos_equipo6.models.Album
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumAdapter
+import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumTracksAdapter
 import com.example.tsdc_vinilos_equipo6.viewmodels.AlbumViewModel
 
 
@@ -20,6 +22,9 @@ class AlbumDetailFragment : Fragment() {
     private var _binding: FragmentAlbumDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
+    private lateinit var tracksRecyclerView: RecyclerView
+
+    private lateinit var album: Album
     private lateinit var viewModel: AlbumViewModel
     private var viewModelAdapter: AlbumAdapter? = null
 
@@ -35,7 +40,11 @@ class AlbumDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.albumDetailRecyclerView
+        recyclerView = binding.albumDetailRv
+
+        tracksRecyclerView = binding.albumTracksRv
+        tracksRecyclerView.layoutManager = LinearLayoutManager(context)
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
     }
@@ -50,7 +59,9 @@ class AlbumDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this, AlbumViewModel.Factory(activity.application, args.albumId))[AlbumViewModel::class.java]
         viewModel.album.observe(viewLifecycleOwner) {
             it.apply {
-                viewModelAdapter!!.album = this
+                album = it
+                viewModelAdapter!!.album = it
+                tracksRecyclerView.adapter = AlbumTracksAdapter(it.tracks!!)
             }
         }
         viewModel.eventNetworkError.observe(viewLifecycleOwner) { isNetworkError ->
