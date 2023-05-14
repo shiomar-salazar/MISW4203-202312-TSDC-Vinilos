@@ -8,13 +8,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AlbumViewModel(application: Application) :  AndroidViewModel(application) {
+class AlbumViewModel(application: Application, albumId: Int) :  AndroidViewModel(application) {
 
-    private val _albums = MutableLiveData<List<Album>>()
-    private val AlbumRepository = AlbumRepository(application)
+    private val _album = MutableLiveData<Album>()
+    private val _albumRepository = AlbumRepository(application)
+    private val _albumId = albumId
 
-    val albums: LiveData<List<Album>>
-        get() = _albums
+    val album: LiveData<Album>
+        get() = _album
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -34,8 +35,8 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         try {
             viewModelScope.launch (Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = AlbumRepository.refreshData()
-                    _albums.postValue(data)
+                    val data = _albumRepository.refreshAlbumData(_albumId)
+                    _album.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
                 _isNetworkErrorShown.postValue(false)
@@ -50,11 +51,11 @@ class AlbumViewModel(application: Application) :  AndroidViewModel(application) 
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    class Factory(val app: Application, val albumId:Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AlbumViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumViewModel(app) as T
+                return AlbumViewModel(app, albumId) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

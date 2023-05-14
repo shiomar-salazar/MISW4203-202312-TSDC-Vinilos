@@ -15,6 +15,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import com.example.tsdc_vinilos_equipo6.utils.CustomAssertions
 import org.hamcrest.Matchers.not
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Assert.*
@@ -80,6 +81,28 @@ class AlbumListTest {
     }
 
     @Test
+    fun CheckAlbumsListTest() {
+        /*
+            Prueba que tiene como objetivo verificar que exista un numero minimo de albumes
+         */
+        //Constantes que se pueden modificar con base a los criterios deseados
+        val albumsMinimum = 2
+
+        //Navegamos al view de ListAlbums
+        navegateToListAlbums()
+
+        //Agregamos un tiempo de espera de 5000
+        SystemClock.sleep(delayService)
+
+        //Validamos que el listado tenga un minimo de albumes
+        onView(withId(R.id.fragment_album)).check(
+            CustomAssertions.greaterItem(
+                albumsMinimum
+            )
+        )
+    }
+
+    @Test
     fun ConsultExistentAlbumTest() {
         /*
             Prueba que tiene como objetivo verificar la informaci�n de un �lbum existente
@@ -88,7 +111,7 @@ class AlbumListTest {
         //Constantes que se pueden modificar con base a los criterios deseados
         val titleToSearch = "Listado de Albumes"
         val albumNameToSearch = "Meteora"
-        val albumPerformerToSearch = "Queen, Linkin Park"
+        val albumPerformerToSearch = "Chester Bennington"
 
 
         //Navegamos al view de ListAlbums
@@ -111,6 +134,12 @@ class AlbumListTest {
 
         //Damos click en textView con el AlbumName = albumNameToSearch
         clickIntoButtonByText(R.id.AlbumName, albumNameToSearch)
+
+        //Damos click en back
+        Espresso.pressBack()
+
+        //Validamos que al darle volver nos lleve nuevamente al listado de Album
+        onView(withId(R.id.fragment_album)).check(matches(ViewMatchers.isDisplayed()))
 
         //Damos click en back
         Espresso.pressBack()

@@ -6,6 +6,7 @@ import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -15,6 +16,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import com.example.tsdc_vinilos_equipo6.utils.CustomAssertions
 import org.hamcrest.Matchers.not
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Assert.*
@@ -57,7 +59,7 @@ class ArtisListTest {
         //Validamos que no es mostrado algun TextView de tipo idView
         onView(allOf(withId(idView), not(isDisplayed())))
         //Validamos que no si existe un TextView de tipo idView con el texto valueToSearch
-        onView(allOf(withId(idView), not(withText(valueToSearch)) ))
+        onView(allOf(withId(idView), not(withText(valueToSearch))))
     }
 
     fun getTextViewByValue(idView: Int, valueToSearch: String): ViewInteraction? {
@@ -77,6 +79,28 @@ class ArtisListTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.tsdc_vinilos_equipo6", appContext.packageName)
+    }
+
+    @Test
+    fun CheckArtistsListTest() {
+        /*
+            Prueba que tiene como objetivo verificar que exista un numero minimo de artistas
+         */
+        //Constantes que se pueden modificar con base a los criterios deseados
+        val artistsMinimum = 1
+
+        //Navegamos al view de ListArtists
+        navegateToListArtists()
+
+        //Agregamos un tiempo de espera de 5000
+        SystemClock.sleep(delayService)
+
+        //Validamos que el listado tenga un minimo de artistas
+        onView(withId(R.id.fragment_artist)).check(
+            CustomAssertions.greaterItem(
+                artistsMinimum
+            )
+        )
     }
 
     @Test
@@ -109,6 +133,12 @@ class ArtisListTest {
 
         //Damos click en textView con el ArtistName = artistNameToSearch
         clickIntoButtonByText(R.id.ArtistName, artistNameToSearch)
+
+        //Damos click en back
+        pressBack()
+
+        //Validamos que al darle volver nos lleve nuevamente al listado de Artistas
+        onView(withId(R.id.fragment_artist)).check(matches(ViewMatchers.isDisplayed()))
 
         //Damos click en back
         pressBack()
