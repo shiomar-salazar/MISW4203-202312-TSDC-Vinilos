@@ -14,6 +14,7 @@ import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.FragmentAlbumDetailBinding
 import com.example.tsdc_vinilos_equipo6.models.Album
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumAdapter
+import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumCommentsAdapter
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumTracksAdapter
 import com.example.tsdc_vinilos_equipo6.viewmodels.AlbumViewModel
 
@@ -23,6 +24,7 @@ class AlbumDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var tracksRecyclerView: RecyclerView
+    private lateinit var commentsRecyclerView: RecyclerView
 
     private lateinit var album: Album
     private lateinit var viewModel: AlbumViewModel
@@ -45,6 +47,9 @@ class AlbumDetailFragment : Fragment() {
         tracksRecyclerView = binding.albumTracksRv
         tracksRecyclerView.layoutManager = LinearLayoutManager(context)
 
+        commentsRecyclerView = binding.albumCommentsRv
+        commentsRecyclerView.layoutManager = LinearLayoutManager(context)
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
     }
@@ -62,6 +67,7 @@ class AlbumDetailFragment : Fragment() {
                 album = it
                 viewModelAdapter!!.album = it
                 tracksRecyclerView.adapter = AlbumTracksAdapter(it.tracks!!)
+                commentsRecyclerView.adapter = AlbumCommentsAdapter(it.comments!!)
             }
         }
         viewModel.eventNetworkError.observe(viewLifecycleOwner) { isNetworkError ->

@@ -29,6 +29,7 @@
     <string name="artist_detail_albumes_title">Albumes Principales</string>
     <string name="artist_detail_premios_title">Premios</string>
     <string name="album_detail_tracks_title">Tracks</string>
+    <string name="comentarios_title">Comentarios</string>
 
 
 </resources>
