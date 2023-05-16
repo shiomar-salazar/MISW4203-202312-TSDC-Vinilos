@@ -6,7 +6,6 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -111,8 +110,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                         comment = commentsList.getJSONObject(it)
                         comments.add(
                             Comment(
+                                comment.getInt("id"),
                                 comment.optString("description"),
-                                comment.getInt("rating").toString(), albumId
+                                comment.getInt("rating").toString(), albumId,
+                                comment.optInt("collectorID")
                             )
                         )
                     }
@@ -205,9 +206,11 @@ class NetworkServiceAdapter constructor(context: Context) {
                         list.add(
                             it,
                             Comment(
+                                id = item.getInt("id"),
                                 albumId = albumId,
                                 rating = item.getInt("rating").toString(),
-                                description = item.optString("description")
+                                description = item.optString("description"),
+                                collectorID = item.optInt("collectorID")
                             )
                         )
                     }
@@ -216,24 +219,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                 {
                     cont.resumeWithException(it)
                     Log.d("", it.message.toString())
-                })
-        )
-    }
-
-    fun postComment(
-        body: JSONObject,
-        albumId: Int,
-        onComplete: (resp: JSONObject) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
-        requestQueue.add(
-            postRequest("albums/$albumId/comments",
-                body,
-                { response ->
-                    onComplete(response)
-                },
-                {
-                    onError(it)
                 })
         )
     }
@@ -386,6 +371,32 @@ class NetworkServiceAdapter constructor(context: Context) {
                         prizes = listPrizes
                     )
                     cont.resume(artist!!)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+
+    suspend fun addComment(albumId: Int, comment: Comment) = suspendCoroutine { cont ->
+        requestQueue.add(
+            postRequest(
+                "albums/$albumId/comments",
+                JSONObject(
+                    """{"description":"${comment.description}",
+                    |"rating":"${comment.rating}",
+                    |"collectorID":"${comment.collectorID}"}""".trimMargin()
+                ),
+                { response ->
+                    val commentCreated = Comment(
+                        id = response.optInt("id"),
+                        albumId = response.optInt("albumId"),
+                        description = response.optString("description"),
+                        rating = response.optString("rating"),
+                        collectorID = response.optInt("collectorID")
+                    )
+
+                    cont.resume(commentCreated)
                 },
                 {
                     cont.resumeWithException(it)

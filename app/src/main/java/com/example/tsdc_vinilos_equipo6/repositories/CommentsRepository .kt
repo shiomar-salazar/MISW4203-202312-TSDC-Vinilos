@@ -20,4 +20,8 @@ class CommentsRepository (val application: Application){
             return potentialResp
         }
     }
+
+    suspend fun addComment(albumId: Int, comment: Comment): Comment {
+        return NetworkServiceAdapter.getInstance(application).addComment(albumId,comment)
+    }
 }
