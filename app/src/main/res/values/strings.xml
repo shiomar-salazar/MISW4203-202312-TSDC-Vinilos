@@ -30,6 +30,8 @@
     <string name="artist_detail_premios_title">Premios</string>
     <string name="album_detail_tracks_title">Tracks</string>
     <string name="comentarios_title">Comentarios</string>
+    <string name="crear_album">Crear Album</string>
+    <string name="crear_comentario">Crear Comentario</string>
 
 
 </resources>
