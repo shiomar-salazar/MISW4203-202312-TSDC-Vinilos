@@ -7,11 +7,7 @@
         android:id="@+id/collectorFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.CollectorsFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/collector_fragment">
-        <action
-            android:id="@+id/action_collectorFragment_to_albumFragment"
-            app:destination="@id/albumFragment" />
-    </fragment>
+        tools:layout="@layout/collector_fragment" />
     <fragment
         android:id="@+id/albumFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumsFragment"
@@ -22,7 +18,10 @@
             app:destination="@id/commentFragment" />
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
-            app:destination="@id/albumDetailFragment" />
+            app:destination="@id/albumDetailFragment"/>
+        <argument
+            android:name="IsCollector"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/commentFragment"
@@ -56,6 +55,9 @@
         <action
             android:id="@+id/action_mainFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
     </fragment>
     <fragment
         android:id="@+id/artistFragment"
@@ -74,6 +76,9 @@
         <argument
             android:name="albumId"
             app:argType="integer" />
+        <argument
+            android:name="isCollector"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/artistDetailFragment"
