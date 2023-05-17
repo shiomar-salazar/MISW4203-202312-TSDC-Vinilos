@@ -403,5 +403,39 @@ class NetworkServiceAdapter constructor(context: Context) {
                 })
         )
     }
+
+    suspend fun addAlbum( album: Album) = suspendCoroutine { cont ->
+        requestQueue.add(
+            postRequest(
+                "albums",
+                JSONObject(
+                    """{"name":"${album.name}",
+                    |"cover":"${album.cover}",
+                    |"releaseDate":"${album.releaseDate}",
+                    |"description":"${album.description}",
+                    |"genre":"${album.genre}"
+                    |"recordLabel":"${album.recordLabel}"}""".trimMargin()
+                ),
+                { response ->
+                    val albumCreated = Album(
+                        albumId = response.optInt("albumId"),
+                        name = response.optString("name"),
+                        cover = response.optString("cover"),
+                        releaseDate = response.optString("releaseDate"),
+                        description = response.optString("description"),
+                        genre = response.optString("genre"),
+                        recordLabel = response.optString("recordLabel"),
+                        tracks =  mutableListOf(),
+                        performers = mutableListOf(),
+                        comments = mutableListOf()
+                    )
+
+                    cont.resume(albumCreated)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
 }
 
