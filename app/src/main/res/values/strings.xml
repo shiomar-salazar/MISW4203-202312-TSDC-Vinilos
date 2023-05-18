@@ -60,5 +60,6 @@
     <string name="valoration_field">Valoración</string>
     <string name="save_button">Guardar</string>
     <string name="cancel_button">Cancelar</string>
+    <string name="fecha_de_lanzamiento">Fecha de Lanzamiento</string>
 
 </resources>
