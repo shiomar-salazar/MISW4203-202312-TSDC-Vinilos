@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.AlbumsFragment">
+
+
+    <TextView
+        android:id="@+id/albums_title_crear"
+        android:layout_width="386dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/crear_album"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name_album_textField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="80dp"
+        android:hint="@string/crear_album_name_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/image_album_textField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="140dp"
+        android:hint="@string/crear_album_image_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <EditText
+        android:id="@+id/date_album_datepicker"
+        android:hint="@string/crear_album_date_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="200dp"
+        android:inputType="date"
+        android:focusable="false"
+        android:clickable="true"
+        android:maxLines="1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descripcion_album_textField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="240dp"
+        android:hint="@string/crear_album_descripcion_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <EditText
+        android:id="@+id/genero_album_text"
+        android:hint="@string/crear_album_genero_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="300dp"
+        android:inputType="text"
+        android:maxLines="1" />
+
+    <Spinner
+        android:id="@+id/genero_album_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/genero_album_text"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="350dp"
+        android:entries="@array/Generos"
+        android:spinnerMode="dialog" />
+
+    <EditText
+        android:id="@+id/disquera_album_text"
+        android:hint="@string/crear_album_disquera_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="350dp"
+        android:inputType="text"
+        android:maxLines="1" />
+
+    <Spinner
+        android:id="@+id/disquera_album_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/disquera_album_text"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="400dp"
+        android:entries="@array/Disquera"
+        android:spinnerMode="dialog" />
+
+
+    <Button
+        android:id="@+id/album_create_button"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="400dp"
+        android:backgroundTint="@color/ButtonGrey"
+        android:text="@string/crear_album_aceptar_button"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/album_cancel_button"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="400dp"
+        android:backgroundTint="@color/ButtonGrey"
+        android:text="@string/crear_album_cancelar_button"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+</RelativeLayout>
