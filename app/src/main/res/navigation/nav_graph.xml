@@ -82,6 +82,9 @@
         <argument
             android:name="isCollector"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_navigation_albums_to_createCommentFragment"
+            app:destination="@id/createAlbumFragment" />
     </fragment>
     <fragment
         android:id="@+id/artistDetailFragment"
@@ -92,7 +95,7 @@
             android:name="artistId"
             app:argType="integer" />
     </fragment>
-    <fragment
+      <fragment
         android:id="@+id/albumCreateFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumCreateFragment"
         android:label="@string/app_name"

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumAdapter
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumCommentsAdapter
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumTracksAdapter
 import com.example.tsdc_vinilos_equipo6.viewmodels.AlbumViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class AlbumDetailFragment : Fragment() {
@@ -53,6 +55,12 @@ class AlbumDetailFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
+
+        val createCommentButton : FloatingActionButton = view.findViewById(R.id.fab_add_comment)
+        createCommentButton.setOnClickListener {
+            val action = AlbumDetailFragmentDirections.actionNavigationAlbumsToCreateCommentFragment()
+            view.findNavController().navigate(action)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
