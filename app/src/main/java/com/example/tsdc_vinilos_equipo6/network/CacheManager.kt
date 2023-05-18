@@ -6,7 +6,6 @@ import com.example.tsdc_vinilos_equipo6.models.Artist
 import com.example.tsdc_vinilos_equipo6.models.Collector
 import com.example.tsdc_vinilos_equipo6.models.Comment
 
-
 class CacheManager(context: Context) {
     companion object {
         var instance: CacheManager? = null
@@ -24,6 +23,7 @@ class CacheManager(context: Context) {
     private var artists: List<Artist> = mutableListOf<Artist>()
     private var artist: HashMap<Int, Artist> = hashMapOf()
     private var collectors: List<Collector> = mutableListOf<Collector>()
+    private var collector: HashMap<Int, Collector> = hashMapOf()
 
     fun addComments(albumId: Int, comment: List<Comment>) {
         if (!comments.containsKey(albumId)) {
@@ -41,7 +41,6 @@ class CacheManager(context: Context) {
             album[albumId] = albums
             println(albums.tracks)
         }
-
     }
 
     fun getAlbum(albumId: Int): Album? {
@@ -78,14 +77,23 @@ class CacheManager(context: Context) {
         return artist[artistId]
     }
 
-
     fun addCollectors(newCollectors: List<Collector>) {
         if (collectors.isEmpty()) {
             collectors = newCollectors
         }
     }
 
+    fun addCollector(collectorId: Int, collectors: Collector) {
+        if (!collector.containsKey(collectorId)) {
+            collector[collectorId] = collectors
+        }
+    }
+
     fun getCollectors(): List<Collector> {
-        return if (collectors.isEmpty()) listOf<Collector>() else collectors
+        return collectors.ifEmpty { listOf<Collector>() }
+    }
+
+    fun getCollector(collectorId: Int): Collector? {
+        return collector[collectorId]
     }
 }

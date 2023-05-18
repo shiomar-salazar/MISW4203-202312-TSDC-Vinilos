@@ -180,11 +180,79 @@ class NetworkServiceAdapter constructor(context: Context) {
                             collectorId = item.getInt("id"),
                             name = item.optString("name"),
                             telephone = item.optString("telephone"),
-                            email = item.optString("email")
+                            email = item.optString("email"),
+                            albums = null
                         )
                         list.add(it, collector)
                     }
                     cont.resume(list)
+                },
+                {
+                    cont.resumeWithException(it)
+                    Log.d("", it.message.toString())
+                })
+        )
+    }
+
+    suspend fun getCollector(collectorId: Int) = suspendCoroutine { cont ->
+        var collector: Collector?
+        requestQueue.add(
+            getRequest("collectors/$collectorId/albums",
+                { responseCollectors ->
+                    Log.d("RSGetCollectorAlbumes", responseCollectors)
+                    if (responseCollectors.isNotEmpty()) {
+                        val resp = JSONArray(responseCollectors)
+                        val listAlbums = mutableListOf<Album>()
+                        var itemCollector: JSONObject
+                        (0 until resp.length()).forEach {
+                            itemCollector = resp.getJSONObject(it)
+                            var album = itemCollector.getJSONObject("album")
+                            listAlbums.add(
+                                it, Album(
+                                    albumId = album.getInt("id"),
+                                    name = album.optString("name"),
+                                    cover = album.optString("cover"),
+                                    releaseDate = album.optString("releaseDate"),
+                                    description = album.optString("description"),
+                                    genre = album.optString("genre"),
+                                    recordLabel = album.optString("recordLabel"),
+                                    tracks = null,
+                                    performers = null,
+                                    comments = null
+                                )
+                            )
+                        }
+                        itemCollector = resp.getJSONObject(0)
+                        val currentCollector = itemCollector.getJSONObject("collector")
+                        collector = Collector(
+                            collectorId = currentCollector.getInt("id"),
+                            name = currentCollector.optString("name"),
+                            telephone = currentCollector.optString("telephone"),
+                            email = currentCollector.optString("email"),
+                            albums = listAlbums
+                        )
+                        cont.resume(collector!!)
+                    } else {
+                        requestQueue.add(
+                            getRequest("collectors/$collectorId",
+                                { responseCollector ->
+                                    Log.d("RSGetCollector", responseCollector)
+                                    val resp = JSONObject(responseCollector)
+                                    collector = Collector(
+                                        collectorId = resp.getInt("id"),
+                                        name = resp.optString("name"),
+                                        telephone = resp.optString("telephone"),
+                                        email = resp.optString("email"),
+                                        albums = null
+                                    )
+                                    cont.resume(collector!!)
+                                },
+                                {
+                                    cont.resumeWithException(it)
+                                    Log.d("", it.message.toString())
+                                })
+                        )
+                    }
                 },
                 {
                     cont.resumeWithException(it)
@@ -404,7 +472,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         )
     }
 
-    suspend fun addAlbum( album: Album) = suspendCoroutine { cont ->
+    suspend fun addAlbum(album: Album) = suspendCoroutine { cont ->
         requestQueue.add(
             postRequest(
                 "albums",
@@ -425,7 +493,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                         description = response.optString("description"),
                         genre = response.optString("genre"),
                         recordLabel = response.optString("recordLabel"),
-                        tracks =  mutableListOf(),
+                        tracks = mutableListOf(),
                         performers = mutableListOf(),
                         comments = mutableListOf()
                     )

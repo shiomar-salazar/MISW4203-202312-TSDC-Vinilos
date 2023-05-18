@@ -92,15 +92,11 @@
 
         <RatingBar
             android:id="@+id/commentRating"
-            style="?android:attr/ratingBarStyleIndicator"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="0"
             android:layout_marginStart="20dip"
-            android:isIndicator="true"
+            android:layout_marginEnd="20dip"
             android:numStars="5"
-            android:rating="2"
             android:theme="@style/RatingBar"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
