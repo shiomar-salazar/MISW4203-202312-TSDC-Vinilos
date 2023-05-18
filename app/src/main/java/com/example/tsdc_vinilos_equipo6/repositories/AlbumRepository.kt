@@ -3,6 +3,7 @@ package com.example.tsdc_vinilos_equipo6.repositories
 import android.app.Application
 import android.util.Log
 import com.example.tsdc_vinilos_equipo6.models.Album
+import com.example.tsdc_vinilos_equipo6.models.Comment
 import com.example.tsdc_vinilos_equipo6.network.CacheManager
 import com.example.tsdc_vinilos_equipo6.network.NetworkServiceAdapter
 
@@ -33,5 +34,9 @@ class AlbumRepository(val application: Application) {
             Log.d("Cache decision", "return ${potentialResp.name} from cache")
             potentialResp
         }
+    }
+
+    suspend fun addAlbum(album: Album): Album {
+        return NetworkServiceAdapter.getInstance(application).addAlbum(album)
     }
 }
