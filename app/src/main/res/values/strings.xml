@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">TSDC_Vinilos_Equipo_6</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="txt_no_comments">No hay comentarios para este álbum</string>
     <string name="title_albums">Albums</string>
     <string name="title_collectors">Coleccionistas</string>
@@ -33,15 +32,12 @@
     <string name="comentarios_descripcion">Descripción comentario</string>
     <string name="crear_album">Crear Album</string>
     <string name="crear_comentario">Crear Comentario</string>
-
-    <string name="crear_album">Nuevo Álbum</string>
     <string name="crear_album_name_text">Nombre del álbum</string>
     <string name="crear_album_image_text">Imágen de Portada</string>
     <string name="crear_album_date_text">01/01/1900</string>
     <string name="crear_album_descripcion_text">Descripción</string>
     <string name="crear_album_genero_text">Género</string>
     <string name="selected_item_genero">Seleccionar:</string>
-
     <string-array name="Generos">
         <item>Salsa</item>
         <item>Vallenato</item>
@@ -50,23 +46,18 @@
         <item>Punk</item>
         <item>Clásica</item>
     </string-array>
-
     <string name="crear_album_disquera_text">Sello Discográfico</string>
     <string name="selected_item_disquera">Seleccionar:</string>
-
     <string-array name="Disquera">
         <item>Sony</item>
         <item>Universal</item>
         <item>Columbia</item>
         <item>Napalm Records</item>
     </string-array>
-
     <string name="crear_album_aceptar_button">Aceptar</string>
     <string name="crear_album_cancelar_button">Cancelar</string>
-
     <string name="valoration_field">Valoración</string>
     <string name="save_button">Guardar</string>
     <string name="cancel_button">Cancelar</string>
-
 
 </resources>
