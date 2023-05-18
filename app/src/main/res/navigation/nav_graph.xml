@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_albumFragment_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment"/>
+        <action
+            android:id="@+id/action_albumFragment_to_createAlbum"
+            app:destination="@id/albumCreateFragment"/>
         <argument
             android:name="IsCollector"
             app:argType="boolean" />
@@ -92,13 +95,10 @@
             android:name="artistId"
             app:argType="integer" />
     </fragment>
-    <fragment
-        android:id="@+id/createAlbumFragment"
-        android:name="com.example.tsdc_vinilos_equipo6.ui.CommentCreateFragment"
+      <fragment
+        android:id="@+id/albumCreateFragment"
+        android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumCreateFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_create_comment">
-        <action
-            android:id="@+id/action_createCommentFragment_to_navigation_albumDatail"
-            app:destination="@id/albumDetailFragment" />
+        tools:layout="@layout/album_create">
     </fragment>
 </navigation>
