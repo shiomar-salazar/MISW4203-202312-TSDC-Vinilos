@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.CommentCreateFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuide"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuide">
+
+        <TextView
+            android:id="@+id/createCommentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/crear_comentario"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            app:autoSizeMaxTextSize="25dp"
+            app:autoSizeMinTextSize="22dp"
+            app:layout_constraintBottom_toTopOf="@+id/verticalGuide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/descriptionCommentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/album_description_tittle"
+            android:textSize="20sp"
+            app:autoSizeMaxTextSize="22sp"
+            app:autoSizeMinTextSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createCommentTitle"
+            tools:layout_editor_absoluteX="4dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/commentTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionCommentTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/commentNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/comentarios_descripcion"
+                android:inputType="text"
+                android:maxLength="100"
+                android:textSize="20sp"
+                app:autoSizeMaxTextSize="22dp"
+                app:autoSizeMinTextSize="20sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/valorationCommentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/valoration_field"
+            android:textSize="20sp"
+            app:autoSizeMaxTextSize="22sp"
+            app:autoSizeMinTextSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/commentTextField"
+            tools:layout_editor_absoluteX="4dp" />
+
+        <RatingBar
+            android:id="@+id/commentRating"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_marginStart="20dip"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="2"
+            android:theme="@style/RatingBar"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/valorationCommentTitle" />
+
+        <TableLayout
+            android:id="@+id/tableLayoutButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0,1"
+            app:layout_constraintTop_toBottomOf="@+id/commentRating">
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/saveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/save_button"
+                    android:textSize="20sp"
+                    app:autoSizeMaxTextSize="20sp"
+                    app:autoSizeMinTextSize="18sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/cancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/cancel_button"
+                    android:textSize="18sp"
+                    app:autoSizeMaxTextSize="20sp"
+                    app:autoSizeMinTextSize="18sp" />
+            </TableRow>
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
