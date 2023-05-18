@@ -83,8 +83,8 @@
             android:name="isCollector"
             app:argType="boolean" />
         <action
-            android:id="@+id/action_navigation_albums_to_createCommentFragment"
-            app:destination="@id/createAlbumFragment" />
+            android:id="@+id/action_albumDetailFragment_to_createAlbumFragment"
+            app:destination="@id/commentCreateFragment" />
     </fragment>
     <fragment
         android:id="@+id/artistDetailFragment"
@@ -96,14 +96,10 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/createAlbumFragment"
+        android:id="@+id/commentCreateFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.CommentCreateFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_create_comment">
-        <action
-            android:id="@+id/action_createCommentFragment_to_navigation_albumDatail"
-            app:destination="@id/albumDetailFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_create_comment"/>
     <fragment
         android:id="@+id/albumCreateFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumCreateFragment"

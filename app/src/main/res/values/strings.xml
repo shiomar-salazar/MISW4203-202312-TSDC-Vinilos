@@ -32,6 +32,7 @@
     <string name="comentarios_descripcion">Descripción comentario</string>
     <string name="crear_album">Crear Album</string>
     <string name="crear_comentario">Crear Comentario</string>
+    <string name="nuevo_album">Nuevo Álbum</string>
     <string name="crear_album_name_text">Nombre del álbum</string>
     <string name="crear_album_image_text">Imágen de Portada</string>
     <string name="crear_album_date_text">01/01/1900</string>
