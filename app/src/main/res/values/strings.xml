@@ -17,7 +17,7 @@
     <string name="picture_of_the_artist">Picture of the Artist</string>
     <string name="listado_de_albumes">Listado de Albumes</string>
     <string name="listado_de_collector">Listado de Coleccionistas</string>
-    <string name="picture_of_collector">Favorite Album</string>
+    <string name="picture_of_collector">Picture of the Collector</string>
     <string name="picture_of_the_album">Picture of the Album</string>
     <string name="release_date_album">Fecha de Lanzamiento</string>
     <string name="album_description_tittle">Descripción</string>
@@ -60,5 +60,8 @@
     <string name="save_button">Guardar</string>
     <string name="cancel_button">Cancelar</string>
     <string name="fecha_de_lanzamiento">Fecha de Lanzamiento</string>
+    <string name="collector_phone_number">Telefono</string>
+    <string name="collector_email">Email</string>
+    <string name="collector_detail_albumes_title">Albumes Favoritos</string>
 
 </resources>
