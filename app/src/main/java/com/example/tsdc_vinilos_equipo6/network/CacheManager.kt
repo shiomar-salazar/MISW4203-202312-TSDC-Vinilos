@@ -36,11 +36,11 @@ class CacheManager(context: Context) {
     }
 
     /* Start Album Cache Logic */
-    fun addAlbum(albumId: Int, albums: Album) {
+    fun addAlbum(albumId: Int, newAlbum: Album) {
         if (!album.containsKey(albumId)) {
-            album[albumId] = albums
-            println(albums.tracks)
+            album[albumId] = newAlbum
         }
+        albums += newAlbum
     }
 
     fun getAlbum(albumId: Int): Album? {

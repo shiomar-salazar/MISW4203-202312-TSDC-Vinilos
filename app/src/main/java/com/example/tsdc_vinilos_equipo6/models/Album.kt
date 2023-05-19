@@ -1,7 +1,7 @@
 package com.example.tsdc_vinilos_equipo6.models
 
 data class Album(
-    val albumId:Int,
+    val albumId:Int = 0,
     val name:String,
     val cover:String,
     val releaseDate:String,

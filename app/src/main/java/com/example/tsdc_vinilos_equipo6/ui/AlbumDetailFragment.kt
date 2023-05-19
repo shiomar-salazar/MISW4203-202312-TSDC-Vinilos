@@ -58,7 +58,7 @@ class AlbumDetailFragment : Fragment() {
 
         val createCommentButton : FloatingActionButton = view.findViewById(R.id.fab_add_comment)
         createCommentButton.setOnClickListener {
-            val action = AlbumDetailFragmentDirections.actionNavigationAlbumsToCreateCommentFragment()
+            val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToCreateAlbumFragment()
             view.findNavController().navigate(action)
         }
     }
