@@ -79,6 +79,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="collectorDetailFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="162" />
+                            <option name="y" value="353" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="collectorFragment">
                     <value>
                       <LayoutPositions>
