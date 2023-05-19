@@ -1,13 +1,10 @@
 package com.example.tsdc_vinilos_equipo6.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.get
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -15,7 +12,6 @@ import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.AlbumCreateBinding
 import com.example.tsdc_vinilos_equipo6.models.Album
 import com.example.tsdc_vinilos_equipo6.viewmodels.AlbumCreateViewModel
-import com.example.tsdc_vinilos_equipo6.viewmodels.AlbumsViewModel
 
 class AlbumCreateFragment : Fragment() {
     private var _binding: AlbumCreateBinding? = null
@@ -31,10 +27,12 @@ class AlbumCreateFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
         super.onViewCreated(view, savedInstanceState)
 
         binding.albumCancelButton.setOnClickListener {
-            navigateToAlbums(view)
+            navigateToAlbums()
         }
 
         binding.albumCreateButton.setOnClickListener {
@@ -51,15 +49,16 @@ class AlbumCreateFragment : Fragment() {
             )
             if (viewModel.addNewAlbum(album)) {
                 showMessage("El álbum se registró correctamente.")
-                navigateToAlbums(view)
+                navigateToAlbums()
             } else {
                 showMessage("Ocurrió un error en el registro del álbum.")
             }
         }
     }
 
-    private fun navigateToAlbums(view: View) {
-        view.findNavController().popBackStack()
+    private fun navigateToAlbums() {
+        val action = AlbumCreateFragmentDirections.actionAlbumCreateFragmentToAlbumFragment(true)
+        binding.root.findNavController().navigate(action)
     }
 
     private fun showMessage(s: String) {

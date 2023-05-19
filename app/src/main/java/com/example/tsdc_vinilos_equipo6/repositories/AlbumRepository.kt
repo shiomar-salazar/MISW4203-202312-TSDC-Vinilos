@@ -3,7 +3,6 @@ package com.example.tsdc_vinilos_equipo6.repositories
 import android.app.Application
 import android.util.Log
 import com.example.tsdc_vinilos_equipo6.models.Album
-import com.example.tsdc_vinilos_equipo6.models.Comment
 import com.example.tsdc_vinilos_equipo6.network.CacheManager
 import com.example.tsdc_vinilos_equipo6.network.NetworkServiceAdapter
 
@@ -37,6 +36,7 @@ class AlbumRepository(val application: Application) {
     }
 
     suspend fun addAlbum(album: Album): Album {
+        CacheManager.getInstance(application.applicationContext).addAlbum(album.albumId, album)
         return NetworkServiceAdapter.getInstance(application).addAlbum(album)
     }
 }

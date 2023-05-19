@@ -106,5 +106,8 @@
         android:label="@string/app_name"
         tools:layout="@layout/album_create">
 
+        <action
+            android:id="@+id/action_albumCreateFragment_to_albumFragment"
+            app:destination="@id/albumFragment" />
     </fragment>
 </navigation>

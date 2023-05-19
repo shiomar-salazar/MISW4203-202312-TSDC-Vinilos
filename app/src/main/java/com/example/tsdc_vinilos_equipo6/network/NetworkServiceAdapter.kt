@@ -48,8 +48,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                     var item: JSONObject
                     var itemPerformer: JSONObject
                     var respPerformer: JSONArray
-                    val listPerformers = mutableListOf<Performer>()
                     (0 until resp.length()).forEach { it ->
+                        val listPerformers = mutableListOf<Performer>()
                         item = resp.getJSONObject(it)
                         respPerformer = item.getJSONArray("performers")
                         (0 until respPerformer.length()).forEach {
@@ -481,7 +481,7 @@ class NetworkServiceAdapter constructor(context: Context) {
                     |"cover":"${album.cover}",
                     |"releaseDate":"${album.releaseDate}",
                     |"description":"${album.description}",
-                    |"genre":"${album.genre}"
+                    |"genre":"${album.genre}",
                     |"recordLabel":"${album.recordLabel}"}""".trimMargin()
                 ),
                 { response ->
@@ -497,7 +497,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                         performers = mutableListOf(),
                         comments = mutableListOf()
                     )
-
                     cont.resume(albumCreated)
                 },
                 {

@@ -35,25 +35,24 @@
     <string name="nuevo_album">Nuevo Álbum</string>
     <string name="crear_album_name_text">Nombre del álbum</string>
     <string name="crear_album_image_text">Imágen de Portada</string>
-    <string name="crear_album_date_text">01/01/1900</string>
+    <string name="crear_album_date_text">MM/DD/AAAA</string>
     <string name="crear_album_descripcion_text">Descripción</string>
     <string name="crear_album_genero_text">Género</string>
     <string name="selected_item_genero">Seleccionar:</string>
     <string-array name="Generos">
         <item>Salsa</item>
-        <item>Vallenato</item>
-        <item>Cumbia</item>
         <item>Rock</item>
-        <item>Punk</item>
-        <item>Clásica</item>
+        <item>Folk</item>
+        <item>Classical</item>
     </string-array>
     <string name="crear_album_disquera_text">Sello Discográfico</string>
     <string name="selected_item_disquera">Seleccionar:</string>
     <string-array name="Disquera">
-        <item>Sony</item>
-        <item>Universal</item>
-        <item>Columbia</item>
-        <item>Napalm Records</item>
+        <item>Sony Music</item>
+        <item>EMI</item>
+        <item>Discos Fuentes</item>
+        <item>Elecktra</item>
+        <item>Fania Records</item>
     </string-array>
     <string name="crear_album_aceptar_button">Aceptar</string>
     <string name="crear_album_cancelar_button">Cancelar</string>
