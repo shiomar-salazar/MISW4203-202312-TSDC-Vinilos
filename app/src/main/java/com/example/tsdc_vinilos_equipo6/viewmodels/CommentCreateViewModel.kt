@@ -1,20 +1,25 @@
 package com.example.tsdc_vinilos_equipo6.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.tsdc_vinilos_equipo6.models.Comment
 import com.example.tsdc_vinilos_equipo6.repositories.CommentsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CommentViewModel(application: Application, albumId: Int) : AndroidViewModel(application) {
+class CommentCreateViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _comments = MutableLiveData<List<Comment>>()
-    private val commentsRepository = CommentsRepository(application)
+    private val _comment = MutableLiveData<Comment>()
+    private val _commentRepository = CommentsRepository(application)
 
-    val comments: LiveData<List<Comment>>
-        get() = _comments
+    var comment: LiveData<Comment>
+        get() = _comment
 
     private var _eventNetworkError = MutableLiveData(false)
 
@@ -26,36 +31,38 @@ class CommentViewModel(application: Application, albumId: Int) : AndroidViewMode
     val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
-    val id: Int = albumId
-
     init {
-        refreshDataFromNetwork()
+        getDataFromRepository()
+        comment = MutableLiveData()
     }
 
-    private fun refreshDataFromNetwork() {
-        try {
-            viewModelScope.launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO) {
-                    val data = commentsRepository.refreshCommentsData(id)
-                    _comments.postValue(data)
-                }
-                _eventNetworkError.postValue(false)
-                _isNetworkErrorShown.postValue(false)
-            }
-        } catch (e: Exception) {
-            _eventNetworkError.value = true
-        }
-    }
+    private fun getDataFromRepository() {}
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
     }
 
-    class Factory(val app: Application, val albumId: Int) : ViewModelProvider.Factory {
+    fun addNewComment(albumId: Int, newComment: Comment): Boolean {
+        return try {
+            viewModelScope.launch(Dispatchers.Default) {
+                withContext(Dispatchers.IO) {
+                    _commentRepository.addComment(albumId, newComment)
+                }
+                _eventNetworkError.postValue(false)
+                _isNetworkErrorShown.postValue(false)
+            }
+            true
+        } catch (e: Exception) {
+            _eventNetworkError.value = true
+            false
+        }
+    }
+
+    class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(CommentViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(CommentCreateViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CommentViewModel(app, albumId) as T
+                return CommentCreateViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

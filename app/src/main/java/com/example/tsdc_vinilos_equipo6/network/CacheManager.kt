@@ -31,6 +31,12 @@ class CacheManager(context: Context) {
         }
     }
 
+    fun addComment(albumId: Int, albumComment: Comment) {
+        var listComments = album[albumId]?.comments
+        listComments = listComments?.plus(albumComment)
+        album[albumId]?.comments = listComments
+    }
+
     fun getComments(albumId: Int): List<Comment> {
         return if (comments.containsKey(albumId)) comments[albumId]!! else listOf<Comment>()
     }

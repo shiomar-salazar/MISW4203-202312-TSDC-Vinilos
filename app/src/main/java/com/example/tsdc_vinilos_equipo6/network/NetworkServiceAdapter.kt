@@ -452,16 +452,18 @@ class NetworkServiceAdapter constructor(context: Context) {
                 "albums/$albumId/comments",
                 JSONObject(
                     """{"description":"${comment.description}",
-                    |"rating":"${comment.rating}",
-                    |"collectorID":"${comment.collectorID}"}""".trimMargin()
+                    |"rating":${comment.rating.toFloat()},
+                    |"collector":{"id":${comment.collectorID}}}""".trimMargin()
                 ),
                 { response ->
+                    val collector = response.getJSONObject("collector")
+                    val album = response.getJSONObject("album")
                     val commentCreated = Comment(
                         id = response.optInt("id"),
-                        albumId = response.optInt("albumId"),
+                        albumId = album.optInt("id"),
                         description = response.optString("description"),
                         rating = response.optString("rating"),
-                        collectorID = response.optInt("collectorID")
+                        collectorID = collector.optInt("id")
                     )
 
                     cont.resume(commentCreated)
