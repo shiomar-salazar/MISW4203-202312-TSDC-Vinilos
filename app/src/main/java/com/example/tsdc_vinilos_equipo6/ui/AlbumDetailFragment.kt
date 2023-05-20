@@ -56,9 +56,10 @@ class AlbumDetailFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
 
+        val args: AlbumDetailFragmentArgs by navArgs()
         val createCommentButton : FloatingActionButton = view.findViewById(R.id.fab_add_comment)
         createCommentButton.setOnClickListener {
-            val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToCreateAlbumFragment()
+            val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToCreateAlbumFragment(args.albumId)
             view.findNavController().navigate(action)
         }
     }

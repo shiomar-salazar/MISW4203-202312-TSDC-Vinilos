@@ -103,7 +103,14 @@
         android:id="@+id/commentCreateFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.CommentCreateFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_create_comment"/>
+        tools:layout="@layout/fragment_create_comment">
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_commentCreateFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/albumCreateFragment"
         android:name="com.example.tsdc_vinilos_equipo6.ui.AlbumCreateFragment"
