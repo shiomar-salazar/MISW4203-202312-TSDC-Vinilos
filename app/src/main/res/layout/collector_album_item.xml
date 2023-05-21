@@ -15,7 +15,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="80dp"
             android:layout_marginBottom="5dip"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,36 +24,42 @@
             app:strokeColor="@color/ButtonBlue"
             app:strokeWidth="1dp">
 
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/AlbumCover1"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
+                    android:id="@+id/AlbumCover"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_rowSpan="2"
                     android:contentDescription="@string/picture_of_the_album"
                     android:scaleType="fitXY"
                     android:src="@drawable/photo" />
 
-                <ImageView
-                    android:id="@+id/AlbumCover2"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:contentDescription="@string/picture_of_the_album"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/photo" />
+                <TextView
+                    android:id="@+id/AlbumName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginStart="15dip"
+                    android:text="@{albums.name}"
+                    android:textSize="25sp" />
 
-                <ImageView
-                    android:id="@+id/AlbumCover3"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:contentDescription="@string/picture_of_the_album"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/photo" />
+                <TextView
+                    android:id="@+id/AlbumPerformer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_marginStart="20dip"
+                    android:text="@{albums.genre}"
+                    android:textSize="15sp" />
 
-            </LinearLayout>
+
+            </GridLayout>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

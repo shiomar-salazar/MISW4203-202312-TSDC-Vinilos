@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"  >
-    <!-- tools:context=".ui.fragments.AlbumsFragment"> ACTUALIZAR -->
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragments.CollectorsFragment">
 
     <data>
         <variable
@@ -85,7 +85,7 @@
             android:text="@{collector.email}"
             android:textSize="17sp"
             app:layout_constraintTop_toBottomOf="@+id/collectorTitleEmail"
-            tools:layout_editor_absoluteX="35dp" />
+            tools:layout_editor_absoluteX="16dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
