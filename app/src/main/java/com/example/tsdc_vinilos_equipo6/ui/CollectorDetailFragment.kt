@@ -7,49 +7,62 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
-import com.example.tsdc_vinilos_equipo6.databinding.CollectorFragmentBinding
-import com.example.tsdc_vinilos_equipo6.ui.adapters.CollectorsAdapter
-import com.example.tsdc_vinilos_equipo6.viewmodels.CollectorsViewModel
+import com.example.tsdc_vinilos_equipo6.databinding.FragmentCollectorDetailBinding
+import com.example.tsdc_vinilos_equipo6.models.Collector
+import com.example.tsdc_vinilos_equipo6.ui.adapters.CollectorAdapter
+import com.example.tsdc_vinilos_equipo6.ui.adapters.CollectorAlbumsAdapter
+import com.example.tsdc_vinilos_equipo6.viewmodels.CollectorViewModel
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class CollectorsFragment : Fragment() {
-    private var _binding: CollectorFragmentBinding? = null
+
+class CollectorDetailFragment : Fragment() {
+    private var _binding: FragmentCollectorDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: CollectorsViewModel
-    private var viewModelAdapter: CollectorsAdapter? = null
+    private lateinit var albumsRecyclerView: RecyclerView
+
+    private lateinit var collector: Collector
+    private lateinit var viewModel: CollectorViewModel
+    private var viewModelAdapter: CollectorAdapter? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = CollectorFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentCollectorDetailBinding.inflate(inflater, container, false)
         val view = binding.root
-        viewModelAdapter = CollectorsAdapter()
+        viewModelAdapter = CollectorAdapter()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        recyclerView = binding.fragmentCollector
+        recyclerView = binding.collectorDetailRv
+
+        albumsRecyclerView = binding.albumsRv
+        albumsRecyclerView.layoutManager = LinearLayoutManager(context)
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val args: CollectorDetailFragmentArgs by navArgs()
         val activity = requireNotNull(this.activity) {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_collectors)
-        viewModel = ViewModelProvider(this, CollectorsViewModel.Factory(activity.application))[CollectorsViewModel::class.java]
-        viewModel.collectors.observe(viewLifecycleOwner) {
+        viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application, args.collectorId))[CollectorViewModel::class.java]
+        viewModel.collector.observe(viewLifecycleOwner) {
             it.apply {
-                viewModelAdapter!!.collectors = this
+                collector = it
+                viewModelAdapter!!.collector = it
+                albumsRecyclerView.adapter = CollectorAlbumsAdapter(it.albums!!)
             }
         }
         viewModel.eventNetworkError.observe(viewLifecycleOwner) { isNetworkError ->
