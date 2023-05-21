@@ -200,13 +200,13 @@ class NetworkServiceAdapter constructor(context: Context) {
             getRequest("collectors/$collectorId/albums",
                 { responseCollectors ->
                     Log.d("RSGetCollectorAlbumes", responseCollectors)
-                    if (responseCollectors.isNotEmpty()) {
+                    if (responseCollectors.length > 2) {
                         val resp = JSONArray(responseCollectors)
                         val listAlbums = mutableListOf<Album>()
                         var itemCollector: JSONObject
                         (0 until resp.length()).forEach {
                             itemCollector = resp.getJSONObject(it)
-                            var album = itemCollector.getJSONObject("album")
+                            val album = itemCollector.getJSONObject("album")
                             listAlbums.add(
                                 it, Album(
                                     albumId = album.getInt("id"),

@@ -62,7 +62,9 @@ class CollectorDetailFragment : Fragment() {
             it.apply {
                 collector = it
                 viewModelAdapter!!.collector = it
-                albumsRecyclerView.adapter = CollectorAlbumsAdapter(it.albums!!)
+                if (it.albums != null){
+                    albumsRecyclerView.adapter = CollectorAlbumsAdapter(it.albums!!)
+                }
             }
         }
         viewModel.eventNetworkError.observe(viewLifecycleOwner) { isNetworkError ->
