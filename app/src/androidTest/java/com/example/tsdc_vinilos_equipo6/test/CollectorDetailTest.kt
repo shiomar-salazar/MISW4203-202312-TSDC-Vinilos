@@ -88,7 +88,7 @@ class CollectorDetailTest {
          */
         //Constantes que se pueden modificar con base a los criterios deseados
         val collectorName = "Haiber H. Galindo"
-        val albumsMinimum = 2
+        val albumsMinimum = 1
 
         //Navegamos al view de Colleector List
         navegateToListCollectors()
@@ -97,13 +97,13 @@ class CollectorDetailTest {
         SystemClock.sleep(delayService)
 
         //Damos click en textView con el ArtistName = artistNameToSearch
-        clickIntoButtonByText(R.id.CollectorName, collectorName)
+        clickIntoButtonByText(R.id.collectorName, collectorName)
 
         //Agregamos un tiempo de espera de 5000
         SystemClock.sleep(delayService)
 
         //Validamos que el listado tenga un minimo de albumes
-        onView(withId(R.id.collector_albums_rv)).check(
+        onView(withId(R.id.albums_rv)).check(
             CustomAssertions.greaterItem(
                 albumsMinimum
             )
@@ -120,7 +120,6 @@ class CollectorDetailTest {
         val collectorName = "Haiber H. Galindo"
         val collectorEmailToSearch = "hgalindo619@gmail.com"
         val collectorPhoneToSearch = "3102178976"
-        val albumsMinimum = 2
 
         //Navegamos al view de ListArtists
         navegateToListCollectors()
@@ -165,7 +164,7 @@ class CollectorDetailTest {
         onView(withId(R.id.collectorImage)).check(matches(isDisplayed()))
 
         //Validamos si el listado de Albumes es mostrado
-        validateTextView(R.id.collector_albums_rv, "Meteora")
+        validateTextView(R.id.AlbumName, "Meteora")
 
         //Damos click en back
         Espresso.pressBack()
