@@ -113,10 +113,10 @@ class AlbumCreateTest {
         setTextLayoutViewByValue(R.id.name_album_textField,"Album prueba")
 
         SystemClock.sleep(delayService2)
-        setTextLayoutViewByValue(R.id.image_album_textField,"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com.mx%2Fgasrock23%2Fblack-sabbath%2F&psig=AOvVaw3_e-kyCDby8dsJEf2e-c_h&ust=1684554144715000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJivhKy7gP8CFQAAAAAdAAAAABAE")
+        setTextViewByValue(R.id.image_album_textField,"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com.mx%2Fgasrock23%2Fblack-sabbath%2F&psig=AOvVaw3_e-kyCDby8dsJEf2e-c_h&ust=1684554144715000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJivhKy7gP8CFQAAAAAdAAAAABAE")
 
         SystemClock.sleep(delayService2)
-        setTextLayoutViewByValue(R.id.descripcion_album_textField,"Album de prueba")
+        setTextViewByValue(R.id.descripcion_album_textField,"Album de prueba")
 
         SystemClock.sleep(delayService2)
         setTextViewByValue(R.id.date_album_datepicker,"01/01/2000")
