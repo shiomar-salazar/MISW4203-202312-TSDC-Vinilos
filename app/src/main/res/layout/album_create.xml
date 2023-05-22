@@ -32,6 +32,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="390dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:background="@color/white"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -48,6 +50,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="390dp"
+            android:textColorHint="@color/black"
+            android:background="@color/white"
             android:layout_height="wrap_content"
             android:inputType="text" />
 
@@ -63,16 +67,18 @@
 
     <EditText
         android:id="@+id/date_album_datepicker"
-        android:layout_below="@id/title_date_add_album"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_below="@id/title_date_add_album"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:autofillHints="01/01/1999"
         android:clickable="true"
         android:focusable="true"
         android:hint="@string/crear_album_date_text"
         android:inputType="date"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:minHeight="48dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/descripcion_album_textField"
@@ -87,6 +93,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="390dp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:background="@color/white"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -107,6 +115,7 @@
         android:text="@string/crear_album_genero_text" />
     <Spinner
         android:id="@+id/genero_album_spinner"
+        android:contentDescription="@string/seleccione_un_genero_de_musica_para_el_album"
         style="?android:attr/spinnerItemStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

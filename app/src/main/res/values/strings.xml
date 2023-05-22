@@ -63,5 +63,7 @@
     <string name="collector_phone_number">Telefono</string>
     <string name="collector_email">Email</string>
     <string name="collector_detail_albumes_title">Albumes Favoritos</string>
+    <string name="valoracion_del_album_de_0_a_5_estrellas">Valoracion del Album de 0 a 5 estrellas</string>
+    <string name="seleccione_un_genero_de_musica_para_el_album">Seleccione un genero de musica para el album</string>
 
 </resources>
