@@ -137,6 +137,12 @@ class CollectorListTest {
         pressBack()
 
         //Validamos que al darle volver nos lleve nuevamente a la ventana de Usuario
+        onView(withId(R.id.fragment_collector)).check(matches(ViewMatchers.isDisplayed()))
+
+        //Damos click en back
+        pressBack()
+
+        //Validamos que al darle volver nos lleve nuevamente a la ventana de Usuario
         onView(withId(R.id.fragment_user)).check(matches(ViewMatchers.isDisplayed()))
     }
 

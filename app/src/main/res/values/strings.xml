@@ -35,7 +35,7 @@
     <string name="nuevo_album">Nuevo Álbum</string>
     <string name="crear_album_name_text">Nombre del álbum</string>
     <string name="crear_album_image_text">Imágen de Portada</string>
-    <string name="crear_album_date_text">MM/DD/AAAA</string>
+    <string name="crear_album_date_text">   MM/DD/AAAA</string>
     <string name="crear_album_descripcion_text">Descripción</string>
     <string name="crear_album_genero_text">Género</string>
     <string name="selected_item_genero">Seleccionar:</string>
@@ -63,5 +63,7 @@
     <string name="collector_phone_number">Telefono</string>
     <string name="collector_email">Email</string>
     <string name="collector_detail_albumes_title">Albumes Favoritos</string>
+    <string name="valoracion_del_album_de_0_a_5_estrellas">Valoracion del Album de 0 a 5 estrellas</string>
+    <string name="seleccione_un_genero_de_musica_para_el_album">Seleccione un genero de musica para el album</string>
 
 </resources>

@@ -38,8 +38,8 @@
 
         <TextView
             android:id="@+id/descriptionCommentTitle"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
@@ -77,8 +77,8 @@
 
         <TextView
             android:id="@+id/valorationCommentTitle"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
@@ -92,6 +92,7 @@
 
         <RatingBar
             android:id="@+id/commentRating"
+            android:contentDescription="@string/valoracion_del_album_de_0_a_5_estrellas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dip"
@@ -109,16 +110,11 @@
             android:stretchColumns="0,1"
             app:layout_constraintTop_toBottomOf="@+id/commentRating">
 
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/saveButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="0"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
@@ -131,15 +127,14 @@
                     android:id="@+id/cancelButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
                     android:text="@string/cancel_button"
-                    android:textSize="18sp"
-                    app:autoSizeMaxTextSize="20sp"
-                    app:autoSizeMinTextSize="18sp" />
-            </TableRow>
+                    android:textSize="20sp"
+                    android:minHeight="48dp"
+                    app:autoSizeMaxTextSize="25sp"
+                    app:autoSizeMinTextSize="20sp" />
         </TableLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
