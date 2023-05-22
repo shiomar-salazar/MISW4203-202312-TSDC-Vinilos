@@ -35,7 +35,7 @@
     <string name="nuevo_album">Nuevo Álbum</string>
     <string name="crear_album_name_text">Nombre del álbum</string>
     <string name="crear_album_image_text">Imágen de Portada</string>
-    <string name="crear_album_date_text">MM/DD/AAAA</string>
+    <string name="crear_album_date_text">   MM/DD/AAAA</string>
     <string name="crear_album_descripcion_text">Descripción</string>
     <string name="crear_album_genero_text">Género</string>
     <string name="selected_item_genero">Seleccionar:</string>

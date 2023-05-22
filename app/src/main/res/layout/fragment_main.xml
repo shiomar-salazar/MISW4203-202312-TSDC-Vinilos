@@ -28,11 +28,12 @@
     <Button
         android:id="@+id/MenuUserButton"
         android:layout_width="wrap_content"
+        android:maxWidth="250dp"
+        android:minHeight="100dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginBottom="18dip"
         android:backgroundTint="@color/ButtonGrey"
-        android:minHeight="48dp"
         android:text="@string/menu_usuario"
         android:textAllCaps="false"
         android:textSize="20sp" />
@@ -40,12 +41,13 @@
     <Button
         android:id="@+id/CollectorManuButton"
         android:layout_width="wrap_content"
+        android:maxWidth="250dp"
+        android:minHeight="100dp"
         android:layout_height="wrap_content"
         android:text="@string/menu_coleccionista"
         android:layout_below="@id/MenuUserButton"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/ButtonGrey"
         android:textAllCaps="false"
-        android:minHeight="48dp"
         android:textSize="20sp"  />
 </RelativeLayout >

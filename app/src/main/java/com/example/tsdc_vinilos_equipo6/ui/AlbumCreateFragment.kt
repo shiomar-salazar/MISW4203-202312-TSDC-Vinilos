@@ -38,8 +38,8 @@ class AlbumCreateFragment : Fragment() {
         binding.albumCreateButton.setOnClickListener {
             val album = Album(
                 name = binding.nameAlbumTextField.editText?.text.toString().trim(),
-                description = binding.descripcionAlbumTextField.editText?.text.toString().trim(),
-                cover = binding.imageAlbumTextField.editText?.text.toString().trim(),
+                description = binding.descripcionAlbumTextField.text.toString().trim(),
+                cover = binding.imageAlbumTextField.text.toString().trim(),
                 genre = binding.generoAlbumSpinner.selectedItem.toString().trim(),
                 releaseDate = binding.dateAlbumDatepicker.text.toString().trim(),
                 recordLabel = binding.disqueraAlbumSpinner.selectedItem.toString().trim(),

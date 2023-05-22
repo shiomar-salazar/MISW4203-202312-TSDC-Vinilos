@@ -10,10 +10,11 @@
 
     <TextView
         android:id="@+id/albums_title_crear"
-        android:layout_width="386dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:gravity="center"
         android:text="@string/nuevo_album"
         android:textSize="40sp"
@@ -25,44 +26,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="80dp"
-        android:hint="@string/crear_album_name_text">
+        android:layout_marginEnd="10dp"
+        android:hint="@string/crear_album_name_text"
+        android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="390dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/black"
             android:background="@color/white"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColorHint="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/image_album_textField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="140dp"
         android:layout_marginEnd="10dp"
-        android:hint="@string/crear_album_image_text">
+        android:foregroundTint="@color/black"
+        android:hint="@string/crear_album_image_text"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="@color/black" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="390dp"
-            android:textColorHint="@color/black"
-            android:background="@color/white"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/title_date_add_album"
         android:layout_width="fill_parent"
-        android:layout_marginStart="10dp"
-        android:layout_below="@id/image_album_textField"
         android:layout_height="wrap_content"
+        android:layout_below="@id/image_album_textField"
+        android:layout_marginStart="10dp"
         android:text="@string/fecha_de_lanzamiento" />
 
     <EditText
@@ -78,84 +76,85 @@
         android:hint="@string/crear_album_date_text"
         android:inputType="date"
         android:maxLines="1"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:textColorHint="@color/black" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/descripcion_album_textField"
         android:layout_width="match_parent"
-        android:layout_below="@id/date_album_datepicker"
         android:layout_height="wrap_content"
+        android:layout_below="@id/date_album_datepicker"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
-        android:hint="@string/crear_album_descripcion_text">
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foregroundTint="@color/black"
+        android:hint="@string/crear_album_descripcion_text"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="@color/black" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="390dp"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/black"
-            android:background="@color/white"
-            android:inputType="text" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/layout_genero_album_spinner"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/descripcion_album_textField"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dip"
         android:layout_marginEnd="10dp"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/crear_album_genero_text" />
-    <Spinner
-        android:id="@+id/genero_album_spinner"
-        android:contentDescription="@string/seleccione_un_genero_de_musica_para_el_album"
-        style="?android:attr/spinnerItemStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:entries="@array/Generos"
-        android:overlapAnchor="false"
-        android:spinnerMode="dropdown" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/crear_album_genero_text" />
+
+        <Spinner
+            android:id="@+id/genero_album_spinner"
+            style="?android:attr/spinnerItemStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:contentDescription="@string/seleccione_un_genero_de_musica_para_el_album"
+            android:entries="@array/Generos"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:id="@+id/layout_disquera_album_spinner"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/layout_genero_album_spinner"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dip"
         android:layout_marginEnd="10dp"
-        android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/crear_album_disquera_text" />
+        android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/disquera_album_spinner"
-        style="?android:attr/spinnerItemStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:entries="@array/Disquera"
-        android:overlapAnchor="false"
-        android:spinnerMode="dropdown"
-        android:text="@string/crear_album_disquera_text" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/crear_album_disquera_text" />
+
+        <Spinner
+            android:id="@+id/disquera_album_spinner"
+            style="?android:attr/spinnerItemStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/Disquera"
+            android:overlapAnchor="false"
+            android:spinnerMode="dropdown"
+            android:text="@string/crear_album_disquera_text" />
     </LinearLayout>
 
     <Button
         android:id="@+id/album_create_button"
-        android:layout_below="@id/layout_disquera_album_spinner"
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/layout_disquera_album_spinner"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/ButtonGrey"
@@ -166,14 +165,14 @@
 
     <Button
         android:id="@+id/album_cancel_button"
-        android:layout_below="@id/layout_disquera_album_spinner"
-        android:layout_width="160dp"
-        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/album_create_button"
-        android:layout_marginTop="15dp"
+        android:layout_below="@id/layout_disquera_album_spinner"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@id/album_create_button"
         android:backgroundTint="@color/ButtonGrey"
         android:text="@string/crear_album_cancelar_button"
         android:textAllCaps="false"
