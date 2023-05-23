@@ -10,7 +10,6 @@ class CommentsRepository(val application: Application) {
     suspend fun refreshCommentsData(albumId: Int): List<Comment> {
         val potentialResp =
             CacheManager.getInstance(application.applicationContext).getComments(albumId)
-        if (potentialResp.isEmpty()) {
         return if (potentialResp.isEmpty()) {
             Log.d("Cache decision", "get from network")
             val comments = NetworkServiceAdapter.getInstance(application).getComments(albumId)
