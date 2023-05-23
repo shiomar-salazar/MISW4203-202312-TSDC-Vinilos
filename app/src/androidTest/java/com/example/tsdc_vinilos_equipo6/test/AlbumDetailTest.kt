@@ -105,7 +105,7 @@ class AlbumDetailTest {
 
         //Validamos que el listado tenga un minimo de premios
         onView(withId(R.id.album_tracks_rv)).check(
-            CustomAssertions.greaterItem(
+            greaterItem(
                 tracksMinimum
             )
         )

@@ -11,13 +11,14 @@ class CommentsRepository(val application: Application) {
         val potentialResp =
             CacheManager.getInstance(application.applicationContext).getComments(albumId)
         if (potentialResp.isEmpty()) {
+        return if (potentialResp.isEmpty()) {
             Log.d("Cache decision", "get from network")
             val comments = NetworkServiceAdapter.getInstance(application).getComments(albumId)
             CacheManager.getInstance(application.applicationContext).addComments(albumId, comments)
-            return comments
+            comments
         } else {
             Log.d("Cache decision", "return ${potentialResp.size} elements from cache")
-            return potentialResp
+            potentialResp
         }
     }
 

@@ -32,11 +32,8 @@ class CommentCreateViewModel(application: Application) : AndroidViewModel(applic
         get() = _isNetworkErrorShown
 
     init {
-        getDataFromRepository()
         comment = MutableLiveData()
     }
-
-    private fun getDataFromRepository() {}
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true

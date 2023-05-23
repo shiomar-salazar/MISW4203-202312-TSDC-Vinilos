@@ -1,8 +1,6 @@
 package com.example.tsdc_vinilos_equipo6.ui
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +16,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: View = inflater.inflate(
             R.layout.fragment_main,
             container, false
