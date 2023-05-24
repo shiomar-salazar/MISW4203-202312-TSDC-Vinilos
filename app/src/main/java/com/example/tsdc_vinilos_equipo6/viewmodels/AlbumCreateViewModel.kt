@@ -32,11 +32,8 @@ class AlbumCreateViewModel(application: Application) : AndroidViewModel(applicat
         get() = _isNetworkErrorShown
 
     init {
-        getDataFromRepository()
         album = MutableLiveData()
     }
-
-    private fun getDataFromRepository() {}
 
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true

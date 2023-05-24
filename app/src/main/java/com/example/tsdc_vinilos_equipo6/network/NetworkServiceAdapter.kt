@@ -2,7 +2,6 @@ package com.example.tsdc_vinilos_equipo6.network
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -85,7 +84,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
                 })
         )
     }
@@ -95,9 +93,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             getRequest("albums/$albumId",
                 { response ->
-                    Log.d("tagb", response)
                     val resp = JSONObject(response)
-
                     val commentsList: JSONArray = resp.getJSONArray("comments")
                     val comments = mutableListOf<Comment>()
                     var comment: JSONObject
@@ -189,7 +185,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
                 })
         )
     }
@@ -199,7 +194,6 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             getRequest("collectors/$collectorId/albums",
                 { responseCollectors ->
-                    Log.d("RSGetCollectorAlbumes", responseCollectors)
                     if (responseCollectors.length > 2) {
                         val resp = JSONArray(responseCollectors)
                         val listAlbums = mutableListOf<Album>()
@@ -236,7 +230,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                         requestQueue.add(
                             getRequest("collectors/$collectorId",
                                 { responseCollector ->
-                                    Log.d("RSGetCollector", responseCollector)
                                     val resp = JSONObject(responseCollector)
                                     collector = Collector(
                                         collectorId = resp.getInt("id"),
@@ -249,14 +242,12 @@ class NetworkServiceAdapter constructor(context: Context) {
                                 },
                                 {
                                     cont.resumeWithException(it)
-                                    Log.d("", it.message.toString())
                                 })
                         )
                     }
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
                 })
         )
     }
@@ -270,7 +261,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                     var item: JSONObject
                     (0 until resp.length()).forEach {
                         item = resp.getJSONObject(it)
-                        Log.d("Response", item.toString())
                         list.add(
                             it,
                             Comment(
@@ -286,7 +276,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
                 })
         )
     }
@@ -334,7 +323,6 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             getRequest("musicians",
                 { response ->
-                    Log.d("ResponseGelAllArtists", response)
                     val resp = JSONArray(response)
                     val list = mutableListOf<Artist>()
                     var item: JSONObject
@@ -375,12 +363,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    Log.d("ArtistsList", list.toString())
                     cont.resume(list)
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
                 })
         )
     }
@@ -390,7 +376,6 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             getRequest("musicians/$musicianId",
                 { response ->
-                    Log.d("ResponseGetMusician", response)
                     val resp = JSONObject(response)
                     val listAlbums = mutableListOf<Album>()
                     var itemAlbum: JSONObject

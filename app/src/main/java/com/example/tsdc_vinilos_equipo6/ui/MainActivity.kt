@@ -1,7 +1,6 @@
 package com.example.tsdc_vinilos_equipo6.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -23,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         // Instantiate the navController using the NavHostFragment
         navController = navHostFragment.navController
         // Make sure actions in the ActionBar get propagated to the NavController
-        Log.d("act", navController.toString())
         setSupportActionBar(findViewById(R.id.my_toolbar))
         setupActionBarWithNavController(navController)
 

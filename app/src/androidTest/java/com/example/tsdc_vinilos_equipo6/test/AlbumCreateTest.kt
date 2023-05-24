@@ -48,19 +48,19 @@ class AlbumCreateTest {
 
     fun clickIntoButtonById(idView: Int) {
         //Damos click en el boton idView
-        Espresso.onView(ViewMatchers.withId(idView)).perform(ViewActions.click())
+        onView(withId(idView)).perform(click())
     }
 
     fun clickIntoButtonByText(idView: Int, valueToSearch: String) {
         //Damos click en el boton idView
-        getTextViewByValue(idView, valueToSearch)?.perform(ViewActions.click())
+        getTextViewByValue(idView, valueToSearch)?.perform(click())
     }
 
     fun getTextViewByValue(idView: Int, valueToSearch: String): ViewInteraction? {
         //Validamos si existe un TextView de tipo idView con el texto valueToSearch
-        return Espresso.onView(
-            AllOf.allOf(
-                ViewMatchers.withId(idView),
+        return onView(
+            allOf(
+                withId(idView),
                 ViewMatchers.withText(valueToSearch)
             )
         )

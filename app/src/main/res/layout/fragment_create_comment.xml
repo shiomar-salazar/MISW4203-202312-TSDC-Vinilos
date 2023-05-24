@@ -63,7 +63,6 @@
             app:layout_constraintTop_toBottomOf="@+id/descriptionCommentTitle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/commentNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/comentarios_descripcion"
@@ -104,7 +103,6 @@
             app:layout_constraintTop_toBottomOf="@+id/valorationCommentTitle" />
 
         <TableLayout
-            android:id="@+id/tableLayoutButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stretchColumns="0,1"

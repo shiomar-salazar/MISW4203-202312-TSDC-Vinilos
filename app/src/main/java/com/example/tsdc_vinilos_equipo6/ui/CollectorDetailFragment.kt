@@ -63,7 +63,7 @@ class CollectorDetailFragment : Fragment() {
                 collector = it
                 viewModelAdapter!!.collector = it
                 if (it.albums != null){
-                    albumsRecyclerView.adapter = CollectorAlbumsAdapter(it.albums!!)
+                    albumsRecyclerView.adapter = CollectorAlbumsAdapter(it.albums)
                 }
             }
         }
