@@ -39,11 +39,6 @@ class AlbumAdapter: RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
         displayPerformers(album?.performers, holder.viewDataBinding.albumArtist)
         displayDate(album?.releaseDate, holder.viewDataBinding.albumReleasedDate)
         holder.bind(album)
-        holder.viewDataBinding.root.setOnClickListener {
-            // val action = AlbumFragmentDirections.actionAlbumFragmentToCommentFragment(albums[position].albumId)
-            // Navigate using that action
-            //holder.viewDataBinding.root.findNavController().navigate(action)
-        }
     }
 
     override fun getItemCount(): Int {

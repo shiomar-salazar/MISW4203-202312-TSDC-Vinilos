@@ -1,6 +1,5 @@
 package com.example.tsdc_vinilos_equipo6.ui.adapters
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -41,7 +40,6 @@ class ArtistsAdapter : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>(){
         holder.viewDataBinding.root.setOnClickListener {
             val action = ArtistsFragmentDirections.actionArtistFragmentToArtistDetailFragment(artists[position].artistId)
             // Navigate using that action
-            Log.d("ArtistID", artists[position].artistId.toString())
             holder.viewDataBinding.root.findNavController().navigate(action)
         }
     }

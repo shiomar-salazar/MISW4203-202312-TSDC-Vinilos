@@ -2,14 +2,14 @@ package com.example.tsdc_vinilos_equipo6.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.core.net.toUri
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.AlbumItemBinding
@@ -17,8 +17,9 @@ import com.example.tsdc_vinilos_equipo6.models.Album
 import com.example.tsdc_vinilos_equipo6.models.Performer
 import com.example.tsdc_vinilos_equipo6.ui.AlbumsFragmentDirections
 
-class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
+class AlbumsAdapter(isCollector: Boolean) : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
 
+    var _isCollectors = isCollector
     var albums :List<Album> = emptyList()
         set(value) {
             field = value
@@ -41,7 +42,7 @@ class AlbumsAdapter : RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>(){
         displayPerformers(albums[position].performers, holder.viewDataBinding.AlbumPerformer)
         holder.bind(albums[position])
         holder.viewDataBinding.root.setOnClickListener {
-            val action = AlbumsFragmentDirections.actionAlbumFragmentToAlbumDetailFragment(albums[position].albumId)
+            val action = AlbumsFragmentDirections.actionAlbumFragmentToAlbumDetailFragment(albums[position].albumId, _isCollectors)
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
         }

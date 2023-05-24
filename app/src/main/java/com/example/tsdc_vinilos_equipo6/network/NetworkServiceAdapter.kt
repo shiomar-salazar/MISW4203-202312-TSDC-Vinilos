@@ -2,11 +2,9 @@ package com.example.tsdc_vinilos_equipo6.network
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -49,8 +47,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                     var item: JSONObject
                     var itemPerformer: JSONObject
                     var respPerformer: JSONArray
-                    val listPerformers = mutableListOf<Performer>()
                     (0 until resp.length()).forEach { it ->
+                        val listPerformers = mutableListOf<Performer>()
                         item = resp.getJSONObject(it)
                         respPerformer = item.getJSONArray("performers")
                         (0 until respPerformer.length()).forEach {
@@ -86,7 +84,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
                 })
         )
     }
@@ -96,9 +93,7 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             getRequest("albums/$albumId",
                 { response ->
-                    Log.d("tagb", response)
                     val resp = JSONObject(response)
-
                     val commentsList: JSONArray = resp.getJSONArray("comments")
                     val comments = mutableListOf<Comment>()
                     var comment: JSONObject
@@ -111,8 +106,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                         comment = commentsList.getJSONObject(it)
                         comments.add(
                             Comment(
+                                comment.getInt("id"),
                                 comment.optString("description"),
-                                comment.getInt("rating").toString(), albumId
+                                comment.getInt("rating").toString(), albumId,
+                                comment.optInt("collectorID")
                             )
                         )
                     }
@@ -179,7 +176,8 @@ class NetworkServiceAdapter constructor(context: Context) {
                             collectorId = item.getInt("id"),
                             name = item.optString("name"),
                             telephone = item.optString("telephone"),
-                            email = item.optString("email")
+                            email = item.optString("email"),
+                            albums = null
                         )
                         list.add(it, collector)
                     }
@@ -187,7 +185,69 @@ class NetworkServiceAdapter constructor(context: Context) {
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
+                })
+        )
+    }
+
+    suspend fun getCollector(collectorId: Int) = suspendCoroutine { cont ->
+        var collector: Collector?
+        requestQueue.add(
+            getRequest("collectors/$collectorId/albums",
+                { responseCollectors ->
+                    if (responseCollectors.length > 2) {
+                        val resp = JSONArray(responseCollectors)
+                        val listAlbums = mutableListOf<Album>()
+                        var itemCollector: JSONObject
+                        (0 until resp.length()).forEach {
+                            itemCollector = resp.getJSONObject(it)
+                            val album = itemCollector.getJSONObject("album")
+                            listAlbums.add(
+                                it, Album(
+                                    albumId = album.getInt("id"),
+                                    name = album.optString("name"),
+                                    cover = album.optString("cover"),
+                                    releaseDate = album.optString("releaseDate"),
+                                    description = album.optString("description"),
+                                    genre = album.optString("genre"),
+                                    recordLabel = album.optString("recordLabel"),
+                                    tracks = null,
+                                    performers = null,
+                                    comments = null
+                                )
+                            )
+                        }
+                        itemCollector = resp.getJSONObject(0)
+                        val currentCollector = itemCollector.getJSONObject("collector")
+                        collector = Collector(
+                            collectorId = currentCollector.getInt("id"),
+                            name = currentCollector.optString("name"),
+                            telephone = currentCollector.optString("telephone"),
+                            email = currentCollector.optString("email"),
+                            albums = listAlbums
+                        )
+                        cont.resume(collector!!)
+                    } else {
+                        requestQueue.add(
+                            getRequest("collectors/$collectorId",
+                                { responseCollector ->
+                                    val resp = JSONObject(responseCollector)
+                                    collector = Collector(
+                                        collectorId = resp.getInt("id"),
+                                        name = resp.optString("name"),
+                                        telephone = resp.optString("telephone"),
+                                        email = resp.optString("email"),
+                                        albums = null
+                                    )
+                                    cont.resume(collector!!)
+                                },
+                                {
+                                    cont.resumeWithException(it)
+                                })
+                        )
+                    }
+                },
+                {
+                    cont.resumeWithException(it)
                 })
         )
     }
@@ -201,13 +261,14 @@ class NetworkServiceAdapter constructor(context: Context) {
                     var item: JSONObject
                     (0 until resp.length()).forEach {
                         item = resp.getJSONObject(it)
-                        Log.d("Response", item.toString())
                         list.add(
                             it,
                             Comment(
+                                id = item.getInt("id"),
                                 albumId = albumId,
                                 rating = item.getInt("rating").toString(),
-                                description = item.optString("description")
+                                description = item.optString("description"),
+                                collectorID = item.optInt("collectorID")
                             )
                         )
                     }
@@ -215,25 +276,6 @@ class NetworkServiceAdapter constructor(context: Context) {
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
-                })
-        )
-    }
-
-    fun postComment(
-        body: JSONObject,
-        albumId: Int,
-        onComplete: (resp: JSONObject) -> Unit,
-        onError: (error: VolleyError) -> Unit
-    ) {
-        requestQueue.add(
-            postRequest("albums/$albumId/comments",
-                body,
-                { response ->
-                    onComplete(response)
-                },
-                {
-                    onError(it)
                 })
         )
     }
@@ -281,7 +323,6 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             getRequest("musicians",
                 { response ->
-                    Log.d("ResponseGelAllArtists", response)
                     val resp = JSONArray(response)
                     val list = mutableListOf<Artist>()
                     var item: JSONObject
@@ -322,12 +363,10 @@ class NetworkServiceAdapter constructor(context: Context) {
                             )
                         )
                     }
-                    Log.d("ArtistsList", list.toString())
                     cont.resume(list)
                 },
                 {
                     cont.resumeWithException(it)
-                    Log.d("", it.message.toString())
                 })
         )
     }
@@ -337,7 +376,6 @@ class NetworkServiceAdapter constructor(context: Context) {
         requestQueue.add(
             getRequest("musicians/$musicianId",
                 { response ->
-                    Log.d("ResponseGetMusician", response)
                     val resp = JSONObject(response)
                     val listAlbums = mutableListOf<Album>()
                     var itemAlbum: JSONObject
@@ -386,6 +424,67 @@ class NetworkServiceAdapter constructor(context: Context) {
                         prizes = listPrizes
                     )
                     cont.resume(artist!!)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+
+    suspend fun addComment(albumId: Int, comment: Comment) = suspendCoroutine { cont ->
+        requestQueue.add(
+            postRequest(
+                "albums/$albumId/comments",
+                JSONObject(
+                    """{"description":"${comment.description}",
+                    |"rating":${comment.rating.toFloat()},
+                    |"collector":{"id":${comment.collectorID}}}""".trimMargin()
+                ),
+                { response ->
+                    val collector = response.getJSONObject("collector")
+                    val album = response.getJSONObject("album")
+                    val commentCreated = Comment(
+                        id = response.optInt("id"),
+                        albumId = album.optInt("id"),
+                        description = response.optString("description"),
+                        rating = response.optString("rating"),
+                        collectorID = collector.optInt("id")
+                    )
+
+                    cont.resume(commentCreated)
+                },
+                {
+                    cont.resumeWithException(it)
+                })
+        )
+    }
+
+    suspend fun addAlbum(album: Album) = suspendCoroutine { cont ->
+        requestQueue.add(
+            postRequest(
+                "albums",
+                JSONObject(
+                    """{"name":"${album.name}",
+                    |"cover":"${album.cover}",
+                    |"releaseDate":"${album.releaseDate}",
+                    |"description":"${album.description}",
+                    |"genre":"${album.genre}",
+                    |"recordLabel":"${album.recordLabel}"}""".trimMargin()
+                ),
+                { response ->
+                    val albumCreated = Album(
+                        albumId = response.optInt("albumId"),
+                        name = response.optString("name"),
+                        cover = response.optString("cover"),
+                        releaseDate = response.optString("releaseDate"),
+                        description = response.optString("description"),
+                        genre = response.optString("genre"),
+                        recordLabel = response.optString("recordLabel"),
+                        tracks = mutableListOf(),
+                        performers = mutableListOf(),
+                        comments = mutableListOf()
+                    )
+                    cont.resume(albumCreated)
                 },
                 {
                     cont.resumeWithException(it)

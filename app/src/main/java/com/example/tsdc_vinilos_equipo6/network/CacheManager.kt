@@ -6,7 +6,6 @@ import com.example.tsdc_vinilos_equipo6.models.Artist
 import com.example.tsdc_vinilos_equipo6.models.Collector
 import com.example.tsdc_vinilos_equipo6.models.Comment
 
-
 class CacheManager(context: Context) {
     companion object {
         var instance: CacheManager? = null
@@ -21,9 +20,10 @@ class CacheManager(context: Context) {
     private var comments: HashMap<Int, List<Comment>> = hashMapOf()
     private var album: HashMap<Int, Album> = hashMapOf()
     private var albums: List<Album> = mutableListOf()
-    private var artists: List<Artist> = mutableListOf<Artist>()
+    private var artists: List<Artist> = mutableListOf()
     private var artist: HashMap<Int, Artist> = hashMapOf()
-    private var collectors: List<Collector> = mutableListOf<Collector>()
+    private var collectors: List<Collector> = mutableListOf()
+    private var collector: HashMap<Int, Collector> = hashMapOf()
 
     fun addComments(albumId: Int, comment: List<Comment>) {
         if (!comments.containsKey(albumId)) {
@@ -31,17 +31,22 @@ class CacheManager(context: Context) {
         }
     }
 
+    fun addComment(albumId: Int, albumComment: Comment) {
+        var listComments = album[albumId]?.comments
+        listComments = listComments?.plus(albumComment)
+        album[albumId]?.comments = listComments
+    }
+
     fun getComments(albumId: Int): List<Comment> {
-        return if (comments.containsKey(albumId)) comments[albumId]!! else listOf<Comment>()
+        return if (comments.containsKey(albumId)) comments[albumId]!! else listOf()
     }
 
     /* Start Album Cache Logic */
-    fun addAlbum(albumId: Int, albums: Album) {
+    fun addAlbum(albumId: Int, newAlbum: Album) {
         if (!album.containsKey(albumId)) {
-            album[albumId] = albums
-            println(albums.tracks)
+            album[albumId] = newAlbum
         }
-
+        albums = albums.plus(newAlbum)
     }
 
     fun getAlbum(albumId: Int): Album? {
@@ -71,13 +76,12 @@ class CacheManager(context: Context) {
     }
 
     fun getArtists(): List<Artist> {
-        return if (artists.isEmpty()) listOf<Artist>() else artists
+        return if (artists.isEmpty()) listOf() else artists
     }
 
     fun getArtist(artistId: Int): Artist? {
         return artist[artistId]
     }
-
 
     fun addCollectors(newCollectors: List<Collector>) {
         if (collectors.isEmpty()) {
@@ -85,7 +89,17 @@ class CacheManager(context: Context) {
         }
     }
 
+    fun addCollector(collectorId: Int, collectors: Collector) {
+        if (!collector.containsKey(collectorId)) {
+            collector[collectorId] = collectors
+        }
+    }
+
     fun getCollectors(): List<Collector> {
-        return if (collectors.isEmpty()) listOf<Collector>() else collectors
+        return collectors.ifEmpty { listOf() }
+    }
+
+    fun getCollector(collectorId: Int): Collector? {
+        return collector[collectorId]
     }
 }

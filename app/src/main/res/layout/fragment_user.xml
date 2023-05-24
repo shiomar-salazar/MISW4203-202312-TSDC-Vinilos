@@ -9,8 +9,10 @@
 
     <Button
         android:id="@+id/AlbumUserButton"
-        android:layout_width="250dip"
-        android:layout_height="100dip"
+        android:layout_width="wrap_content"
+        android:maxWidth="250dp"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
         android:text="@string/CatAlbum"
         android:layout_above="@id/ArtistUserButton"
         android:layout_centerHorizontal="true"
@@ -22,8 +24,10 @@
 
     <Button
         android:id="@+id/ArtistUserButton"
-        android:layout_width="250dip"
-        android:layout_height="100dip"
+        android:layout_width="wrap_content"
+        android:maxWidth="250dp"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
         android:layout_centerInParent="true"
         android:layout_marginBottom="18dip"
         android:backgroundTint="@color/ButtonGrey"
@@ -34,8 +38,10 @@
 
     <Button
         android:id="@+id/ColecctionUserButton"
-        android:layout_width="250dip"
-        android:layout_height="100dip"
+        android:layout_width="wrap_content"
+        android:maxWidth="250dp"
+        android:minHeight="100dp"
+        android:layout_height="wrap_content"
         android:text="@string/CatCollection"
         android:textColor="@color/black"
         android:layout_below="@id/ArtistUserButton"

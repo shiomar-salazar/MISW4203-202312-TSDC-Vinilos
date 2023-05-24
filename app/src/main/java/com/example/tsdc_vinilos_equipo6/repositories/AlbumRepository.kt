@@ -34,4 +34,9 @@ class AlbumRepository(val application: Application) {
             potentialResp
         }
     }
+
+    suspend fun addAlbum(album: Album): Album {
+        CacheManager.getInstance(application.applicationContext).addAlbum(album.albumId, album)
+        return NetworkServiceAdapter.getInstance(application).addAlbum(album)
+    }
 }

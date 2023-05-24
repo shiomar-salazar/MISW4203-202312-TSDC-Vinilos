@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.CollectorItemBinding
 import com.example.tsdc_vinilos_equipo6.models.Collector
+import com.example.tsdc_vinilos_equipo6.ui.CollectorsFragmentDirections
 
 class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHolder>() {
 
@@ -32,11 +34,10 @@ class CollectorsAdapter : RecyclerView.Adapter<CollectorsAdapter.CollectorViewHo
             it.collector = collectors[position]
         }
         holder.viewDataBinding.root.setOnClickListener {
-            /*
-            val action = CollectorFragmentDirections.actionCollectorFragmentToAlbumFragment()
+            val action = CollectorsFragmentDirections.actionCollectorFragmentToCollectorDetailFragment(collectors[position].collectorId)
+            //actionCollectorFragmentToAlbumFragment()
             // Navigate using that action
             holder.viewDataBinding.root.findNavController().navigate(action)
-             */
 
         }
     }

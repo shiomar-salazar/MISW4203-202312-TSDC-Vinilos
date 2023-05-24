@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.CollectorFragmentBinding
 import com.example.tsdc_vinilos_equipo6.ui.adapters.CollectorsAdapter
-import com.example.tsdc_vinilos_equipo6.viewmodels.CollectorViewModel
+import com.example.tsdc_vinilos_equipo6.viewmodels.CollectorsViewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -21,7 +21,7 @@ class CollectorsFragment : Fragment() {
     private var _binding: CollectorFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: CollectorViewModel
+    private lateinit var viewModel: CollectorsViewModel
     private var viewModelAdapter: CollectorsAdapter? = null
 
     override fun onCreateView(
@@ -46,7 +46,7 @@ class CollectorsFragment : Fragment() {
             "You can only access the viewModel after onActivityCreated()"
         }
         activity.actionBar?.title = getString(R.string.title_collectors)
-        viewModel = ViewModelProvider(this, CollectorViewModel.Factory(activity.application))[CollectorViewModel::class.java]
+        viewModel = ViewModelProvider(this, CollectorsViewModel.Factory(activity.application))[CollectorsViewModel::class.java]
         viewModel.collectors.observe(viewLifecycleOwner) {
             it.apply {
                 viewModelAdapter!!.collectors = this

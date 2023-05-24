@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CollectorViewModel(application: Application) :  AndroidViewModel(application) {
+class CollectorsViewModel(application: Application) :  AndroidViewModel(application) {
 
     private val _collectors = MutableLiveData<List<Collector>>()
     private val collectorsRepository = CollectorsRepository(application)
@@ -34,7 +34,7 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    val data = collectorsRepository.refreshData()
+                    val data = collectorsRepository.refreshCollectorsData()
                     _collectors.postValue(data)
                 }
                 _eventNetworkError.postValue(false)
@@ -52,9 +52,9 @@ class CollectorViewModel(application: Application) :  AndroidViewModel(applicati
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(CollectorViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(CollectorsViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return CollectorViewModel(app) as T
+                return CollectorsViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }

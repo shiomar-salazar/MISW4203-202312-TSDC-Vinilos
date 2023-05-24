@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/collectorTitle"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"
         android:text="@string/listado_de_collector"

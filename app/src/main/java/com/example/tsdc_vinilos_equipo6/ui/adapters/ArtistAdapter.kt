@@ -1,6 +1,5 @@
 package com.example.tsdc_vinilos_equipo6.ui.adapters
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -60,7 +59,6 @@ class ArtistAdapter: RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder>() {
             val LAYOUT = R.layout.artist_detail_item
         }
         fun bind(artist: Artist?) {
-            Log.d("ArtistAdapterArtist", artist.toString())
             if (artist != null) {
                 Glide.with(itemView)
                     .load(artist.image.toUri().buildUpon().scheme("https").build())

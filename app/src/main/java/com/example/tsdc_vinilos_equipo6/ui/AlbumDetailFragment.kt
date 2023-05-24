@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +16,10 @@ import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.databinding.FragmentAlbumDetailBinding
 import com.example.tsdc_vinilos_equipo6.models.Album
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumAdapter
+import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumCommentsAdapter
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumTracksAdapter
 import com.example.tsdc_vinilos_equipo6.viewmodels.AlbumViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class AlbumDetailFragment : Fragment() {
@@ -23,6 +27,7 @@ class AlbumDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var tracksRecyclerView: RecyclerView
+    private lateinit var commentsRecyclerView: RecyclerView
 
     private lateinit var album: Album
     private lateinit var viewModel: AlbumViewModel
@@ -45,8 +50,18 @@ class AlbumDetailFragment : Fragment() {
         tracksRecyclerView = binding.albumTracksRv
         tracksRecyclerView.layoutManager = LinearLayoutManager(context)
 
+        commentsRecyclerView = binding.albumCommentsRv
+        commentsRecyclerView.layoutManager = LinearLayoutManager(context)
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = viewModelAdapter
+
+        val args: AlbumDetailFragmentArgs by navArgs()
+        val createCommentButton : FloatingActionButton = view.findViewById(R.id.fab_add_comment)
+        createCommentButton.setOnClickListener {
+            val action = AlbumDetailFragmentDirections.actionAlbumDetailFragmentToCreateAlbumFragment(args.albumId)
+            view.findNavController().navigate(action)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -62,6 +77,8 @@ class AlbumDetailFragment : Fragment() {
                 album = it
                 viewModelAdapter!!.album = it
                 tracksRecyclerView.adapter = AlbumTracksAdapter(it.tracks!!)
+                commentsRecyclerView.adapter = AlbumCommentsAdapter(it.comments!!)
+                binding.fabAddComment.isVisible = args.isCollector
             }
         }
         viewModel.eventNetworkError.observe(viewLifecycleOwner) { isNetworkError ->

@@ -138,7 +138,7 @@ class ArtisListTest {
         pressBack()
 
         //Validamos que al darle volver nos lleve nuevamente al listado de Artistas
-        onView(withId(R.id.fragment_artist)).check(matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.fragment_artist)).check(matches(isDisplayed()))
 
         //Damos click en back
         pressBack()
