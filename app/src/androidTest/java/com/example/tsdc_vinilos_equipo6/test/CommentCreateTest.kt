@@ -15,6 +15,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import org.hamcrest.CoreMatchers
 import org.hamcrest.core.AllOf
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Rule
@@ -53,6 +54,18 @@ class CommentCreateTest {
                 ViewMatchers.withId(idView),
                 ViewMatchers.withText(valueToSearch)
             )
+        )
+    }
+
+    fun setTextLayoutViewByValue(idView: Int, valueToType:String) {
+        //Validamos si existe un TextView de tipo idView con el texto valueToSearch
+        onView(
+            allOf(
+                ViewMatchers.isDescendantOfA(withId(idView)),
+                ViewMatchers.withClassName(CoreMatchers.endsWith("EditText"))
+            )
+        ).perform(
+            typeText(valueToType)
         )
     }
 
@@ -113,7 +126,7 @@ class CommentCreateTest {
         onView(allOf(withId(R.id.cancelButton), ViewMatchers.isDisplayed()))
 
         //Se ingresa comentario
-        setTextViewByValue(R.id.commentNameEditText,comment)
+        setTextLayoutViewByValue(R.id.commentTextField,comment)
 
         SystemClock.sleep(delayService2)
         //Se genera una valoracion para el comentario (rating)
@@ -125,7 +138,7 @@ class CommentCreateTest {
         SystemClock.sleep(10000)
 
         //Validamos que si se muestra el listado de comentarios
-        onView(allOf(withId(R.id.album_comments_rv), ViewMatchers.isDisplayed()))
+        onView(allOf(withId(R.id.album_comments_Rv), ViewMatchers.isDisplayed()))
 
         //Validamos que existe el nuevo comentario en el listado de comentarios
         onView(allOf(withId(R.id.CommentDescription), ViewMatchers.withText(comment)))
