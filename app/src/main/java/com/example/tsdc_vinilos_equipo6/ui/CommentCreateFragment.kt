@@ -62,7 +62,7 @@ class CommentCreateFragment : Fragment() {
 
     private fun formIsValid(array: ArrayList<String>): Boolean {
         for (elem in array) {
-            if (TextUtils.isEmpty(elem) || elem == "0.0") {
+            if (TextUtils.isEmpty(elem) || elem == "0.0" || elem.length < 2) {
                 return false
             }
         }
