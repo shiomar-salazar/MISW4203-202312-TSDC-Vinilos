@@ -11,9 +11,25 @@
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_4_API_24" value="120" />
                   <entry key="Pixel_5_API_22" value="120" />
+                  <entry key="R5CRC1R4T6D" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="XKPNJJ6T9XKZ45QS" value="120" />
                   <entry key="realme&#10; RMX2001" value="120" />
+                  <entry key="samsung&#10; SM-G990E" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-1657355786">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="R5CRC1R4T6D" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung&#10; SM-G990E" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -42,9 +58,11 @@
                   <entry key="Nexus_5_API_TiramisuPrivacySandbox" value="120" />
                   <entry key="Pixel_4_API_24" value="120" />
                   <entry key="Pixel_5_API_22" value="120" />
+                  <entry key="R5CRC1R4T6D" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="XKPNJJ6T9XKZ45QS" value="120" />
                   <entry key="realme&#10; RMX2001" value="120" />
+                  <entry key="samsung&#10; SM-G990E" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -71,9 +89,11 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_4_API_24" value="120" />
+                  <entry key="R5CRC1R4T6D" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="XKPNJJ6T9XKZ45QS" value="120" />
                   <entry key="realme&#10; RMX2001" value="120" />
+                  <entry key="samsung&#10; SM-G990E" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -112,9 +132,11 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="R5CRC1R4T6D" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="XKPNJJ6T9XKZ45QS" value="120" />
                   <entry key="realme&#10; RMX2001" value="120" />
+                  <entry key="samsung&#10; SM-G990E" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -141,9 +163,11 @@
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_4_API_24" value="120" />
                   <entry key="Pixel_5_API_22" value="120" />
+                  <entry key="R5CRC1R4T6D" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="XKPNJJ6T9XKZ45QS" value="120" />
                   <entry key="realme&#10; RMX2001" value="120" />
+                  <entry key="samsung&#10; SM-G990E" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -156,9 +180,11 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Nexus_5_API_TiramisuPrivacySandbox" value="120" />
+                  <entry key="R5CRC1R4T6D" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="XKPNJJ6T9XKZ45QS" value="120" />
                   <entry key="realme&#10; RMX2001" value="120" />
+                  <entry key="samsung&#10; SM-G990E" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -202,9 +228,11 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_4_API_24" value="120" />
+                  <entry key="R5CRC1R4T6D" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="XKPNJJ6T9XKZ45QS" value="120" />
                   <entry key="realme&#10; RMX2001" value="120" />
+                  <entry key="samsung&#10; SM-G990E" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>

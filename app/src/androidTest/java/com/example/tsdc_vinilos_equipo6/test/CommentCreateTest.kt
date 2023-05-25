@@ -82,6 +82,18 @@ class CommentCreateTest {
         )
     }
 
+    fun setTextLayoutViewByValue(idView: Int, valueToType:String) {
+        //Validamos si existe un TextView de tipo idView con el texto valueToSearch
+        onView(
+            allOf(
+                ViewMatchers.isDescendantOfA(withId(idView)),
+                ViewMatchers.withClassName(CoreMatchers.endsWith("EditText"))
+            )
+        ).perform(
+            typeText(valueToType)
+        )
+    }
+
     /**
      * Esta prueba tiene como objetivo crear un nuevo comentario
      */

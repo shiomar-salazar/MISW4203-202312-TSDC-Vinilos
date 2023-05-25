@@ -1,6 +1,7 @@
 package com.example.tsdc_vinilos_equipo6.ui
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,24 +37,43 @@ class AlbumCreateFragment : Fragment() {
         }
 
         binding.albumCreateButton.setOnClickListener {
-            val album = Album(
-                name = binding.nameAlbumTextField.editText?.text.toString().trim(),
-                description = binding.descripcionAlbumTextField.text.toString().trim(),
-                cover = binding.imageAlbumTextField.text.toString().trim(),
-                genre = binding.generoAlbumSpinner.selectedItem.toString().trim(),
-                releaseDate = binding.dateAlbumDatepicker.text.toString().trim(),
-                recordLabel = binding.disqueraAlbumSpinner.selectedItem.toString().trim(),
-                comments = null,
-                performers = null,
-                tracks = null
-            )
-            if (viewModel.addNewAlbum(album)) {
-                showMessage("El álbum se registró correctamente.")
-                navigateToAlbums()
+            val name = binding.nameAlbumTextField.editText?.text.toString()
+            val description = binding.descripcionAlbumTextField.text.toString()
+            val cover = binding.imageAlbumTextField.text.toString()
+            val releaseDate = binding.dateAlbumDatepicker.text.toString()
+            val argsArray: ArrayList<String> = arrayListOf(name, description, cover, releaseDate)
+            if (this.formIsValid(argsArray)) {
+                val album = Album(
+                    name = binding.nameAlbumTextField.editText?.text.toString().trim(),
+                    description = binding.descripcionAlbumTextField.text.toString().trim(),
+                    cover = binding.imageAlbumTextField.text.toString().trim(),
+                    genre = binding.generoAlbumSpinner.selectedItem.toString().trim(),
+                    releaseDate = binding.dateAlbumDatepicker.text.toString().trim(),
+                    recordLabel = binding.disqueraAlbumSpinner.selectedItem.toString().trim(),
+                    comments = null,
+                    performers = null,
+                    tracks = null
+                )
+                if (viewModel.addNewAlbum(album)) {
+                    showMessage("El álbum se registró correctamente.")
+                    navigateToAlbums()
+                } else {
+                    showMessage("Ocurrió un error en el registro del álbum.")
+                }
             } else {
-                showMessage("Ocurrió un error en el registro del álbum.")
+                showMessage("Todos los campos deben ser diligenciados, por favor corrija e intente de nuevo.")
+            }
+
+        }
+    }
+
+    private fun formIsValid(array: ArrayList<String>): Boolean {
+        for (elem in array) {
+            if (TextUtils.isEmpty(elem) || elem.length < 5) {
+                return false
             }
         }
+        return true
     }
 
     private fun navigateToAlbums() {

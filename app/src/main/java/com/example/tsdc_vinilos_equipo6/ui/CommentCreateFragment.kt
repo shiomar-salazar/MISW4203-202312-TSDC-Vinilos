@@ -1,6 +1,8 @@
 package com.example.tsdc_vinilos_equipo6.ui
 
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,19 +37,36 @@ class CommentCreateFragment : Fragment() {
         }
 
         binding.saveButton.setOnClickListener {
-            val comment = Comment(
-                description = binding.commentTextField.editText?.text.toString().trim(),
-                rating = binding.commentRating.rating.toString(),
-                albumId = args.albumId,
-                collectorID = 1
-            )
-            if (viewModel.addNewComment(args.albumId, comment)) {
-                showMessage("El comentario se registró correctamente.")
-                navigateToAlbumDetail()
+            val description = binding.commentTextField.editText?.text.toString()
+            val ratingBar = binding.commentRating.rating.toString()
+            val argsArray: ArrayList<String> = arrayListOf(description, ratingBar)
+            if (this.formIsValid(argsArray)) {
+                val comment = Comment(
+                    description = binding.commentTextField.editText?.text.toString().trim(),
+                    rating = binding.commentRating.rating.toString(),
+                    albumId = args.albumId,
+                    collectorID = 1
+                )
+                if (viewModel.addNewComment(args.albumId, comment)) {
+                    showMessage("El comentario se registró correctamente.")
+                    navigateToAlbumDetail()
+                } else {
+                    showMessage("Ocurrió un error en el registro del comentario.")
+                }
+
             } else {
-                showMessage("Ocurrió un error en el registro del comentario.")
+                showMessage("La descripción del comentario y la valoración deben ser diligenciados.")
             }
         }
+    }
+
+    private fun formIsValid(array: ArrayList<String>): Boolean {
+        for (elem in array) {
+            if (TextUtils.isEmpty(elem) || elem == "0.0" || elem.length < 2) {
+                return false
+            }
+        }
+        return true
     }
 
     private fun showMessage(s: String) {
