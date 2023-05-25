@@ -113,7 +113,7 @@ class CommentCreateTest {
         onView(allOf(withId(R.id.cancelButton), ViewMatchers.isDisplayed()))
 
         //Se ingresa comentario
-        setTextViewByValue(R.id.commentNameEditText,comment)
+        setTextViewByValue(R.id.commentTextField,comment)
 
         SystemClock.sleep(delayService2)
         //Se genera una valoracion para el comentario (rating)
@@ -125,7 +125,7 @@ class CommentCreateTest {
         SystemClock.sleep(10000)
 
         //Validamos que si se muestra el listado de comentarios
-        onView(allOf(withId(R.id.album_comments_rv), ViewMatchers.isDisplayed()))
+        onView(allOf(withId(R.id.album_comments_Rv), ViewMatchers.isDisplayed()))
 
         //Validamos que existe el nuevo comentario en el listado de comentarios
         onView(allOf(withId(R.id.CommentDescription), ViewMatchers.withText(comment)))
