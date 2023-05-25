@@ -15,6 +15,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.example.tsdc_vinilos_equipo6.R
 import com.example.tsdc_vinilos_equipo6.ui.MainActivity
+import org.hamcrest.CoreMatchers
 import org.hamcrest.core.AllOf
 import org.hamcrest.core.AllOf.allOf
 import org.junit.Rule
@@ -69,6 +70,18 @@ class CommentCreateTest {
         )
     }
 
+    fun setTextLayoutViewByValue(idView: Int, valueToType:String) {
+        //Validamos si existe un TextView de tipo idView con el texto valueToSearch
+        onView(
+            allOf(
+                ViewMatchers.isDescendantOfA(withId(idView)),
+                ViewMatchers.withClassName(CoreMatchers.endsWith("EditText"))
+            )
+        ).perform(
+            typeText(valueToType)
+        )
+    }
+
     /**
      * Esta prueba tiene como objetivo crear un nuevo comentario
      */
@@ -113,7 +126,7 @@ class CommentCreateTest {
         onView(allOf(withId(R.id.cancelButton), ViewMatchers.isDisplayed()))
 
         //Se ingresa comentario
-        setTextViewByValue(R.id.commentTextField,comment)
+        setTextLayoutViewByValue(R.id.commentTextField,comment)
 
         SystemClock.sleep(delayService2)
         //Se genera una valoracion para el comentario (rating)
