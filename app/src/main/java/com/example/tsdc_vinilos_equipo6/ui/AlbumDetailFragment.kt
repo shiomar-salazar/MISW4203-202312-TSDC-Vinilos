@@ -18,6 +18,7 @@ import com.example.tsdc_vinilos_equipo6.models.Album
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumAdapter
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumCommentsAdapter
 import com.example.tsdc_vinilos_equipo6.ui.adapters.AlbumTracksAdapter
+import com.example.tsdc_vinilos_equipo6.ui.adapters.CollectorAlbumsAdapter
 import com.example.tsdc_vinilos_equipo6.viewmodels.AlbumViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -76,8 +77,12 @@ class AlbumDetailFragment : Fragment() {
             it.apply {
                 album = it
                 viewModelAdapter!!.album = it
-                tracksRecyclerView.adapter = AlbumTracksAdapter(it.tracks!!)
-                commentsRecyclerView.adapter = AlbumCommentsAdapter(it.comments!!)
+                if (it.tracks != null){
+                    tracksRecyclerView.adapter = AlbumTracksAdapter(it.tracks!!)
+                }
+                if (it.comments != null){
+                    commentsRecyclerView.adapter = AlbumCommentsAdapter(it.comments!!)
+                }
                 binding.fabAddComment.isVisible = args.isCollector
             }
         }
